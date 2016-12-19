@@ -5,10 +5,16 @@ import {HttpModule, Headers, Http} from '@angular/http';
 
 import { AppComponent } from './app.component';
 import {CategoryService} from "./app.service";
+import { GraphComponent } from './graph/graph.component';
+import { ChartComponent } from './chart/chart.component';
+import { BarGraphDirective } from './bar-graph.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GraphComponent,
+    ChartComponent,
+    BarGraphDirective
   ],
   imports: [
     BrowserModule,
