@@ -8,13 +8,15 @@ import {CategoryService} from "./app.service";
 import { GraphComponent } from './graph/graph.component';
 import { ChartComponent } from './chart/chart.component';
 import { BarGraphDirective } from './bar-graph.directive';
+import { BarchartComponent } from './barchart/barchart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GraphComponent,
     ChartComponent,
-    BarGraphDirective
+    BarGraphDirective,
+    BarchartComponent
   ],
   imports: [
     BrowserModule,

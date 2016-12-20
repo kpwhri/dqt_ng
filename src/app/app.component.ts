@@ -14,17 +14,35 @@ export class AppComponent implements OnInit{
   categories: Array<Category> = [];
   results: Observable<SearchResult[]>;
   count: number = 0;
+  private chartData: Array<any>;
 
   private searchTerm: string;
 
-  ngOnInit(): void {
+  ngOnInit() : void {
+    // give everything a chance to get loaded before starting the animation to reduce choppiness
+    setTimeout(() => {
+      this.generateData();
+
+      // change the data periodically
+      setInterval(() => this.generateData(), 3000);
+    }, 1000);
+  }
+
+  generateData() {
+    this.chartData = [];
+    for (let i = 0; i < (8 + Math.floor(Math.random() * 10)); i++) {
+      this.chartData.push([
+        `Index ${i}`,
+        Math.floor(Math.random() * 100)
+      ]);
+    }
   }
 
   constructor(private categoryService: CategoryService) { }
 
   getCategory(stype: string, categoryId: number) {
     for (var idx in this.categories) {
-      console.warn(`${this.categories[idx]} ${categoryId}`)
+      console.warn(`${this.categories[idx]} ${categoryId}`);
       if (this.categories[idx].id == categoryId) {
         return;
       }
