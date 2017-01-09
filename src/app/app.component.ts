@@ -15,13 +15,12 @@ export class AppComponent implements OnInit{
   categories: Array<Category> = [];
   results: Observable<SearchResult[]>;
   count: number = 0;
-  private chartData: IData;
+  private chartData: string;
 
   private searchTerm: string;
 
   ngOnInit() : void {
     // give everything a chance to get loaded before starting the animation to reduce choppiness
-
   }
 
 
@@ -52,6 +51,11 @@ export class AppComponent implements OnInit{
           }
         }
       }
+    }
+    if (res.length > 0) {
+      this.chartData = res.join("&");
+    } else {
+      this.chartData = '';
     }
     var obs = this.categoryService.filterItems(res.join("&"));
     obs.map((r: Response) => r.json().count as number).subscribe(e => this.count = e);
