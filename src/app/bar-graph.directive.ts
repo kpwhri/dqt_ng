@@ -35,6 +35,9 @@ export class BarGraphDirective {
       "searches": 22
     }];
 
+
+    data = [];
+
     // set the dimensions and margins of the graph
     var margin = {
         top: 20,
@@ -173,39 +176,39 @@ export class BarGraphDirective {
       .style("fill", color);
 
     // draw legend text
-    legend.append("text")
-      .style("font", "14px open-sans")
-      .attr("x", width - 24)
-      .attr("y", 9)
-      .attr("dy", ".35em")
-      .style("text-anchor", "end")
-      .text(function (d) {
-        return d;
-      });
+    // legend.append("text")
+    //   .style("font", "14px open-sans")
+    //   .attr("x", width - 24)
+    //   .attr("y", 9)
+    //   .attr("dy", ".35em")
+    //   .style("text-anchor", "end")
+    //   .text(function (d) {
+    //     return d;
+    //   });
 
     // Add the X Axis
-    svg.append("g")
-      .style("font", "14px open-sans")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%d/%m")));
+    // svg.append("g")
+    //   .style("font", "14px open-sans")
+    //   .attr("transform", "translate(0," + height + ")")
+    //   .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%d/%m")));
 
     // Add the Y Axis
-    svg.append("g")
-      .style("font", "14px open-sans")
-      .call(d3.axisLeft(y));
+    // svg.append("g")
+    //   .style("font", "14px open-sans")
+    //   .call(d3.axisLeft(y));
 
     // Add Axis labels
-    svg.append("text")
-      .style("font", "14px open-sans")
-      .attr("text-anchor", "middle")
-      .attr("transform", "translate(" + (-margin.left / 2) + "," + (height / 2) + ")rotate(-90)")
-      .text("Sales / Searches");
-
-    svg.append("text")
-      .style("font", "14px open-sans")
-      .attr("text-anchor", "middle")
-      .attr("transform", "translate(" + (width / 2) + "," + (height + (margin.bottom)) + ")")
-      .text("Date");
+    // svg.append("text")
+    //   .style("font", "14px open-sans")
+    //   .attr("text-anchor", "middle")
+    //   .attr("transform", "translate(" + (-margin.left / 2) + "," + (height / 2) + ")rotate(-90)")
+    //   .text("Sales / Searches");
+    //
+    // svg.append("text")
+    //   .style("font", "14px open-sans")
+    //   .attr("text-anchor", "middle")
+    //   .attr("transform", "translate(" + (width / 2) + "," + (height + (margin.bottom)) + ")")
+    //   .text("Date");
   }
 
   @HostListener('mouseenter') onMouseEnter() {

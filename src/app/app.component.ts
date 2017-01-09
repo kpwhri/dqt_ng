@@ -3,6 +3,7 @@ import {Category, SearchResult, Value} from "./categories";
 import {CategoryService} from "./app.service";
 import {Observable, Subject} from "rxjs";
 import {Response} from "@angular/http";
+import {IData} from "../interfaces";
 
 @Component({
   selector: 'app-root',
@@ -10,33 +11,20 @@ import {Response} from "@angular/http";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'Data Query Tool (Alpha)';
+  title = 'Data Query Tool';
   categories: Array<Category> = [];
   results: Observable<SearchResult[]>;
   count: number = 0;
-  private chartData: Array<any>;
+  private chartData: IData;
 
   private searchTerm: string;
 
   ngOnInit() : void {
     // give everything a chance to get loaded before starting the animation to reduce choppiness
-    setTimeout(() => {
-      this.generateData();
 
-      // change the data periodically
-      setInterval(() => this.generateData(), 3000);
-    }, 1000);
   }
 
-  generateData() {
-    this.chartData = [];
-    for (let i = 0; i < (8 + Math.floor(Math.random() * 10)); i++) {
-      this.chartData.push([
-        `Index ${i}`,
-        Math.floor(Math.random() * 100)
-      ]);
-    }
-  }
+
 
   constructor(private categoryService: CategoryService) { }
 
