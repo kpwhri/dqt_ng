@@ -18,6 +18,7 @@ export class BarchartComponent implements OnInit, OnChanges {
   private width: number;
   private height: number;
   private svg;
+  private svgPie;
   private g;
   private xScale: any;
   private yScale: any;
@@ -50,8 +51,6 @@ export class BarchartComponent implements OnInit, OnChanges {
       height = +this.svg.attr("height") - margin.top - margin.bottom,
       g = this.svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-
-
     var x = d3.scaleBand()
       .rangeRound([0, width])
       .paddingInner(0.05)
@@ -60,7 +59,33 @@ export class BarchartComponent implements OnInit, OnChanges {
       .rangeRound([height, 0]);
     var z = d3.scaleOrdinal()
       .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
-    d3.json(`${this.serverAddress}/api/filter?`,
+
+    //setup pie chart
+    var width = 360;
+    var height = 360;
+    var radius = Math.min(width, height) / 2;
+    var color = d3.scaleOrdinal()
+      .range(['#A60F2B', '#648C85', '#B3F2C9', '#528C18', '#C3F25C']);
+    this.svgPie = d3.select('#piechart')
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height);
+    var gpie = this.svgPie
+      .append('g')
+      .attr('transform', 'translate(' + (width / 2) +  ',' + (height / 2) + ')');
+
+    var arc = d3.arc()
+      .innerRadius(radius - 75)
+      .outerRadius(radius);
+
+    var pie = d3.pie()
+      .value(function(d) { return d['count']; })
+      .sort(null);
+    var legendRectSize = 18;
+    var legendSpacing = 4;
+
+    //end pie chart setup
+    d3.json(`${this.serverAddress}/api/filter`,
       function (error, d) {
         var data = d['data'];
         if (error) throw error;
@@ -135,6 +160,40 @@ export class BarchartComponent implements OnInit, OnChanges {
           .attr("dy", "0.32em")
           .text(d => <string> d)
         ;
+
+        // pie chart
+        var path = gpie.selectAll('path')
+          .data(pie(d['enroll']))
+          .enter()
+          .append('path')
+          .attr('d', arc)
+          .attr('fill', function(d, i) {
+            return color(d['data']['label']);
+          });
+
+        var legend = gpie.selectAll('.legend')
+          .data(color.domain())
+          .enter()
+          .append('g')
+          .attr('class', 'legend')
+          .attr('transform', function(d, i) {
+            var height = legendRectSize + legendSpacing;
+            var offset =  height * color.domain().length / 2;
+            var horz = -2 * legendRectSize;
+            var vert = i * height - offset;
+            return 'translate(' + horz + ',' + vert + ')';
+          });
+
+        legend.append('rect')
+          .attr('width', legendRectSize)
+          .attr('height', legendRectSize)
+          .style('fill', color)
+          .style('stroke', color);
+
+        legend.append('text')
+          .attr('x', legendRectSize + legendSpacing)
+          .attr('y', legendRectSize - legendSpacing)
+          .text(function(d) { return d.toUpperCase(); });
       })
   }
 
@@ -149,7 +208,8 @@ export class BarchartComponent implements OnInit, OnChanges {
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
       width = +this.svg.attr("width") - margin.left - margin.right,
       height = +this.svg.attr("height") - margin.top - margin.bottom,
-      g = this.svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      g = this.svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")"),
+      gpie = this.svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     var x = d3.scaleBand()
       .rangeRound([0, width])
       .paddingInner(0.05)
