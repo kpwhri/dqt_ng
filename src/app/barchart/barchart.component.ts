@@ -58,7 +58,7 @@ export class BarchartComponent implements OnInit, OnChanges {
         if (error) throw error;
         var keys = d['columns'];
         data.sort(function (a, b) {
-          return b['total'] - a['total'];
+          return a['age'] - b['age']
         });
         console.warn(data);
         x.domain(data.map(function (d) {
