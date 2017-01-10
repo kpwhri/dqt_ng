@@ -11,3 +11,59 @@
 .d3-chart .axis text {
   fill: #999;
 }
+
+html{
+  height:100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #20272a;
+  font-family: 'Roboto', "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  color: #404C51;
+  -webkit-font-smoothing: antialiased;
+  font-size: 1em;
+}
+
+#MENUSIDE {
+  float: left;
+  background-color: #313b3f;
+  border-right: solid 1px #151d21;
+  width: 299px;
+  height: 100%;
+  color: white;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#CONTENTSIDE {
+  width: auto;
+  overflow: hidden;
+  z-index: 1;
+  margin-left: 300px;
+  background-color: #FFFFFF;
+  height:100%;
+}
+
+
+.scrollwrapper{
+  margin-top: -30px;
+  padding-top: 30px;
+  height: 100%;
+}
+
+.scrollwrapper2{
+  margin-top: -30px;
+  padding-top: 30px;
+  height: 68%;
+}
+
+.scrollcontent{
+  color: black;
+  height: 100%;
+  overflow: auto;
+}
