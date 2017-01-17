@@ -1,23 +1,22 @@
 import {Component, OnInit} from '@angular/core';
 import {Category, SearchResult, Value} from "./categories";
 import {CategoryService} from "./app.service";
-import {Observable, Subject} from "rxjs";
+import {Observable} from "rxjs";
 import {Response} from "@angular/http";
-import {IData} from "../interfaces";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit{
   title = 'Data Query Tool';
   categories: Array<Category> = [];
   results: Observable<SearchResult[]>;
   count: number = 0;
+  checked: true;
   private chartData: string;
-
-  private searchTerm: string;
+  private serachTerm: string;
 
   ngOnInit() : void {
     // give everything a chance to get loaded before starting the animation to reduce choppiness
