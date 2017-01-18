@@ -16,6 +16,6 @@
 }
 
 .right-column, .left-column, .center-column {
-  height: 500px;
+  height: 10px;
   display: table-cell;
 }

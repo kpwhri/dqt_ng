@@ -93,7 +93,6 @@ export class BarchartComponent implements OnInit, OnChanges {
         data.sort(function (a, b) {
           return a['age'] - b['age']
         });
-        console.warn(data);
         x.domain(data.map(function (d) {
           return d.age;
         }));
@@ -226,7 +225,6 @@ export class BarchartComponent implements OnInit, OnChanges {
         data.sort(function (a, b) {
           return a['age'] - b['age']
         });
-        console.warn(data);
         x.domain(data.map(function (d) {
           return d.age;
         }));
@@ -329,7 +327,6 @@ export class BarchartComponent implements OnInit, OnChanges {
         data.sort(function (a, b) {
           return a['age'] - b['age']
         });
-        console.warn(data);
         x.domain(data.map(function (d) {
           return d.age;
         }));

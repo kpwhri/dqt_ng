@@ -37,6 +37,12 @@ export class CategoryService {
       .map((r: Response) => r.json() as Category);
   }
 
+  getAllCategories(): Observable<Category[]> {
+    return this.http
+      .get(`${this.serverAddress}/api/category/all`, this.options)
+      .map((r: Response) => r.json().categories as Category[]);
+  }
+
   filterItems(querystring: string): Observable<any> {
     return this.http
       .get(`${this.serverAddress}/api/filter?${querystring}`, this.options);

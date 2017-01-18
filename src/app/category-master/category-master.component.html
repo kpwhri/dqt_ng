@@ -1,0 +1,6 @@
+<p>hi there</p>
+<p>{{categories}}</p>
+<div *ngFor="let category of categories">
+  {{ category.name }}
+  <app-category [category]="category"></app-category>
+</div>

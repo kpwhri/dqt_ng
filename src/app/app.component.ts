@@ -3,6 +3,7 @@ import {Category, SearchResult, Value} from "./categories";
 import {CategoryService} from "./app.service";
 import {Observable} from "rxjs";
 import {Response} from "@angular/http";
+import {CategoryMasterComponent} from "./category-master/category-master.component";
 
 @Component({
   selector: 'app-root',
@@ -16,13 +17,10 @@ export class AppComponent implements OnInit{
   count: number = 0;
   checked: true;
   private chartData: string;
-  private serachTerm: string;
 
   ngOnInit() : void {
     // give everything a chance to get loaded before starting the animation to reduce choppiness
   }
-
-
 
   constructor(private categoryService: CategoryService) { }
 
@@ -33,7 +31,7 @@ export class AppComponent implements OnInit{
         return;
       }
     }
-    this.categoryService.getCategory(stype, categoryId).subscribe(res => this.categories.push(res));
+    // this.categoryService.getCategory(stype, categoryId).subscribe(res => this.categoryMaster.add(res));
   }
 
   search(term: string) {

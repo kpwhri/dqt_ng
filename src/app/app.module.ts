@@ -12,7 +12,10 @@ import { BarchartComponent } from './barchart/barchart.component';
 import { SliderModule } from 'primeng/primeng';
 import {ToggleButtonModule} from 'primeng/primeng';
 import { CheckboxValueComponent } from './checkbox-value/checkbox-value.component';
-import {RatingModule} from "primeng/primeng";
+import {PanelModule} from "primeng/primeng";
+import { CategoryMasterComponent } from './category-master/category-master.component';
+import { CategoryComponent } from './category/category.component';
+import { ItemComponent } from './item/item.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import {RatingModule} from "primeng/primeng";
     BarGraphDirective,
     BarchartComponent,
     CheckboxValueComponent,
+    CategoryMasterComponent,
+    CategoryComponent,
+    ItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +35,7 @@ import {RatingModule} from "primeng/primeng";
     HttpModule,
     SliderModule,
     ToggleButtonModule,
-    RatingModule,
+    PanelModule,
   ],
   providers: [CategoryService],
   bootstrap: [AppComponent]
