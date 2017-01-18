@@ -16,6 +16,7 @@ import {PanelModule} from "primeng/primeng";
 import { CategoryMasterComponent } from './category-master/category-master.component';
 import { CategoryComponent } from './category/category.component';
 import { ItemComponent } from './item/item.component';
+import {TooltipModule} from "primeng/components/tooltip/tooltip";
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ItemComponent } from './item/item.component';
     SliderModule,
     ToggleButtonModule,
     PanelModule,
+    TooltipModule
   ],
   providers: [CategoryService],
   bootstrap: [AppComponent]
