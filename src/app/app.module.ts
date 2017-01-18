@@ -17,6 +17,7 @@ import { CategoryComponent } from './category/category.component';
 import { ItemComponent } from './item/item.component';
 import {TooltipModule} from "primeng/components/tooltip/tooltip";
 import {FieldsetModule} from "primeng/components/fieldset/fieldset";
+import { ValueComponent } from './value/value.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {FieldsetModule} from "primeng/components/fieldset/fieldset";
     CategoryMasterComponent,
     CategoryComponent,
     ItemComponent,
+    ValueComponent,
   ],
   imports: [
     BrowserModule,

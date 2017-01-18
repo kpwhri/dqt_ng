@@ -1,8 +1,8 @@
 export class Value {
-  id: number;
-  name: string;
-  description: string;
-  selected: boolean = false;
+    id: number;
+    name: string;
+    description: string;
+    selected: boolean = true;
 }
 
 export class Category {

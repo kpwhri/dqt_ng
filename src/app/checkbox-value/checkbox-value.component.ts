@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import { SliderModule } from 'primeng/primeng';
 
 @Component({
@@ -9,15 +9,16 @@ import { SliderModule } from 'primeng/primeng';
 })
 export class CheckboxValueComponent implements OnInit {
 
-  private vals: number[] = [60, 100];
-  private max: number = 110;
-  private min: number = 60;
-  private step: number = 5;
+  @Input('max') max: number = 100;
+  @Input('min') min: number = 0;
+  @Input('step') step: number = 5;
   checked: boolean = true;
+  private vals: number[];
 
   constructor() { }
 
   ngOnInit() {
+    this.vals = [this.min, this.max];
   }
 
 }

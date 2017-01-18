@@ -2,10 +2,12 @@
                 onIcon="fa-check-square"
                 offIcon="fa-square" [style]="{'width':'150px'}"></p-toggleButton>
 <div>
-  <div class="left-column">{{min}}</div>
-  <p-slider class="center-column" [(ngModel)]="vals"
+  <p-slider [(ngModel)]="vals"
             [min]="min" [max]="max" [range]="true"
             [step]="step">
   </p-slider>
+
+  <div class="left-column">{{min}}</div>
+  <div class="center-column">Step: {{step}}</div>
   <div class="right-column">{{max}}</div>
 </div>
