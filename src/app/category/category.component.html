@@ -1,2 +1,5 @@
 <p-panel header="{{name}}" [toggleable]="true" pTooltip="{{description}}" tooltipPosition="right">
+  <div *ngFor="let item of items">
+    <app-item [item]="item"></app-item>
+  </div>
 </p-panel>
