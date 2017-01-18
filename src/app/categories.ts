@@ -17,7 +17,8 @@ export class Item {
   name: string;
   description: string;
   is_numeric: boolean;
-  values: Value[];
+  values: Value[] = null;
+  range: number[] = null;
 }
 
 export class SearchResult {
