@@ -12,11 +12,11 @@ import { BarchartComponent } from './barchart/barchart.component';
 import { SliderModule } from 'primeng/primeng';
 import {ToggleButtonModule} from 'primeng/primeng';
 import { CheckboxValueComponent } from './checkbox-value/checkbox-value.component';
-import {PanelModule} from "primeng/primeng";
 import { CategoryMasterComponent } from './category-master/category-master.component';
 import { CategoryComponent } from './category/category.component';
 import { ItemComponent } from './item/item.component';
 import {TooltipModule} from "primeng/components/tooltip/tooltip";
+import {FieldsetModule} from "primeng/components/fieldset/fieldset";
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import {TooltipModule} from "primeng/components/tooltip/tooltip";
     HttpModule,
     SliderModule,
     ToggleButtonModule,
-    PanelModule,
+    FieldsetModule,
     TooltipModule
   ],
   providers: [CategoryService],
