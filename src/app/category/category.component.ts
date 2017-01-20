@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Category, Item} from "../categories";
 
 @Component({
@@ -8,6 +8,7 @@ import {Category, Item} from "../categories";
 })
 export class CategoryComponent implements OnInit {
   @Input('category') category: Category;
+  @Output() onChange: EventEmitter<any> = new EventEmitter();
   private id: number;
   private name: string;
   private description: string;
@@ -23,6 +24,10 @@ export class CategoryComponent implements OnInit {
     for (var i in this.category.items) {
       this.items.push(this.category.items[i]);
     }
+  }
+
+  itemUpdated(e) {
+    this.onChange.emit({eventItem: e.eventItem});
   }
 
 }

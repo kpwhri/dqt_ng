@@ -2,6 +2,6 @@
          pTooltip="{{description}}" tooltipPosition="right"
          [collapsed]="true">
   <div *ngFor="let item of items">
-    <app-item [item]="item"></app-item>
+    <app-item [item]="item" (onChange)="itemUpdated($event)"></app-item>
   </div>
 </p-fieldset>

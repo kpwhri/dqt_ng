@@ -15,7 +15,7 @@
   <button (click)="filterItems()">Preview Results</button>
   <div class="scrollwrapper2">
   <div class="scrollcontent">
-    <app-category-master></app-category-master>
+    <app-category-master (onChange)="categoryUpdated($event)"></app-category-master>
   </div>
   </div>
 </div>

@@ -17,6 +17,9 @@ export class AppComponent implements OnInit{
   count: number = 0;
   checked: true;
   private chartData: string;
+  private rangeFilters: Map<number, number[]> = new Map<number, number[]>();
+  private filters: Map<number, Map<number, boolean>> = new Map<number, Map<number, boolean>>();
+
 
   ngOnInit() : void {
     // give everything a chance to get loaded before starting the animation to reduce choppiness
@@ -62,5 +65,30 @@ export class AppComponent implements OnInit{
     value.selected = event.target.checked;
   }
 
+  /*
+    Update filters and rangeFilters (filters which include a range rather than binary off/on values
+
+   */
+  categoryUpdated(e) {
+    if (e.eventItem.id != null) {  // this is a single value
+      if (this.filters.has(e.eventItem.itemId)) {
+        var newVal = this.filters.get(e.eventItem.itemId);
+        newVal.set(e.eventItem.id, e.eventItem.selected);
+        this.filters.set(e.eventItem.itemId, newVal);
+      } else {
+        var m = new Map<number, boolean>();
+        m.set(e.eventItem.id, e.eventItem.selected);
+        this.filters.set(e.eventItem.itemId, m);
+      }
+    } else {  // this is a range
+      if (e.eventItem.selected) {
+        this.rangeFilters.set(e.eventItem.itemId, e.eventItem.values);
+      } else {
+        this.rangeFilters.delete(e.eventItem.itemId);
+      }
+    }
+    console.warn(this.filters);
+    console.warn(this.rangeFilters);
+  }
 
 }

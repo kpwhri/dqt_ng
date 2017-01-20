@@ -34,6 +34,7 @@ export class EventItem {
   originalEvent = null;
   selected: boolean;
   values: number[] = null;
+  itemId: number = null;
 
   loadRange(originalEvent, selected: boolean, values: number[]) {
     this.originalEvent = originalEvent;
