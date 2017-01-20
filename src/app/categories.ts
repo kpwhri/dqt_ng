@@ -28,6 +28,28 @@ export class SearchResult {
   type: string;
 }
 
+export class EventItem {
+
+  id: number = null;
+  originalEvent = null;
+  selected: boolean;
+  values: number[] = null;
+
+  loadRange(originalEvent, selected: boolean, values: number[]) {
+    this.originalEvent = originalEvent;
+    this.selected = selected;
+    this.values = values;
+    return this;
+  }
+
+  load(originalEvent, id: number, selected: boolean) {
+    this.originalEvent = originalEvent;
+    this.id = id;
+    this.selected = selected;
+    return this;
+  }
+}
+
 
 
 

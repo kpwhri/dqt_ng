@@ -15,4 +15,13 @@ export class ItemComponent implements OnInit {
   ngOnInit() {
   }
 
+  itemChanged(e) {
+    if (e.eventItem.id === null) {
+      e.eventItem.id = this.item.id;
+    }
+    console.warn(e.eventItem.id);
+    console.warn(e.eventItem.selected);
+    console.warn(e.eventItem.values);
+  }
+
 }

@@ -5,11 +5,12 @@
     <app-checkbox-value [min]="item.range[0]"
                         [max]="item.range[1]"
                         [step]="item.range[2]"
+                        (onChange)="itemChanged($event)"
     ></app-checkbox-value>
   </div>
   <div *ngIf="item.values !== null">
     <div *ngFor="let value of item.values">
-      <app-value [value]="value"></app-value>
+      <app-value [value]="value" (onChange)="itemChanged($event)"></app-value>
     </div>
   </div>
 </p-fieldset>

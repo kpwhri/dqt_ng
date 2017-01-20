@@ -1,5 +1,5 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {Value} from "../categories";
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
+import {Value, EventItem} from "../categories";
 
 @Component({
   selector: 'app-value',
@@ -8,11 +8,18 @@ import {Value} from "../categories";
 })
 export class ValueComponent implements OnInit {
   @Input('value') value: Value;
-  private selected : boolean = true;
+  private selected: boolean = true;
+  @Output() onChange: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
+
+  valueChanged(e) {
+    this.onChange.emit({eventItem: new EventItem().load(e, this.value.id, e.checked)});
+  }
+
 
 }
