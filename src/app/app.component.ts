@@ -3,7 +3,6 @@ import {Category, SearchResult, Value} from "./categories";
 import {CategoryService} from "./app.service";
 import {Observable} from "rxjs";
 import {Response} from "@angular/http";
-import {CategoryMasterComponent} from "./category-master/category-master.component";
 
 @Component({
   selector: 'app-root',
@@ -15,6 +14,7 @@ export class AppComponent implements OnInit{
   categories: Array<Category> = [];
   results: Observable<SearchResult[]>;
   count: number = 0;
+  searchTerm: string = "";
   checked: true;
   private chartData: string;
   private rangeFilters: Map<string, string[]> = new Map<string, string[]>();
@@ -34,25 +34,26 @@ export class AppComponent implements OnInit{
         return;
       }
     }
-    // this.categoryService.getCategory(stype, categoryId).subscribe(res => this.categoryMaster.add(res));
   }
 
-  search(term: string) {
-    this.results = this.categoryService.search(term);
+  search(e, term:string) {
+    console.warn(e);
+    if (term.length >= 3) {
+      this.results = this.categoryService.search(term);
+    } else {
+      this.results = null;
+    }
   }
 
   filterItems() {
     var fs = this.parseFilters();
     var rfs = this.parseRangeFilters();
     var res = fs.concat(rfs);
-    console.warn(rfs);
-    console.warn(fs);
     if (res.length > 0) {
       this.chartData = res.join("&");
     } else {
       this.chartData = '';
     }
-    console.warn(this.chartData);
 
     var obs = this.categoryService.filterItems(this.chartData);
     obs.map((r: Response) => r.json().count as number).subscribe(e => this.count = e);
