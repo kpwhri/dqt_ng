@@ -8,7 +8,7 @@ import {Value, EventItem} from "../categories";
 })
 export class ValueComponent implements OnInit {
   @Input('value') value: Value;
-  private selected: boolean = true;
+  private selected: boolean = false;
   @Output() onChange: EventEmitter<any> = new EventEmitter();
 
   constructor() {

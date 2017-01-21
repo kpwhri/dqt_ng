@@ -14,7 +14,7 @@ export class CheckboxValueComponent implements OnInit {
   @Input('min') min: number = 0;
   @Input('step') step: number = 5;
   @Output() onChange: EventEmitter<any> = new EventEmitter();
-  checked: boolean = true;
+  checked: boolean = false;
   private vals: number[];
 
   constructor() {
