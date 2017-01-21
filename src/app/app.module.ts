@@ -18,6 +18,7 @@ import { ItemComponent } from './item/item.component';
 import {TooltipModule} from "primeng/components/tooltip/tooltip";
 import {FieldsetModule} from "primeng/components/fieldset/fieldset";
 import { ValueComponent } from './value/value.component';
+import {DialogModule} from "primeng/components/dialog/dialog";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ValueComponent } from './value/value.component';
     SliderModule,
     ToggleButtonModule,
     FieldsetModule,
-    TooltipModule
+    TooltipModule,
+    DialogModule,
   ],
   providers: [CategoryService],
   bootstrap: [AppComponent]

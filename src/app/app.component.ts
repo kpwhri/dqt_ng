@@ -16,6 +16,7 @@ export class AppComponent implements OnInit{
   count: number = 0;
   searchTerm: string = "";
   checked: true;
+  display: boolean = false;
   private chartData: string;
   private rangeFilters: Map<string, string[]> = new Map<string, string[]>();
   private filters: Map<string, Map<string, boolean>> = new Map<string, Map<string, boolean>>();
@@ -40,8 +41,10 @@ export class AppComponent implements OnInit{
     console.warn(e);
     if (term.length >= 3) {
       this.results = this.categoryService.search(term);
+      this.display = true;
     } else {
       this.results = null;
+      this.display = false;
     }
   }
 
