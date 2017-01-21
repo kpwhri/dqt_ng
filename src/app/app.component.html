@@ -14,7 +14,7 @@
       </thead>
       <tbody>
       <tr *ngFor="let res of results | async">
-        <td><button (click)="promoteCategory(res.type, res.categoryId)">+</button></td>
+        <td><button (click)="promoteCategory(res.itemId, res.categoryId)">+</button></td>
         <td>{{res.name}}</td>
         <td>{{res.type}}</td>
         <td>{{res.description}}</td>

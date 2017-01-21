@@ -1,7 +1,7 @@
-<p-fieldset legend="{{name}}" [toggleable]="true"
+<p-fieldset #fieldset legend="{{name}}" [toggleable]="true"
          pTooltip="{{description}}" tooltipPosition="right"
          [collapsed]="true">
   <div *ngFor="let item of items">
-    <app-item [item]="item" (onChange)="itemUpdated($event)"></app-item>
+    <app-item #itemComponent [item]="item" (onChange)="itemUpdated($event)"></app-item>
   </div>
 </p-fieldset>

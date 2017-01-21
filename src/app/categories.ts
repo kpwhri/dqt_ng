@@ -27,6 +27,7 @@ export class SearchResult {
   description: string;
   type: string;
   categoryId: number;
+  itemId: number;
 }
 
 export class EventItem {

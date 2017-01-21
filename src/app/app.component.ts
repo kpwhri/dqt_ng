@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Category, SearchResult, Value} from "./categories";
+import {Category, SearchResult} from "./categories";
 import {CategoryService} from "./app.service";
 import {Observable} from "rxjs";
 import {Response} from "@angular/http";
@@ -30,8 +30,8 @@ export class AppComponent implements OnInit{
 
   constructor(private categoryService: CategoryService) { }
 
-  promoteCategory(e, categoryId: number) {
-    this.masterComponent.bringCategoryToTop(categoryId);
+  promoteCategory(itemId: number, categoryId: number) {
+    this.masterComponent.bringCategoryToTop(itemId, categoryId);
   }
 
   search(e, term:string) {

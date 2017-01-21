@@ -1,5 +1,7 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, ViewChildren, QueryList, ViewChild} from '@angular/core';
 import {Category, Item} from "../categories";
+import {ItemComponent} from "../item/item.component";
+import {Fieldset} from "primeng/components/fieldset/fieldset";
 
 @Component({
   selector: 'app-category',
@@ -7,6 +9,8 @@ import {Category, Item} from "../categories";
   styleUrls: ['./category.component.css']
 })
 export class CategoryComponent implements OnInit {
+  @ViewChildren('itemComponent') itemComponents: QueryList<ItemComponent>;
+  @ViewChild('fieldset') fieldset: Fieldset;
   @Input('category') category: Category;
   @Output() onChange: EventEmitter<any> = new EventEmitter();
   private id: number;
@@ -30,4 +34,19 @@ export class CategoryComponent implements OnInit {
     this.onChange.emit({eventItem: e.eventItem});
   }
 
+  expandItem(itemId: number) {
+    this.fieldset.toggle(null);
+    this.itemComponents.forEach(item => {
+      if (item.item.id == itemId) {
+        item.expand();
+      }
+    });
+  }
+
+  expandItems() {
+    this.fieldset.toggle(null);
+    this.itemComponents.forEach(item => {
+      item.expand();
+    });
+  }
 }

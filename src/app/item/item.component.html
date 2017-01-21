@@ -1,4 +1,4 @@
-<p-fieldset legend="{{item.name}}" [toggleable]="true"
+<p-fieldset #fieldset legend="{{item.name}}" [toggleable]="true"
          pTooltip="{{item.description}}"
          [collapsed]="true">
   <div *ngIf="item.range !== null && item.range !== undefined">

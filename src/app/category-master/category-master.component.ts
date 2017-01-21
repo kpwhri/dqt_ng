@@ -1,6 +1,7 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, ViewChildren, QueryList} from '@angular/core';
 import {Category} from "../categories";
 import {CategoryService} from "../app.service";
+import {CategoryComponent} from "../category/category.component";
 
 @Component({
   selector: 'app-category-master',
@@ -9,6 +10,7 @@ import {CategoryService} from "../app.service";
 })
 export class CategoryMasterComponent implements OnInit {
 
+  @ViewChildren('categoryComponent') categoryComponents: QueryList<CategoryComponent>;
   private categories: Category[];
   @Output() onChange: EventEmitter<any> = new EventEmitter();
 
@@ -17,14 +19,13 @@ export class CategoryMasterComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.warn(this.categories);
   }
 
   categoryUpdated(e) {
     this.onChange.emit({eventItem: e.eventItem});
   }
 
-  bringCategoryToTop(categoryId: number) {
+  bringCategoryToTop(itemId: number, categoryId: number) {
     var idx: number;
     var category: Category;
     this.categories.forEach((cat, index) => {
@@ -37,6 +38,16 @@ export class CategoryMasterComponent implements OnInit {
     if (idx && category) {
       this.categories.splice(idx, 1);
       this.categories.splice(0, 0, category);
+      this.categoryComponents.forEach(cat => {
+          if (cat.category.id == category.id) {
+            if (itemId) {
+              cat.expandItem(itemId);
+            } else {
+              cat.expandItems();
+            }
+          }
+        }
+      );
     }
   }
 }
