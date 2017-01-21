@@ -25,13 +25,9 @@ export class CategoryMasterComponent implements OnInit {
   }
 
   bringCategoryToTop(categoryId: number) {
-    console.warn(this.categories.length);
-    console.warn(this.categories);
     var idx: number;
     var category: Category;
     this.categories.forEach((cat, index) => {
-      console.warn(cat);
-      console.warn(cat.id, categoryId, cat.id == categoryId, index);
       if (cat.id == categoryId) {
         idx = index;
         category = cat;
@@ -41,7 +37,6 @@ export class CategoryMasterComponent implements OnInit {
     if (idx && category) {
       this.categories.splice(idx, 1);
       this.categories.splice(0, 0, category);
-      console.warn(idx);
     }
   }
 }

@@ -31,12 +31,10 @@ export class AppComponent implements OnInit{
   constructor(private categoryService: CategoryService) { }
 
   promoteCategory(e, categoryId: number) {
-    console.warn(categoryId);
     this.masterComponent.bringCategoryToTop(categoryId);
   }
 
   search(e, term:string) {
-    console.warn(e);
     if (term.length >= 3) {
       this.results = this.categoryService.search(term);
       this.display = true;
