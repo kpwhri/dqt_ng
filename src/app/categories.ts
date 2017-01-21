@@ -30,22 +30,22 @@ export class SearchResult {
 
 export class EventItem {
 
-  id: number = null;
+  id: string = null;
   originalEvent = null;
   selected: boolean;
-  values: number[] = null;
-  itemId: number = null;
+  values: string[] = null;
+  itemId: string = null;
 
   loadRange(originalEvent, selected: boolean, values: number[]) {
     this.originalEvent = originalEvent;
     this.selected = selected;
-    this.values = values;
+    this.values = [`${values[0]}`, `${values[1]}`];
     return this;
   }
 
   load(originalEvent, id: number, selected: boolean) {
     this.originalEvent = originalEvent;
-    this.id = id;
+    this.id = `${id}`;
     this.selected = selected;
     return this;
   }

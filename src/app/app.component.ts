@@ -17,8 +17,8 @@ export class AppComponent implements OnInit{
   count: number = 0;
   checked: true;
   private chartData: string;
-  private rangeFilters: Map<number, number[]> = new Map<number, number[]>();
-  private filters: Map<number, Map<number, boolean>> = new Map<number, Map<number, boolean>>();
+  private rangeFilters: Map<string, string[]> = new Map<string, string[]>();
+  private filters: Map<string, Map<string, boolean>> = new Map<string, Map<string, boolean>>();
 
 
   ngOnInit() : void {
@@ -42,32 +42,55 @@ export class AppComponent implements OnInit{
   }
 
   filterItems() {
-    var res = [];
-    for (var i in this.categories) {
-      for (var j in this.categories[i].items) {
-        for (var k in this.categories[i].items[j].values) {
-          if (this.categories[i].items[j].values[k].selected == true) {
-            res.push(`${this.categories[i].items[j].id}=${this.categories[i].items[j].values[k].id}`);
-          }
-        }
-      }
-    }
+    var fs = this.parseFilters();
+    var rfs = this.parseRangeFilters();
+    var res = fs.concat(rfs);
+    console.warn(rfs);
+    console.warn(fs);
     if (res.length > 0) {
       this.chartData = res.join("&");
     } else {
       this.chartData = '';
     }
-    var obs = this.categoryService.filterItems(res.join("&"));
+    console.warn(this.chartData);
+
+    var obs = this.categoryService.filterItems(this.chartData);
     obs.map((r: Response) => r.json().count as number).subscribe(e => this.count = e);
   }
 
-  updateCheckedOptions(value: Value, event) {
-    value.selected = event.target.checked;
+  parseFilters(): string[] {
+    var res: string[] = [];
+    this.filters.forEach(
+      (valMap: any, item) => {
+        var items = [];
+        valMap.forEach(
+          (checked, val) => {
+            if (checked) {
+              items.push(val);
+            }
+          }
+        );
+        if (items.length > 0) {
+          res.push(`${item}=${items.join('_')}`);
+        }
+      }
+    );
+    return res;
   }
+
+  parseRangeFilters(): string[] {
+    var res: string[] = [];
+    this.rangeFilters.forEach(
+      (vals, item) => {
+        res.push(`${item}=${vals[0]}~${vals[1]}`);
+      }
+    );
+    return res;
+  }
+
 
   /*
     Update filters and rangeFilters (filters which include a range rather than binary off/on values
-
    */
   categoryUpdated(e) {
     if (e.eventItem.id != null) {  // this is a single value
@@ -76,7 +99,7 @@ export class AppComponent implements OnInit{
         newVal.set(e.eventItem.id, e.eventItem.selected);
         this.filters.set(e.eventItem.itemId, newVal);
       } else {
-        var m = new Map<number, boolean>();
+        var m = new Map<string, boolean>();
         m.set(e.eventItem.id, e.eventItem.selected);
         this.filters.set(e.eventItem.itemId, m);
       }
@@ -87,8 +110,6 @@ export class AppComponent implements OnInit{
         this.rangeFilters.delete(e.eventItem.itemId);
       }
     }
-    console.warn(this.filters);
-    console.warn(this.rangeFilters);
+    this.filterItems();
   }
-
 }
