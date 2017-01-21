@@ -14,7 +14,7 @@
       </thead>
       <tbody>
       <tr *ngFor="let res of results | async">
-        <td><button (click)="getCategory(res.type, res.id)">+</button></td>
+        <td><button (click)="promoteCategory(res.type, res.categoryId)">+</button></td>
         <td>{{res.name}}</td>
         <td>{{res.type}}</td>
         <td>{{res.description}}</td>
@@ -25,7 +25,7 @@
 
   <div class="scrollwrapper2">
   <div class="scrollcontent">
-    <app-category-master (onChange)="categoryUpdated($event)"></app-category-master>
+    <app-category-master #master (onChange)="categoryUpdated($event)"></app-category-master>
   </div>
   </div>
 </div>

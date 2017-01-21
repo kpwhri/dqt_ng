@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Category, SearchResult, Value} from "./categories";
 import {CategoryService} from "./app.service";
 import {Observable} from "rxjs";
 import {Response} from "@angular/http";
+import {CategoryMasterComponent} from "./category-master/category-master.component";
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import {Response} from "@angular/http";
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit{
+  @ViewChild('master') masterComponent: CategoryMasterComponent;
   title = 'Data Query Tool';
   categories: Array<Category> = [];
   results: Observable<SearchResult[]>;
@@ -28,13 +30,9 @@ export class AppComponent implements OnInit{
 
   constructor(private categoryService: CategoryService) { }
 
-  getCategory(stype: string, categoryId: number) {
-    for (var idx in this.categories) {
-      console.warn(`${this.categories[idx]} ${categoryId}`);
-      if (this.categories[idx].id == categoryId) {
-        return;
-      }
-    }
+  promoteCategory(e, categoryId: number) {
+    console.warn(categoryId);
+    this.masterComponent.bringCategoryToTop(categoryId);
   }
 
   search(e, term:string) {
@@ -116,4 +114,5 @@ export class AppComponent implements OnInit{
     }
     this.filterItems();
   }
+
 }

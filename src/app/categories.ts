@@ -26,6 +26,7 @@ export class SearchResult {
   name: string;
   description: string;
   type: string;
+  categoryId: number;
 }
 
 export class EventItem {
