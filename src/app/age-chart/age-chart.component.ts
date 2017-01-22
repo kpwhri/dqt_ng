@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, ViewChild} from '@angular/core';
 import {UIChart} from "primeng/components/chart/chart";
+import {AgeGraphClass} from "../categories";
 
 @Component({
   selector: 'app-age-chart',
@@ -8,7 +9,9 @@ import {UIChart} from "primeng/components/chart/chart";
 })
 export class AgeChartComponent implements OnInit {
   @ViewChild('chart') chart: UIChart;
-  @Input() data: any;
+  @Input() data: AgeGraphClass;
+  colors: string[] = ['#5f4449', '#435d58', '#07182a', '#F2D65C'];
+  bgColors: string[] = ['#8c646b', '#709c94', '#18528C', '#918037'];
 
   constructor() {
   }
@@ -16,19 +19,19 @@ export class AgeChartComponent implements OnInit {
   ngOnInit() {
   }
 
-  ngOnChanges() {
-    // console.warn('Updating chart');
-    // if (this.data) {
-    //   console.warn('Updating chart');
-    //   this.updateChart(null);
-    // }
-  }
-
   updateChart(data) {
-    this.data = data;
+    this.data = this.updateColors(data);
     setTimeout(() => {
       this.chart.refresh();
     }, 500);
+  }
+
+  updateColors(data: AgeGraphClass) {
+    data.datasets.forEach((d, i) => {
+      d.borderColor = this.colors[i];
+      d.backgroundColor = this.bgColors[i];
+    });
+    return data;
   }
 
 }

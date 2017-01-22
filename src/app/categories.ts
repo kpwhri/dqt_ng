@@ -61,6 +61,8 @@ export class AgeGraphClass {
 export class DataItem {
   label: string;
   data: number[];
+  backgroundColor: string;
+  borderColor: string;
 }
 
 
