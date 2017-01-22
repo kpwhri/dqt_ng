@@ -1,9 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Category, SearchResult} from "./categories";
+import {Category, SearchResult, AgeGraphClass} from "./categories";
 import {CategoryService} from "./app.service";
 import {Observable} from "rxjs";
 import {Response} from "@angular/http";
 import {CategoryMasterComponent} from "./category-master/category-master.component";
+import {AgeChartComponent} from "./age-chart/age-chart.component";
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import {CategoryMasterComponent} from "./category-master/category-master.compone
 })
 export class AppComponent implements OnInit{
   @ViewChild('master') masterComponent: CategoryMasterComponent;
+  @ViewChild('ageChart') ageChartComponent: AgeChartComponent;
   title = 'Data Query Tool';
   categories: Array<Category> = [];
   results: Observable<SearchResult[]>;
@@ -19,7 +21,8 @@ export class AppComponent implements OnInit{
   searchTerm: string = "";
   checked: true;
   display: boolean = false;
-  private chartData: string;
+  private chartData: string = "";
+  private ageGraphData: AgeGraphClass;
   private rangeFilters: Map<string, string[]> = new Map<string, string[]>();
   private filters: Map<string, Map<string, boolean>> = new Map<string, Map<string, boolean>>();
 
@@ -28,7 +31,9 @@ export class AppComponent implements OnInit{
     // give everything a chance to get loaded before starting the animation to reduce choppiness
   }
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService) {
+    this.filterItems();
+  }
 
   promoteCategory(itemId: number, categoryId: number) {
     this.masterComponent.bringCategoryToTop(itemId, categoryId);
@@ -55,7 +60,11 @@ export class AppComponent implements OnInit{
     }
 
     var obs = this.categoryService.filterItems(this.chartData);
-    obs.map((r: Response) => r.json().count as number).subscribe(e => this.count = e);
+    obs.map((r: Response) => r.json()).subscribe(e => {
+      this.count = e.count as number;
+      this.ageGraphData = e.age as AgeGraphClass;
+      this.ageChartComponent.updateChart(e.age as AgeGraphClass);
+    });
   }
 
   parseFilters(): string[] {

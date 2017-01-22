@@ -53,6 +53,16 @@ export class EventItem {
   }
 }
 
+export class AgeGraphClass {
+  labels: {} = {};
+  datasets: DataItem[];
+}
+
+export class DataItem {
+  label: string;
+  data: number[];
+}
+
 
 
 
