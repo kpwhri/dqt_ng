@@ -24,22 +24,20 @@
   </p-dialog>
 
   <div class="scrollwrapper2">
-  <div class="scrollcontent">
-    <app-category-master #master (onChange)="categoryUpdated($event)"></app-category-master>
-  </div>
+    <div class="scrollcontent">
+      <app-category-master #master (onChange)="categoryUpdated($event)"></app-category-master>
+    </div>
   </div>
 </div>
 
 <div id="CONTENTSIDE">
   <div class="scrollwrapper">
     <div class="scrollcontent">
-  <h1>{{title}}</h1>
+      <h1>{{title}}</h1>
 
-  <h3> Filter returned {{count }} results.</h3>
-  <h3>Bar Chart</h3>
-  <app-age-chart #ageChart [data]="ageGraphData"></app-age-chart>
-  <app-enroll-chart #enrollChart [data]="enrollGraphData"></app-enroll-chart>
-
+      <p>Criteria Match <b>{{count}}</b> Subjects</p>
+        <app-age-chart #ageChart [data]="ageGraphData"></app-age-chart>
+        <app-enroll-chart #enrollChart [data]="enrollGraphData"></app-enroll-chart>
     </div>
   </div>
 </div>

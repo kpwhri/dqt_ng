@@ -10,10 +10,21 @@ import {EnrollGraphClass} from "../categories";
 export class EnrollChartComponent implements OnInit {
   @ViewChild('chart') chart: UIChart;
   @Input() data: EnrollGraphClass;
+  options: any;
   bgColors: string[] = ['#5f4449', '#435d58', '#07182a', '#918037'];
   hoverColors: string[] = ['#8c646b', '#709c94', '#18528C', '#F2D65C'];
 
-  constructor() { }
+  constructor() {
+    this.options = {
+      title: {
+        display: true,
+        text: 'Enrollment Distribution'
+      },
+      legend: {
+        position: 'bottom'
+      }
+    }
+  }
 
   ngOnInit() {
   }

@@ -10,10 +10,20 @@ import {AgeGraphClass} from "../categories";
 export class AgeChartComponent implements OnInit {
   @ViewChild('chart') chart: UIChart;
   @Input() data: AgeGraphClass;
+  options: any;
   colors: string[] = ['#5f4449', '#435d58', '#07182a', '#F2D65C'];
   bgColors: string[] = ['#8c646b', '#709c94', '#18528C', '#918037'];
 
   constructor() {
+    this.options = {
+      title: {
+        display: true,
+        text: 'Age Distribution'
+      },
+      legend: {
+        position: 'bottom'
+      }
+    }
   }
 
   ngOnInit() {
