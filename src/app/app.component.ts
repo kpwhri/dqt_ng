@@ -1,10 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Category, SearchResult, AgeGraphClass} from "./categories";
+import {Category, SearchResult, AgeGraphClass, EnrollGraphClass} from "./categories";
 import {CategoryService} from "./app.service";
 import {Observable} from "rxjs";
 import {Response} from "@angular/http";
 import {CategoryMasterComponent} from "./category-master/category-master.component";
 import {AgeChartComponent} from "./age-chart/age-chart.component";
+import {EnrollChartComponent} from "./enroll-chart/enroll-chart.component";
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import {AgeChartComponent} from "./age-chart/age-chart.component";
 export class AppComponent implements OnInit{
   @ViewChild('master') masterComponent: CategoryMasterComponent;
   @ViewChild('ageChart') ageChartComponent: AgeChartComponent;
+  @ViewChild('enrollChart') enrollChartComponent: EnrollChartComponent;
   title = 'Data Query Tool';
   categories: Array<Category> = [];
   results: Observable<SearchResult[]>;
@@ -23,6 +25,7 @@ export class AppComponent implements OnInit{
   display: boolean = false;
   private chartData: string = "";
   private ageGraphData: AgeGraphClass;
+  private enrollGraphData: EnrollGraphClass;
   private rangeFilters: Map<string, string[]> = new Map<string, string[]>();
   private filters: Map<string, Map<string, boolean>> = new Map<string, Map<string, boolean>>();
 
@@ -63,7 +66,9 @@ export class AppComponent implements OnInit{
     obs.map((r: Response) => r.json()).subscribe(e => {
       this.count = e.count as number;
       this.ageGraphData = e.age as AgeGraphClass;
+      this.enrollGraphData = e.enrollment as EnrollGraphClass;
       this.ageChartComponent.updateChart(e.age as AgeGraphClass);
+      this.enrollChartComponent.updateChart(e.enrollment as EnrollGraphClass);
     });
   }
 

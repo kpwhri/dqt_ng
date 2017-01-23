@@ -64,6 +64,16 @@ export class DataItem {
   backgroundColor: string;
   borderColor: string;
 }
+export class EnrollGraphClass {
+  labels: string[] = [];
+  datasets: PieDataItem[];
+}
+
+export class PieDataItem {
+  data: number[];
+  backgroundColor: string[];
+  hoverBackgroundColor: string[];
+}
 
 
 

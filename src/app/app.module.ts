@@ -21,6 +21,7 @@ import { ValueComponent } from './value/value.component';
 import {DialogModule} from "primeng/components/dialog/dialog";
 import { AgeChartComponent } from './age-chart/age-chart.component';
 import {ChartModule} from "primeng/components/chart/chart";
+import { EnrollChartComponent } from './enroll-chart/enroll-chart.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {ChartModule} from "primeng/components/chart/chart";
     ItemComponent,
     ValueComponent,
     AgeChartComponent,
+    EnrollChartComponent,
   ],
   imports: [
     BrowserModule,
