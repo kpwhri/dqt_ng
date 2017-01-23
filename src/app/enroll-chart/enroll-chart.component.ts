@@ -10,8 +10,8 @@ import {EnrollGraphClass} from "../categories";
 export class EnrollChartComponent implements OnInit {
   @ViewChild('chart') chart: UIChart;
   @Input() data: EnrollGraphClass;
-  bgColors: string[] = ['#5f4449', '#435d58', '#07182a', '#F2D65C'];
-  hoverColors: string[] = ['#8c646b', '#709c94', '#18528C', '#918037'];
+  bgColors: string[] = ['#5f4449', '#435d58', '#07182a', '#918037'];
+  hoverColors: string[] = ['#8c646b', '#709c94', '#18528C', '#F2D65C'];
 
   constructor() { }
 
