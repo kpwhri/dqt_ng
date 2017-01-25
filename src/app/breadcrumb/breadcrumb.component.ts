@@ -9,7 +9,7 @@ import {MenuItem} from "primeng/components/common/api";
 })
 export class BreadcrumbComponent implements OnInit {
 
-  private items: PrimaryMenuItem[];
+  private items: MenuItem[];
 
   constructor() {
   }
@@ -33,7 +33,7 @@ export class BreadcrumbComponent implements OnInit {
 
     var added: boolean = false;
     this.items.forEach(mi => {
-      if (mi.label == item.item) {
+      if (mi instanceof PrimaryMenuItem && mi.label == item.item) {
         // add value to item list
         mi.addValue(val);
         added = true;
@@ -46,7 +46,20 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   removeItem(item: EventItem) {
-
+    var val = this.getValue(item);
+    var idx = -1;
+    this.items.some((mi, i) => {
+      if (mi instanceof PrimaryMenuItem && mi.label == item.item) {
+        mi.removeValue(val);
+        if (mi.isEmpty()) {
+          idx = i;
+        }
+        return true;
+      }
+    });
+    if (idx > -1) {
+      this.items.splice(idx, 1);
+    }
   }
 
 }
@@ -69,10 +82,6 @@ class OptionsMenuItem implements MenuItem {
       {label: 'Clear All Filters'},
       {label: 'Export Filters'},
     ]
-  }
-
-  addValue(val) {
-    this.items.push(new ValueMenuItem(val));
   }
 }
 
@@ -99,6 +108,28 @@ class PrimaryMenuItem implements MenuItem {
 
   addValue(val) {
     this.items.push(new ValueMenuItem(val));
+  }
+
+  removeValue(val) {
+    var index = this.getIndex(val);
+    if (index > -1) {
+      this.items.splice(index, 1);
+    }
+  }
+
+  getIndex(value: string): number {
+    var idx = -1;
+    this.items.some((item, i) => {
+      if (item.label == value) {
+        idx = i;
+        return true;
+      }
+    });
+    return idx;
+  }
+
+  isEmpty() {
+    return this.items.length == 1;  // the category will not be removed
   }
 }
 
