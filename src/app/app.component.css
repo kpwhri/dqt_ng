@@ -16,39 +16,49 @@ body {
 }
 
 #MENUSIDE {
-  float: left;
-  background-color: #313b3f;
-  border-right: solid 1px #151d21;
-  width: 299px;
+  /*float: left;*/
+  /*background-color: #313b3f;*/
+  /*border-right: solid 1px #151d21;*/
+  /*width: 299px;*/
+  /*height: 100%;*/
+  /*color: white;*/
+  /*display: inline-block;*/
+  /*vertical-align: top;*/
+
+  width: 20%;
   height: 100%;
-  color: white;
-  display: inline-block;
-  vertical-align: top;
+  position: fixed;
+  outline: 1px solid;
 }
 
 #CONTENTSIDE {
-  width: auto;
-  overflow: hidden;
-  z-index: 1;
-  margin-left: 300px;
-  background-color: #FFFFFF;
-  height:100%;
+  /*width: auto;*/
+  /*overflow: hidden;*/
+  /*z-index: 1;*/
+  /*margin-left: 300px;*/
+  /*background-color: #FFFFFF;*/
+  /*height:100%;*/
+  width: 80%;
+  height: auto;
+  outline: 1px solid;
+  position: absolute;
+  right: 0;
 }
 
-.scrollwrapper{
-  margin-top: -30px;
-  padding-top: 30px;
-  height: 100%;
-}
+/*.scrollwrapper{*/
+  /*margin-top: -30px;*/
+  /*padding-top: 30px;*/
+  /*height: 100%;*/
+/*}*/
 
-.scrollwrapper2{
-  margin-top: -30px;
-  padding-top: 30px;
-  height: 90%;
-}
+/*.scrollwrapper2{*/
+  /*margin-top: -30px;*/
+  /*padding-top: 30px;*/
+  /*height: 90%;*/
+/*}*/
 
-.scrollcontent{
-  color: black;
-  height: 100%;
-  overflow: auto;
-}
+/*.scrollcontent{*/
+  /*color: black;*/
+  /*height: 100%;*/
+  /*overflow: auto;*/
+/*}*/

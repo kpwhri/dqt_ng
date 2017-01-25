@@ -17,6 +17,9 @@ import {DialogModule} from "primeng/components/dialog/dialog";
 import { AgeChartComponent } from './age-chart/age-chart.component';
 import {ChartModule} from "primeng/components/chart/chart";
 import { EnrollChartComponent } from './enroll-chart/enroll-chart.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import {MenubarModule} from "primeng/components/menubar/menubar";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -28,6 +31,7 @@ import { EnrollChartComponent } from './enroll-chart/enroll-chart.component';
     ValueComponent,
     AgeChartComponent,
     EnrollChartComponent,
+    BreadcrumbComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +43,8 @@ import { EnrollChartComponent } from './enroll-chart/enroll-chart.component';
     TooltipModule,
     DialogModule,
     ChartModule,
+    MenubarModule,
+    RouterModule.forRoot([]),
   ],
   providers: [CategoryService],
   bootstrap: [AppComponent]

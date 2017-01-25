@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter, ViewChildren, QueryList, ViewChild} from '@angular/core';
-import {Category, Item} from "../categories";
+import {Category, Item, EventItem} from "../categories";
 import {ItemComponent} from "../item/item.component";
 import {Fieldset} from "primeng/components/fieldset/fieldset";
 
@@ -31,6 +31,8 @@ export class CategoryComponent implements OnInit {
   }
 
   itemUpdated(e) {
+    e.eventItem.category = this.name;
+    e.eventItem.categoryId = this.id;
     this.onChange.emit({eventItem: e.eventItem});
   }
 

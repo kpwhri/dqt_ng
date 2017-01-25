@@ -18,7 +18,7 @@ export class ValueComponent implements OnInit {
   }
 
   valueChanged(e) {
-    this.onChange.emit({eventItem: new EventItem().load(e, this.value.id, e.checked)});
+    this.onChange.emit({eventItem: new EventItem().load(e, this.value.id, e.checked, this.value.name)});
   }
 
 

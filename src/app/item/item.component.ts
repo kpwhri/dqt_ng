@@ -20,6 +20,7 @@ export class ItemComponent implements OnInit {
 
   itemChanged(e) {
     e.eventItem.itemId = this.item.id;
+    e.eventItem.item = this.item.name;
     this.onChange.emit({eventItem: e.eventItem});
   }
 

@@ -6,6 +6,7 @@ import {Response} from "@angular/http";
 import {CategoryMasterComponent} from "./category-master/category-master.component";
 import {AgeChartComponent} from "./age-chart/age-chart.component";
 import {EnrollChartComponent} from "./enroll-chart/enroll-chart.component";
+import {BreadcrumbComponent} from "./breadcrumb/breadcrumb.component";
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ export class AppComponent implements OnInit{
   @ViewChild('master') masterComponent: CategoryMasterComponent;
   @ViewChild('ageChart') ageChartComponent: AgeChartComponent;
   @ViewChild('enrollChart') enrollChartComponent: EnrollChartComponent;
+  @ViewChild('breadcrumb') breadcrumbComponent: BreadcrumbComponent;
   title = 'Data Query Tool';
   categories: Array<Category> = [];
   results: Observable<SearchResult[]>;
@@ -125,6 +127,10 @@ export class AppComponent implements OnInit{
       }
     }
     this.filterItems();
+    if (e.eventItem.selected)
+      this.breadcrumbComponent.addItem(e.eventItem);
+    else
+      this.breadcrumbComponent.removeItem(e.eventItem);
   }
 
 }
