@@ -29,7 +29,11 @@ export class ItemComponent implements OnInit {
   }
 
   expand() {
-    this.fieldset.toggle(null);
+    this.fieldset.expand(null);
+  }
+
+  collapse() {
+    this.fieldset.collapse(null);
   }
 
   unselectValue(event: EventItem) {

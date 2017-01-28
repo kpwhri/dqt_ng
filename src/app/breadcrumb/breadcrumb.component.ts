@@ -111,9 +111,12 @@ class PrimaryMenuItem implements MenuItem {
     }
     if (value && category) {
       this.items = [
-        new CategoryMenuItem(menuListener, category),
+        new CategoryMenuItem(menuListener, category, event.categoryId),
         new ValueMenuItem(menuListener, value, event)
       ];
+    }
+    this.command = (e) => {
+      menuListener.triggerSelectItem(event.itemId, event.categoryId);
     }
   }
 
@@ -162,8 +165,8 @@ class ValueMenuItem implements MenuItem {
   constructor(private menuListener: MenuListener, label: string, event: EventItem) {
     this.label = label;
     this.items = [new RemoveMenuItem(menuListener, event)];
-    this.command = (event) => {
-
+    this.command = (e) => {
+      menuListener.triggerSelectItem(event.itemId, event.categoryId);
     }
   }
 }
@@ -199,8 +202,11 @@ class CategoryMenuItem implements MenuItem {
   expanded?: boolean;
   disabled?: boolean;
 
-  constructor(private menuListener: MenuListener, category: string) {
+  constructor(private menuListener: MenuListener, category: string, categoryId: string) {
     this.label = category;
+    this.command = (e) => {
+      menuListener.triggerSelectCategory(categoryId);
+    }
   }
 }
 

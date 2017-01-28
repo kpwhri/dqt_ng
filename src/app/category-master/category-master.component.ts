@@ -35,7 +35,9 @@ export class CategoryMasterComponent implements OnInit {
         return;
       }
     });
-    if (idx && category) {
+
+    // can't check for idx as it might be 0
+    if (idx != undefined && category) {
       this.categories.splice(idx, 1);
       this.categories.splice(0, 0, category);
       this.categoryComponents.forEach(cat => {
@@ -45,6 +47,8 @@ export class CategoryMasterComponent implements OnInit {
             } else {
               cat.expandItems();
             }
+          } else {
+            cat.collapseAll();
           }
         }
       );

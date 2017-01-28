@@ -37,16 +37,25 @@ export class CategoryComponent implements OnInit {
   }
 
   expandItem(itemId: number) {
-    this.fieldset.toggle(null);
+    this.fieldset.expand(null);
     this.itemComponents.forEach(item => {
       if (item.item.id == itemId) {
         item.expand();
+      } else {
+        item.collapse();
       }
     });
   }
 
+  collapseAll() {
+    this.fieldset.collapse(null);
+    this.itemComponents.forEach(item => {
+      item.collapse();
+    })
+  }
+
   expandItems() {
-    this.fieldset.toggle(null);
+    this.fieldset.expand(null);
     this.itemComponents.forEach(item => {
       item.expand();
     });

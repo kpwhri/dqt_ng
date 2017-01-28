@@ -2,14 +2,33 @@ import {EventItem} from "./categories";
 
 export class MenuListener {
   private removeValue: Event<EventItem> = new Event<EventItem>();
+  private selectCategory: Event<string> = new Event<string>();
+  private selectItem: Event<string[]> = new Event<string[]>();
 
   public get RemoveValue(): IEvent<EventItem> {
     return this.removeValue;
   }
 
+  public get SelectCategory(): IEvent<string> {
+    return this.selectCategory;
+  }
+
+  public get SelectItem(): IEvent<string[]> {
+    return this.selectItem;
+  }
+
   triggerRemove(e: EventItem) {
     this.removeValue.trigger(e);
   }
+
+  triggerSelectCategory(categoryId: string) {
+    this.selectCategory.trigger(categoryId);
+  }
+
+  triggerSelectItem(itemId: string, categoryId: string) {
+    this.selectItem.trigger([itemId, categoryId]);
+  }
+
 }
 
 export interface IEvent<T> {

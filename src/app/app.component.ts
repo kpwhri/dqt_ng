@@ -36,6 +36,8 @@ export class AppComponent implements OnInit{
   ngOnInit() : void {
     // give everything a chance to get loaded before starting the animation to reduce choppiness
     this.menuListener.RemoveValue.on(e => this.removeFilter(e));
+    this.menuListener.SelectCategory.on(categoryId => this.selectCategory(null, categoryId));
+    this.menuListener.SelectItem.on(itemCatId => this.selectCategory(itemCatId[0], itemCatId[1]));
   }
 
   constructor(private categoryService: CategoryService, private menuListener: MenuListener) {
@@ -147,6 +149,10 @@ export class AppComponent implements OnInit{
     this.filterItems();
     this.breadcrumbComponent.removeItem(e);
     this.masterComponent.uncheck(e);
+  }
+
+  selectCategory(itemId: string, categoryId: string) {
+    this.promoteCategory(+itemId, +categoryId);
   }
 
 }
