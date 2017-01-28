@@ -51,4 +51,12 @@ export class CategoryComponent implements OnInit {
       item.expand();
     });
   }
+
+  unselectItem(event: EventItem) {
+    this.itemComponents.forEach(i => {
+      if (`${i.item.id}` == event.itemId) {
+        i.unselectValue(event);
+      }
+    });
+  }
 }

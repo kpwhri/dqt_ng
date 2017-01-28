@@ -1,5 +1,5 @@
 import {Component, OnInit, Output, EventEmitter, ViewChildren, QueryList} from '@angular/core';
-import {Category} from "../categories";
+import {Category, EventItem} from "../categories";
 import {CategoryService} from "../app.service";
 import {CategoryComponent} from "../category/category.component";
 
@@ -49,5 +49,13 @@ export class CategoryMasterComponent implements OnInit {
         }
       );
     }
+  }
+
+  uncheck(event: EventItem) {
+    this.categoryComponents.forEach(c => {
+      if (`${c.category.id}` == event.categoryId) {
+        c.unselectItem(event);
+      }
+    })
   }
 }

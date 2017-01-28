@@ -21,5 +21,9 @@ export class ValueComponent implements OnInit {
     this.onChange.emit({eventItem: new EventItem().load(e, this.value.id, e.checked, this.value.name)});
   }
 
+  uncheckValue() {
+    this.selected = false;
+  }
+
 
 }

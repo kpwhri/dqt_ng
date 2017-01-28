@@ -111,23 +111,8 @@ export class AppComponent implements OnInit{
     Update filters and rangeFilters (filters which include a range rather than binary off/on values
    */
   categoryUpdated(e) {
-    if (e.eventItem.id != null) {  // this is a single value
-      if (this.filters.has(e.eventItem.itemId)) {
-        var newVal = this.filters.get(e.eventItem.itemId);
-        newVal.set(e.eventItem.id, e.eventItem.selected);
-        this.filters.set(e.eventItem.itemId, newVal);
-      } else {
-        var m = new Map<string, boolean>();
-        m.set(e.eventItem.id, e.eventItem.selected);
-        this.filters.set(e.eventItem.itemId, m);
-      }
-    } else {  // this is a range
-      if (e.eventItem.selected) {
-        this.rangeFilters.set(e.eventItem.itemId, e.eventItem.values);
-      } else {
-        this.rangeFilters.delete(e.eventItem.itemId);
-      }
-    }
+    this.updateChanges(e.eventItem);
+
     this.filterItems();
     if (e.eventItem.selected)
       this.breadcrumbComponent.addItem(e.eventItem);
@@ -135,10 +120,33 @@ export class AppComponent implements OnInit{
       this.breadcrumbComponent.removeItem(e.eventItem);
   }
 
+  updateChanges(e: EventItem) {
+    if (e.id != null) {  // this is a single value
+      if (this.filters.has(e.itemId)) {
+        var newVal = this.filters.get(e.itemId);
+        newVal.set(e.id, e.selected);
+        this.filters.set(e.itemId, newVal);
+      } else {
+        var m = new Map<string, boolean>();
+        m.set(e.id, e.selected);
+        this.filters.set(e.itemId, m);
+      }
+    } else {  // this is a range
+      if (e.selected) {
+        this.rangeFilters.set(e.itemId, e.values);
+      } else {
+        this.rangeFilters.delete(e.itemId);
+      }
+    }
+  }
+
 
   removeFilter(e: EventItem) {
-    console.warn('app: remove item');
+    e.selected = false;
+    this.updateChanges(e);
+    this.filterItems();
     this.breadcrumbComponent.removeItem(e);
+    this.masterComponent.uncheck(e);
   }
 
 }
