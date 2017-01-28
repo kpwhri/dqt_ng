@@ -99,10 +99,16 @@ class PrimaryMenuItem implements MenuItem {
   items?: MenuItem[];
   expanded?: boolean;
   disabled?: boolean;
+  onlyOneValue: boolean;
 
   constructor(private menuListener: MenuListener, label: string,
               category: string = null, value: string = null, event: EventItem) {
     this.label = label;
+    if (event.value) {
+      this.onlyOneValue = false;
+    } else {
+      this.onlyOneValue = true;
+    }
     if (value && category) {
       this.items = [
         new CategoryMenuItem(menuListener, category),
@@ -112,7 +118,11 @@ class PrimaryMenuItem implements MenuItem {
   }
 
   addValue(val: ValueMenuItem) {
-    this.items.push(val);
+    if (this.onlyOneValue) {
+      this.items[1] = val;
+    } else {
+      this.items.push(val);
+    }
   }
 
   removeValue(val) {
