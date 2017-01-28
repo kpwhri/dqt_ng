@@ -20,6 +20,7 @@ import { EnrollChartComponent } from './enroll-chart/enroll-chart.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import {MenubarModule} from "primeng/components/menubar/menubar";
 import {RouterModule} from "@angular/router";
+import {MenuListener} from "./menuListener";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import {RouterModule} from "@angular/router";
     MenubarModule,
     RouterModule.forRoot([]),
   ],
-  providers: [CategoryService],
+  providers: [CategoryService, MenuListener],
   bootstrap: [AppComponent]
 })
 export class AppModule {

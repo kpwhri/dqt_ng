@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, EventEmitter} from '@angular/core';
 import {EventItem, Value} from "../categories";
 import {MenuItem} from "primeng/components/common/api";
+import {MenuListener} from "../menuListener";
 
 @Component({
   selector: 'app-breadcrumb',
@@ -11,7 +12,7 @@ export class BreadcrumbComponent implements OnInit {
 
   private items: MenuItem[];
 
-  constructor() {
+  constructor(private menuListener: MenuListener) {
   }
 
   ngOnInit() {
@@ -20,6 +21,8 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   private getValue(item: EventItem) {
+    console.warn(item);
+    console.warn(item.value);
     if (item.value) {
       return item.value;
     } else {
@@ -29,13 +32,14 @@ export class BreadcrumbComponent implements OnInit {
 
   addItem(item: EventItem) {
     var val = this.getValue(item);
-    var itemToAdd = new PrimaryMenuItem(item.item, item.category, val);
+    var itemToAdd = new PrimaryMenuItem(this.menuListener, item.item,
+      item.category, val, item);
 
     var added: boolean = false;
     this.items.forEach(mi => {
       if (mi instanceof PrimaryMenuItem && mi.label == item.item) {
         // add value to item list
-        mi.addValue(val);
+        mi.addValue(new ValueMenuItem(this.menuListener, val, item));
         added = true;
       }
     });
@@ -96,18 +100,19 @@ class PrimaryMenuItem implements MenuItem {
   expanded?: boolean;
   disabled?: boolean;
 
-  constructor(label: string, category: string = null, value: string = null) {
+  constructor(private menuListener: MenuListener, label: string,
+              category: string = null, value: string = null, event: EventItem) {
     this.label = label;
     if (value && category) {
       this.items = [
-        new CategoryMenuItem(category),
-        new ValueMenuItem(value)
+        new CategoryMenuItem(menuListener, category),
+        new ValueMenuItem(menuListener, value, event)
       ];
     }
   }
 
-  addValue(val) {
-    this.items.push(new ValueMenuItem(val));
+  addValue(val: ValueMenuItem) {
+    this.items.push(val);
   }
 
   removeValue(val) {
@@ -144,9 +149,12 @@ class ValueMenuItem implements MenuItem {
   expanded?: boolean;
   disabled?: boolean;
 
-  constructor(label: string) {
+  constructor(private menuListener: MenuListener, label: string, event: EventItem) {
     this.label = label;
-    this.items = [new RemoveMenuItem()];
+    this.items = [new RemoveMenuItem(menuListener, event)];
+    this.command = (event) => {
+
+    }
   }
 }
 
@@ -160,9 +168,13 @@ class RemoveMenuItem implements MenuItem {
   items?: MenuItem[];
   expanded?: boolean;
   disabled?: boolean;
+  private parent: ValueMenuItem;
 
-  constructor() {
+  constructor(private menuListener: MenuListener, event: EventItem) {
     this.label = 'Remove';
+    this.command = (e) => {
+      menuListener.triggerRemove(event);
+    }
   }
 }
 
@@ -177,7 +189,7 @@ class CategoryMenuItem implements MenuItem {
   expanded?: boolean;
   disabled?: boolean;
 
-  constructor(category: string) {
+  constructor(private menuListener: MenuListener, category: string) {
     this.label = category;
   }
 }

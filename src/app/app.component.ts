@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Category, SearchResult, AgeGraphClass, EnrollGraphClass} from "./categories";
+import {Category, SearchResult, AgeGraphClass, EnrollGraphClass, EventItem} from "./categories";
 import {CategoryService} from "./app.service";
 import {Observable} from "rxjs";
 import {Response} from "@angular/http";
@@ -7,6 +7,7 @@ import {CategoryMasterComponent} from "./category-master/category-master.compone
 import {AgeChartComponent} from "./age-chart/age-chart.component";
 import {EnrollChartComponent} from "./enroll-chart/enroll-chart.component";
 import {BreadcrumbComponent} from "./breadcrumb/breadcrumb.component";
+import {MenuListener} from "./menuListener";
 
 @Component({
   selector: 'app-root',
@@ -34,9 +35,10 @@ export class AppComponent implements OnInit{
 
   ngOnInit() : void {
     // give everything a chance to get loaded before starting the animation to reduce choppiness
+    this.menuListener.RemoveValue.on(e => this.removeFilter(e));
   }
 
-  constructor(private categoryService: CategoryService) {
+  constructor(private categoryService: CategoryService, private menuListener: MenuListener) {
     this.filterItems();
   }
 
@@ -131,6 +133,12 @@ export class AppComponent implements OnInit{
       this.breadcrumbComponent.addItem(e.eventItem);
     else
       this.breadcrumbComponent.removeItem(e.eventItem);
+  }
+
+
+  removeFilter(e: EventItem) {
+    console.warn('app: remove item');
+    this.breadcrumbComponent.removeItem(e);
   }
 
 }
