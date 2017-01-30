@@ -1,3 +1,4 @@
+<div *ngIf="description">
 <p-fieldset #fieldset legend="{{name}}" [toggleable]="true"
          pTooltip="{{description}}" tooltipPosition="right"
          [collapsed]="true">
@@ -5,3 +6,12 @@
     <app-item #itemComponent [item]="item" (onChange)="itemUpdated($event)"></app-item>
   </div>
 </p-fieldset>
+</div>
+<div *ngIf="! description">
+  <p-fieldset #fieldset legend="{{name}}" [toggleable]="true"
+              [collapsed]="true">
+    <div *ngFor="let item of items">
+      <app-item #itemComponent [item]="item" (onChange)="itemUpdated($event)"></app-item>
+    </div>
+  </p-fieldset>
+</div>
