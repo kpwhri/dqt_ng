@@ -19,7 +19,7 @@ export class AppComponent implements OnInit{
   @ViewChild('ageChart') ageChartComponent: AgeChartComponent;
   @ViewChild('enrollChart') enrollChartComponent: EnrollChartComponent;
   @ViewChild('breadcrumb') breadcrumbComponent: BreadcrumbComponent;
-  title = 'Data Query Tool';
+  title = 'ACT Data Query Tool';
   categories: Array<Category> = [];
   results: Observable<SearchResult[]>;
   count: number = 0;
