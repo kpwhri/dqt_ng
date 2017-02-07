@@ -1,3 +1,5 @@
-<div *ngFor="let category of categories">
-  <app-category #categoryComponent [category]="category" (onChange)="categoryUpdated($event)"></app-category>
-</div>
+<p-accordion [multiple]="true">
+  <div *ngFor="let category of categories">
+    <app-category #categoryComponent [category]="category" (onChange)="categoryUpdated($event)"></app-category>
+  </div>
+</p-accordion>

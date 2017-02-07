@@ -1,17 +1,19 @@
 <div *ngIf="description">
-<p-fieldset #fieldset legend="{{name}}" [toggleable]="true"
-         pTooltip="{{description}}" tooltipPosition="right"
-         [collapsed]="true">
-  <div *ngFor="let item of items">
-    <app-item #itemComponent [item]="item" (onChange)="itemUpdated($event)"></app-item>
-  </div>
-</p-fieldset>
+  <p-accordionTab #fieldset header="{{name}}"
+           pTooltip="{{description}}" tooltipPosition="right">
+    <p-accordion [multiple]="true">
+      <div *ngFor="let item of items">
+          <app-item #itemComponent [item]="item" (onChange)="itemUpdated($event)"></app-item>
+      </div>
+    </p-accordion>
+  </p-accordionTab>
 </div>
 <div *ngIf="! description">
-  <p-fieldset #fieldset legend="{{name}}" [toggleable]="true"
-              [collapsed]="true">
+  <p-accordionTab #fieldset header="{{name}}">
+    <p-accordion [multiple]="true">
     <div *ngFor="let item of items">
-      <app-item #itemComponent [item]="item" (onChange)="itemUpdated($event)"></app-item>
+        <app-item #itemComponent [item]="item" (onChange)="itemUpdated($event)"></app-item>
     </div>
-  </p-fieldset>
+    </p-accordion>
+  </p-accordionTab>
 </div>

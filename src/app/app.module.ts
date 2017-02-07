@@ -21,6 +21,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import {MenubarModule} from "primeng/components/menubar/menubar";
 import {RouterModule} from "@angular/router";
 import {MenuListener} from "./menuListener";
+import {AccordionModule} from "primeng/components/accordion/accordion";
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import {MenuListener} from "./menuListener";
     DialogModule,
     ChartModule,
     MenubarModule,
+    AccordionModule,
     RouterModule.forRoot([]),
   ],
   providers: [CategoryService, MenuListener],
