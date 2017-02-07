@@ -2,35 +2,36 @@
 
   <input [(ngModel)]="searchTerm" placeholder="search" (keyup)="search($event, searchTerm)" />
 
-  <p-dialog header="Search Results" [(visible)]="display">
-    <table>
-      <thead>
-      <tr>
-        <th>View</th>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let res of results | async">
-        <td><button (click)="promoteCategory(res.itemId, res.categoryId)">+</button></td>
-        <td>{{res.name}}</td>
-        <td>{{res.type}}</td>
-        <td>{{res.description}}</td>
-      </tr>
-      </tbody>
-    </table>
-  </p-dialog>
-
       <app-category-master #master (onChange)="categoryUpdated($event)"></app-category-master>
 </div>
 
 <div id="CONTENTSIDE">
       <h1>{{title}}</h1>
 
+      <p-dialog header="Search Results" [(visible)]="display">
+        <table>
+          <thead>
+          <tr>
+            <th>View</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let res of results | async">
+            <td><button (click)="promoteCategory(res.itemId, res.categoryId)">+</button></td>
+            <td>{{res.name}}</td>
+            <td>{{res.type}}</td>
+            <td>{{res.description}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </p-dialog>
+
       <app-breadcrumb #breadcrumb></app-breadcrumb>
       <p>Criteria Match <b>{{count}}</b> Subjects</p>
         <app-age-chart #ageChart [data]="ageGraphData"></app-age-chart>
         <app-enroll-chart #enrollChart [data]="enrollGraphData"></app-enroll-chart>
+
 </div>

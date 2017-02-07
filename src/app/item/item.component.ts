@@ -3,6 +3,7 @@ import {Item, EventItem} from "../categories";
 import {Fieldset} from "primeng/components/fieldset/fieldset";
 import {ValueComponent} from "../value/value.component";
 import {CheckboxValueComponent} from "../checkbox-value/checkbox-value.component";
+import {AccordionTab} from "primeng/components/accordion/accordion";
 
 @Component({
   selector: 'app-item',
@@ -10,7 +11,7 @@ import {CheckboxValueComponent} from "../checkbox-value/checkbox-value.component
   styleUrls: ['./item.component.css']
 })
 export class ItemComponent implements OnInit {
-  @ViewChild('fieldset') fieldset: Fieldset;
+  @ViewChild('fieldset') fieldset: AccordionTab;
   @ViewChildren('valueItem') valueList: QueryList<ValueComponent>;
   @ViewChild('valueCheckbox') valueCheckbox: CheckboxValueComponent;
   @Input('item') item: Item;
@@ -29,11 +30,11 @@ export class ItemComponent implements OnInit {
   }
 
   expand() {
-    this.fieldset.expand(null);
+    this.fieldset.selected = true;
   }
 
   collapse() {
-    this.fieldset.collapse(null);
+    this.fieldset.selected = false;
   }
 
   unselectValue(event: EventItem) {
