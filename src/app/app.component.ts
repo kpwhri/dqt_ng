@@ -8,6 +8,7 @@ import {AgeChartComponent} from "./age-chart/age-chart.component";
 import {EnrollChartComponent} from "./enroll-chart/enroll-chart.component";
 import {BreadcrumbComponent} from "./breadcrumb/breadcrumb.component";
 import {MenuListener} from "./menuListener";
+import {PerfectScrollbarComponent, PerfectScrollbarDirective} from "angular2-perfect-scrollbar";
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,8 @@ export class AppComponent implements OnInit{
   @ViewChild('ageChart') ageChartComponent: AgeChartComponent;
   @ViewChild('enrollChart') enrollChartComponent: EnrollChartComponent;
   @ViewChild('breadcrumb') breadcrumbComponent: BreadcrumbComponent;
+  @ViewChild(PerfectScrollbarComponent) componentScroll;
+  @ViewChild(PerfectScrollbarDirective) directiveScroll;
   title = 'ACT Data Query Tool';
   categories: Array<Category> = [];
   results: Observable<SearchResult[]>;

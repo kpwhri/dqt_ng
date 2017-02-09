@@ -22,6 +22,12 @@ import {MenubarModule} from "primeng/components/menubar/menubar";
 import {RouterModule} from "@angular/router";
 import {MenuListener} from "./menuListener";
 import {AccordionModule} from "primeng/components/accordion/accordion";
+import {PerfectScrollbarModule, PerfectScrollbarConfigInterface} from "angular2-perfect-scrollbar";
+
+
+const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  // suppressScrollX: true
+};
 
 @NgModule({
   declarations: [
@@ -47,6 +53,7 @@ import {AccordionModule} from "primeng/components/accordion/accordion";
     ChartModule,
     MenubarModule,
     AccordionModule,
+    PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
     RouterModule.forRoot([]),
   ],
   providers: [CategoryService, MenuListener],

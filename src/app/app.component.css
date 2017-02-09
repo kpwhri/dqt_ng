@@ -38,3 +38,18 @@ input {
   position: absolute;
   right: 0;
 }
+
+.scrollbar {
+  height: 90%;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  -webkit-box-pack: start;
+  -webkit-box-align: stretch;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+}
+
