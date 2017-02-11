@@ -17,12 +17,15 @@ export class BreadcrumbComponent implements OnInit {
 
   ngOnInit() {
     this.items = [];
-    this.items.push(new OptionsMenuItem());
+    this.items.push(
+      new OptionsMenuItem(
+        () => this.removeAllItems(),
+        null
+      )
+    );
   }
 
   private getValue(item: EventItem) {
-    console.warn(item);
-    console.warn(item.value);
     if (item.value) {
       return item.value;
     } else {
@@ -47,6 +50,16 @@ export class BreadcrumbComponent implements OnInit {
     if (!added) {
       this.items.push(itemToAdd);
     }
+  }
+
+  removeAllItems() {
+    for (var i=this.items.length-1; i >= 0; i--) {
+      var mi = this.items[i];
+      if (mi instanceof PrimaryMenuItem) {
+        mi.removeAllValues();
+        console.warn(i, mi.label);
+      }
+    };
   }
 
   removeItem(item: EventItem) {
@@ -80,12 +93,29 @@ class OptionsMenuItem implements MenuItem {
   expanded?: boolean;
   disabled?: boolean;
 
-  constructor() {
+  constructor(clearAllFiltersFunction, exportFiltersFunction) {
     this.label = 'Options';
     this.items = [
-      {label: 'Clear All Filters'},
+      new ClearAllFiltersMenuItem(clearAllFiltersFunction),
       {label: 'Export Filters'},
     ]
+  }
+}
+
+class ClearAllFiltersMenuItem implements MenuItem {
+  label?: string;
+  icon?: string;
+  command?: (event?: any) => void;
+  url?: string;
+  routerLink?: any;
+  eventEmitter?: EventEmitter<any>;
+  items?: MenuItem[];
+  expanded?: boolean;
+  disabled?: boolean;
+
+  constructor(command) {
+    this.label = 'Clear All Filters';
+    this.command = command;
   }
 }
 
@@ -128,6 +158,17 @@ class PrimaryMenuItem implements MenuItem {
     }
   }
 
+  removeAllValues() {
+    for (var i=this.items.length-1; i >= 0; i--) {
+      var mi = this.items[i];
+      if (mi instanceof ValueMenuItem) {
+        mi.remove();  // send remove item command to each value
+        console.warn(i, mi.label);
+      }
+    };
+  }
+
+
   removeValue(val) {
     var index = this.getIndex(val);
     if (index > -1) {
@@ -169,6 +210,15 @@ class ValueMenuItem implements MenuItem {
       menuListener.triggerSelectItem(event.itemId, event.categoryId);
     }
   }
+
+  remove() {
+    this.items.forEach((mi, i) => {
+      if (mi instanceof RemoveMenuItem) {
+        mi.command(null);  // send remove item command
+      }
+    });
+  }
+
 }
 
 class RemoveMenuItem implements MenuItem {
