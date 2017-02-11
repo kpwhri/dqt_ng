@@ -47,4 +47,9 @@ export class CategoryService {
     return this.http
       .get(`${this.serverAddress}/api/filter/chart?${querystring}`, this.options);
   }
+
+  exportFilters(querystring: string): Observable<any> {
+    return this.http
+      .get(`${this.serverAddress}/api/filter/export?${querystring}`, this.options);
+  }
 }

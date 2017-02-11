@@ -10,6 +10,7 @@ import {BreadcrumbComponent} from "./breadcrumb/breadcrumb.component";
 import {MenuListener} from "./menuListener";
 import {PerfectScrollbarComponent, PerfectScrollbarDirective} from "angular2-perfect-scrollbar";
 import {SubjectTableComponent} from "./subject-table/subject-table.component";
+import {FilterDialogComponent} from "./filter-dialog/filter-dialog.component";
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit {
   @ViewChild('enrollChart') enrollChartComponent: EnrollChartComponent;
   @ViewChild('breadcrumb') breadcrumbComponent: BreadcrumbComponent;
   @ViewChild('subjectTable') subjectTableComponent: SubjectTableComponent;
+  @ViewChild('filterDialog') filterDialogComponent: FilterDialogComponent;
   @ViewChild(PerfectScrollbarComponent) componentScroll;
   @ViewChild(PerfectScrollbarDirective) directiveScroll;
   title = 'ACT Data Query Tool';
@@ -43,6 +45,7 @@ export class AppComponent implements OnInit {
     this.menuListener.RemoveValue.on(e => this.removeFilter(e));
     this.menuListener.SelectCategory.on(categoryId => this.selectCategory(null, categoryId));
     this.menuListener.SelectItem.on(itemCatId => this.selectCategory(itemCatId[0], itemCatId[1]));
+    this.menuListener.ExportFilter.on(e => this.exportFilters());
   }
 
   constructor(private categoryService: CategoryService, private menuListener: MenuListener) {
@@ -156,6 +159,14 @@ export class AppComponent implements OnInit {
 
   selectCategory(itemId: string, categoryId: string) {
     this.promoteCategory(+itemId, +categoryId);
+  }
+
+  exportFilters() {
+    // don't update, just export most recent set of filters
+    var obs = this.categoryService.exportFilters(this.chartData);
+    obs.map((r: Response) => r.json()).subscribe(e => {
+      this.filterDialogComponent.displayDialog("Current Filter", e.filterstring);
+    });
   }
 
 }

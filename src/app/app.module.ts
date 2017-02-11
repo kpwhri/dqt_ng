@@ -24,6 +24,7 @@ import {MenuListener} from "./menuListener";
 import {AccordionModule} from "primeng/components/accordion/accordion";
 import {PerfectScrollbarModule, PerfectScrollbarConfigInterface} from "angular2-perfect-scrollbar";
 import { SubjectTableComponent } from './subject-table/subject-table.component';
+import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
 
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -42,6 +43,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     EnrollChartComponent,
     BreadcrumbComponent,
     SubjectTableComponent,
+    FilterDialogComponent,
   ],
   imports: [
     BrowserModule,

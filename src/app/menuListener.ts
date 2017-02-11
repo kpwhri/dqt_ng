@@ -4,6 +4,7 @@ export class MenuListener {
   private removeValue: Event<EventItem> = new Event<EventItem>();
   private selectCategory: Event<string> = new Event<string>();
   private selectItem: Event<string[]> = new Event<string[]>();
+  private exportFilters: Event<string> = new Event<string>();
 
   public get RemoveValue(): IEvent<EventItem> {
     return this.removeValue;
@@ -17,6 +18,10 @@ export class MenuListener {
     return this.selectItem;
   }
 
+  public get ExportFilter(): IEvent<string> {
+    return this.exportFilters;
+  }
+
   triggerRemove(e: EventItem) {
     this.removeValue.trigger(e);
   }
@@ -27,6 +32,10 @@ export class MenuListener {
 
   triggerSelectItem(itemId: string, categoryId: string) {
     this.selectItem.trigger([itemId, categoryId]);
+  }
+
+  triggerExportFilters(arg: string) {
+    this.exportFilters.trigger(arg);
   }
 
 }

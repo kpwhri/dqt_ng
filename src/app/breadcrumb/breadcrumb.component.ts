@@ -20,7 +20,7 @@ export class BreadcrumbComponent implements OnInit {
     this.items.push(
       new OptionsMenuItem(
         () => this.removeAllItems(),
-        null
+        this.menuListener
       )
     );
   }
@@ -92,11 +92,11 @@ class OptionsMenuItem implements MenuItem {
   expanded?: boolean;
   disabled?: boolean;
 
-  constructor(clearAllFiltersFunction, exportFiltersFunction) {
+  constructor(clearAllFiltersFunction, listener: MenuListener) {
     this.label = 'Options';
     this.items = [
       new ClearAllFiltersMenuItem(clearAllFiltersFunction),
-      {label: 'Export Filters'},
+      new ExportFiltersMenuItem(listener),
     ]
   }
 }
@@ -115,6 +115,24 @@ class ClearAllFiltersMenuItem implements MenuItem {
   constructor(command) {
     this.label = 'Clear All Filters';
     this.command = command;
+  }
+}
+class ExportFiltersMenuItem implements MenuItem {
+  label?: string;
+  icon?: string;
+  command?: (event?: any) => void;
+  url?: string;
+  routerLink?: any;
+  eventEmitter?: EventEmitter<any>;
+  items?: MenuItem[];
+  expanded?: boolean;
+  disabled?: boolean;
+
+  constructor(listener: MenuListener) {
+    this.label = 'Export Filters';
+    this.command = (e) => {
+      listener.triggerExportFilters(null);
+    };
   }
 }
 
