@@ -22,6 +22,17 @@ export class AgeChartComponent implements OnInit {
       },
       legend: {
         position: 'bottom'
+      },
+      scales: {
+        xAxes: [{
+          stacked: true,
+        }],
+        yAxes: [{
+          stacked: true,
+          ticks: {
+            beginAtZero: true
+          }
+        }],
       }
     }
   }
