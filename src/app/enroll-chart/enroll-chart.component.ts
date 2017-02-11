@@ -30,7 +30,6 @@ export class EnrollChartComponent implements OnInit {
   }
 
   updateChart(data: EnrollGraphClass) {
-    console.warn(data);
     this.data = this.updateColors(data);
     setTimeout(() => {
       this.chart.refresh();

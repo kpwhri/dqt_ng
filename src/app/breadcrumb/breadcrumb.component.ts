@@ -57,7 +57,6 @@ export class BreadcrumbComponent implements OnInit {
       var mi = this.items[i];
       if (mi instanceof PrimaryMenuItem) {
         mi.removeAllValues();
-        console.warn(i, mi.label);
       }
     };
   }
@@ -163,7 +162,6 @@ class PrimaryMenuItem implements MenuItem {
       var mi = this.items[i];
       if (mi instanceof ValueMenuItem) {
         mi.remove();  // send remove item command to each value
-        console.warn(i, mi.label);
       }
     };
   }

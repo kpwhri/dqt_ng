@@ -45,8 +45,6 @@ export class ItemComponent implements OnInit {
         }
       });
     } else if (this.valueCheckbox) {
-      console.warn('preparing to remove');
-      console.warn(this.valueCheckbox.checked);
       this.valueCheckbox.checked = false;
     }
   }
