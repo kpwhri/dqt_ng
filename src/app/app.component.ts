@@ -43,13 +43,6 @@ export class AppComponent implements OnInit {
     this.menuListener.RemoveValue.on(e => this.removeFilter(e));
     this.menuListener.SelectCategory.on(categoryId => this.selectCategory(null, categoryId));
     this.menuListener.SelectItem.on(itemCatId => this.selectCategory(itemCatId[0], itemCatId[1]));
-    this.subjectTableComponent.updateTable([
-      {header: 'Eligibles', value: '5,104'},
-      {header: 'Selected', value: '5,104'},
-      {header: 'Enrollment before Baseline', value: '11.1yr'},
-      {header: 'Enrollment to Followup (avg)', value: '17.6yr'},
-      {header: 'Follow up (avg)', value: '6.96yr'},
-    ]);
   }
 
   constructor(private categoryService: CategoryService, private menuListener: MenuListener) {
@@ -82,11 +75,9 @@ export class AppComponent implements OnInit {
 
     var obs = this.categoryService.filterItems(this.chartData);
     obs.map((r: Response) => r.json()).subscribe(e => {
-      this.count = e.count as number;
-      this.ageGraphData = e.age as AgeGraphClass;
-      this.enrollGraphData = e.enrollment as EnrollGraphClass;
       this.ageChartComponent.updateChart(e.age as AgeGraphClass);
       this.enrollChartComponent.updateChart(e.enrollment as EnrollGraphClass);
+      this.subjectTableComponent.updateTable(e.subject_counts as SubjectTableDataItem[]);
     });
   }
 
