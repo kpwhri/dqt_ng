@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
   @ViewChild('breadcrumb') breadcrumbComponent: BreadcrumbComponent;
   @ViewChild('subjectTable') subjectTableComponent: SubjectTableComponent;
   @ViewChild('filterDialog') filterDialogComponent: FilterDialogComponent;
+  @ViewChild('intakeDateChart') intakeDateComponent: AgeChartComponent;
   @ViewChild(PerfectScrollbarComponent) componentScroll;
   @ViewChild(PerfectScrollbarDirective) directiveScroll;
   title = 'ACT Data Query Tool';
@@ -81,6 +82,7 @@ export class AppComponent implements OnInit {
       this.ageChartComponent.updateChart(e.age as AgeGraphClass);
       this.enrollChartComponent.updateChart(e.enrollment as EnrollGraphClass);
       this.subjectTableComponent.updateTable(e.subject_counts as SubjectTableDataItem[]);
+      this.intakeDateComponent.updateChart(e.intake_date as AgeGraphClass);
     });
   }
 

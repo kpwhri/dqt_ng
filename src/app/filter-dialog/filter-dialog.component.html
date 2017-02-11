@@ -1,4 +1,8 @@
 <p-dialog header="{{header}}" [(visible)]="display"
           dismissableMask="true">
   {{text}}
+  <p-footer>
+    <button type="button" pButton ngxClipboard [cbContent]="text" (click)="display=true" label="Copy">Copy</button>
+    <button type="button" pButton (click)="display=false" label="Close">Close</button>
+  </p-footer>
 </p-dialog>

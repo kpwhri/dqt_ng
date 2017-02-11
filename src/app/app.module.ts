@@ -25,6 +25,8 @@ import {AccordionModule} from "primeng/components/accordion/accordion";
 import {PerfectScrollbarModule, PerfectScrollbarConfigInterface} from "angular2-perfect-scrollbar";
 import { SubjectTableComponent } from './subject-table/subject-table.component';
 import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
+import {ClipboardModule} from "ngx-clipboard";
+import {SharedModule, Footer} from "primeng/primeng";
 
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -57,6 +59,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ChartModule,
     MenubarModule,
     AccordionModule,
+    ClipboardModule,
+    SharedModule,
     PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
     RouterModule.forRoot([]),
   ],
