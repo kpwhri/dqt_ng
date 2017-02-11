@@ -1,0 +1,14 @@
+<table summary="{{summary}}">
+  <caption>{{caption}}</caption>
+  <thead>
+  <tr>
+    <th colspan="2">ACT Subjects</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let row of datarows">
+    <td class="column1">{{row.header}}</td>
+    <td>{{row.value}}</td>
+  </tr>
+  </tbody>
+</table>

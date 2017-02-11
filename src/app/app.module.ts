@@ -23,10 +23,11 @@ import {RouterModule} from "@angular/router";
 import {MenuListener} from "./menuListener";
 import {AccordionModule} from "primeng/components/accordion/accordion";
 import {PerfectScrollbarModule, PerfectScrollbarConfigInterface} from "angular2-perfect-scrollbar";
+import { SubjectTableComponent } from './subject-table/subject-table.component';
 
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  // suppressScrollX: true
+  suppressScrollX: true
 };
 
 @NgModule({
@@ -40,6 +41,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AgeChartComponent,
     EnrollChartComponent,
     BreadcrumbComponent,
+    SubjectTableComponent,
   ],
   imports: [
     BrowserModule,

@@ -81,6 +81,11 @@ export class PieDataItem {
   hoverBackgroundColor: string[];
 }
 
+export class SubjectTableDataItem {
+  header: string;
+  value: string;
+}
+
 
 
 

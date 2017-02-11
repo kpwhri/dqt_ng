@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Category, SearchResult, AgeGraphClass, EnrollGraphClass, EventItem} from "./categories";
+import {Category, SearchResult, AgeGraphClass, EnrollGraphClass, EventItem, SubjectTableDataItem} from "./categories";
 import {CategoryService} from "./app.service";
 import {Observable} from "rxjs";
 import {Response} from "@angular/http";
@@ -9,17 +9,19 @@ import {EnrollChartComponent} from "./enroll-chart/enroll-chart.component";
 import {BreadcrumbComponent} from "./breadcrumb/breadcrumb.component";
 import {MenuListener} from "./menuListener";
 import {PerfectScrollbarComponent, PerfectScrollbarDirective} from "angular2-perfect-scrollbar";
+import {SubjectTableComponent} from "./subject-table/subject-table.component";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   @ViewChild('master') masterComponent: CategoryMasterComponent;
   @ViewChild('ageChart') ageChartComponent: AgeChartComponent;
   @ViewChild('enrollChart') enrollChartComponent: EnrollChartComponent;
   @ViewChild('breadcrumb') breadcrumbComponent: BreadcrumbComponent;
+  @ViewChild('subjectTable') subjectTableComponent: SubjectTableComponent;
   @ViewChild(PerfectScrollbarComponent) componentScroll;
   @ViewChild(PerfectScrollbarDirective) directiveScroll;
   title = 'ACT Data Query Tool';
@@ -36,11 +38,18 @@ export class AppComponent implements OnInit{
   private filters: Map<string, Map<string, boolean>> = new Map<string, Map<string, boolean>>();
 
 
-  ngOnInit() : void {
+  ngOnInit(): void {
     // give everything a chance to get loaded before starting the animation to reduce choppiness
     this.menuListener.RemoveValue.on(e => this.removeFilter(e));
     this.menuListener.SelectCategory.on(categoryId => this.selectCategory(null, categoryId));
     this.menuListener.SelectItem.on(itemCatId => this.selectCategory(itemCatId[0], itemCatId[1]));
+    this.subjectTableComponent.updateTable([
+      {header: 'Eligibles', value: '5,104'},
+      {header: 'Selected', value: '5,104'},
+      {header: 'Enrollment before Baseline', value: '11.1yr'},
+      {header: 'Enrollment to Followup (avg)', value: '17.6yr'},
+      {header: 'Follow up (avg)', value: '6.96yr'},
+    ]);
   }
 
   constructor(private categoryService: CategoryService, private menuListener: MenuListener) {
@@ -51,7 +60,7 @@ export class AppComponent implements OnInit{
     this.masterComponent.bringCategoryToTop(itemId, categoryId);
   }
 
-  search(e, term:string) {
+  search(e, term: string) {
     if (term.length >= 3) {
       this.results = this.categoryService.search(term);
       this.display = true;
@@ -113,7 +122,7 @@ export class AppComponent implements OnInit{
 
 
   /*
-    Update filters and rangeFilters (filters which include a range rather than binary off/on values
+   Update filters and rangeFilters (filters which include a range rather than binary off/on values
    */
   categoryUpdated(e) {
     this.updateChanges(e.eventItem);
