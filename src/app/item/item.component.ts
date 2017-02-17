@@ -2,17 +2,16 @@ import {
   Component, OnInit, Input, Output, EventEmitter, ViewChild, ViewChildren, QueryList,
   ChangeDetectionStrategy
 } from '@angular/core';
-import {Item, EventItem} from "../categories";
-import {Fieldset} from "primeng/components/fieldset/fieldset";
-import {ValueComponent} from "../value/value.component";
-import {CheckboxValueComponent} from "../checkbox-value/checkbox-value.component";
-import {AccordionTab} from "primeng/components/accordion/accordion";
+import {Item, EventItem} from '../categories';
+import {ValueComponent} from '../value/value.component';
+import {CheckboxValueComponent} from '../checkbox-value/checkbox-value.component';
+import {AccordionTab} from 'primeng/components/accordion/accordion';
 
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItemComponent implements OnInit {
   @ViewChild('fieldset') fieldset: AccordionTab;
@@ -44,7 +43,7 @@ export class ItemComponent implements OnInit {
   unselectValue(event: EventItem) {
     if (this.valueList.length > 0) {
       this.valueList.forEach(v => {
-        if (`${v.value.id}` == event.id) {
+        if (`${v.value.id}` === event.id) {
           v.uncheckValue();
         }
       });

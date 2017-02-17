@@ -1,4 +1,4 @@
-import {EventItem} from "./categories";
+import {EventItem} from './categories';
 
 export class MenuListener {
   private removeValue: Event<EventItem> = new Event<EventItem>();
@@ -37,12 +37,11 @@ export class MenuListener {
   triggerExportFilters(arg: string) {
     this.exportFilters.trigger(arg);
   }
-
 }
 
 export interface IEvent<T> {
-  on(handler: { (data?: T): void }) : void;
-  off(handler: { (data?: T): void }) : void;
+  on(handler: { (data?: T): void }): void;
+  off(handler: { (data?: T): void }): void;
 }
 
 export class Event<T> implements IEvent<T> {

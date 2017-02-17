@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SubjectTableDataItem} from "../categories";
+import {SubjectTableDataItem} from '../categories';
 
 @Component({
   selector: 'app-subject-table',

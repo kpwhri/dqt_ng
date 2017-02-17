@@ -2,7 +2,7 @@ export class Value {
     id: number;
     name: string;
     description: string;
-    selected: boolean = true;
+    selected = true;
 }
 
 export class Category {

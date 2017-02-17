@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilterDialogComponent implements OnInit {
 
-  display: boolean = false;
+  display = false;
   header: string;
   text: string;
 

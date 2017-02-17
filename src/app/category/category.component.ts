@@ -2,16 +2,15 @@ import {
   Component, OnInit, Input, Output, EventEmitter, ViewChildren, QueryList, ViewChild,
   ChangeDetectionStrategy
 } from '@angular/core';
-import {Category, Item, EventItem} from "../categories";
-import {ItemComponent} from "../item/item.component";
-import {Fieldset} from "primeng/components/fieldset/fieldset";
-import {AccordionTab} from "primeng/components/accordion/accordion";
+import {Category, Item, EventItem} from '../categories';
+import {ItemComponent} from '../item/item.component';
+import {AccordionTab} from 'primeng/components/accordion/accordion';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoryComponent implements OnInit {
   @ViewChildren('itemComponent') itemComponents: QueryList<ItemComponent>;
@@ -19,9 +18,9 @@ export class CategoryComponent implements OnInit {
   @Input('category') category: Category;
   @Output() onChange: EventEmitter<any> = new EventEmitter();
   private id: number;
-  private name: string;
-  private description: string;
-  private items: Item[] = [];
+  name: string;
+  description: string;
+  items: Item[] = [];
 
   constructor() {
   }
@@ -30,9 +29,11 @@ export class CategoryComponent implements OnInit {
     this.id = this.category.id;
     this.name = this.category.name;
     this.description = this.category.description;
-    for (var i in this.category.items) {
-      this.items.push(this.category.items[i]);
-    }
+    let items = [];
+    this.category.items.forEach(function (element) {
+      items.push(element);
+    });
+    this.items = items;
   }
 
   itemUpdated(e) {
@@ -44,7 +45,7 @@ export class CategoryComponent implements OnInit {
   expandItem(itemId: number) {
     this.fieldset.selected = true;
     this.itemComponents.forEach(item => {
-      if (item.item.id == itemId) {
+      if (item.item.id === itemId) {
         item.expand();
       } else {
         item.collapse();
@@ -56,7 +57,7 @@ export class CategoryComponent implements OnInit {
     this.fieldset.selected = false;
     this.itemComponents.forEach(item => {
       item.collapse();
-    })
+    });
   }
 
   expandItems() {
@@ -68,7 +69,7 @@ export class CategoryComponent implements OnInit {
 
   unselectItem(event: EventItem) {
     this.itemComponents.forEach(i => {
-      if (`${i.item.id}` == event.itemId) {
+      if (`${i.item.id}` === event.itemId) {
         i.unselectValue(event);
       }
     });

@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, ViewChild} from '@angular/core';
-import {UIChart} from "primeng/components/chart/chart";
-import {AgeGraphClass} from "../categories";
+import {UIChart} from 'primeng/components/chart/chart';
+import {AgeGraphClass} from '../categories';
 
 @Component({
   selector: 'app-age-chart',
@@ -25,16 +25,16 @@ export class AgeChartComponent implements OnInit {
       },
       scales: {
         xAxes: [{
-          stacked: true,
+          stacked: true
         }],
         yAxes: [{
           stacked: true,
           ticks: {
             beginAtZero: true
           }
-        }],
+        }]
       }
-    }
+    };
   }
 
   ngOnInit() {

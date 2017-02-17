@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
-import {Value, EventItem} from "../categories";
+import {Value, EventItem} from '../categories';
 
 @Component({
   selector: 'app-value',
@@ -8,7 +8,7 @@ import {Value, EventItem} from "../categories";
 })
 export class ValueComponent implements OnInit {
   @Input('value') value: Value;
-  private selected: boolean = false;
+  selected = false;
   @Output() onChange: EventEmitter<any> = new EventEmitter();
 
   constructor() {
@@ -24,6 +24,4 @@ export class ValueComponent implements OnInit {
   uncheckValue() {
     this.selected = false;
   }
-
-
 }

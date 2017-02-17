@@ -1,7 +1,7 @@
 import {Component, OnInit, Output, EventEmitter, ViewChildren, QueryList} from '@angular/core';
-import {Category, EventItem} from "../categories";
-import {CategoryService} from "../app.service";
-import {CategoryComponent} from "../category/category.component";
+import {Category, EventItem} from '../categories';
+import {CategoryService} from '../app.service';
+import {CategoryComponent} from '../category/category.component';
 
 @Component({
   selector: 'app-category-master',
@@ -26,10 +26,10 @@ export class CategoryMasterComponent implements OnInit {
   }
 
   bringCategoryToTop(itemId: number, categoryId: number) {
-    var idx: number;
-    var category: Category;
+    let idx: number;
+    let category: Category;
     this.categories.forEach((cat, index) => {
-      if (cat.id == categoryId) {
+      if (cat.id === categoryId) {
         idx = index;
         category = cat;
         return;
@@ -37,11 +37,11 @@ export class CategoryMasterComponent implements OnInit {
     });
 
     // can't check for idx as it might be 0
-    if (idx != undefined && category) {
+    if (idx !== undefined && category) {
       this.categories.splice(idx, 1);
       this.categories.splice(0, 0, category);
       this.categoryComponents.forEach(cat => {
-          if (cat.category.id == category.id) {
+          if (cat.category.id === category.id) {
             if (itemId) {
               cat.expandItem(itemId);
             } else {
@@ -57,9 +57,9 @@ export class CategoryMasterComponent implements OnInit {
 
   uncheck(event: EventItem) {
     this.categoryComponents.forEach(c => {
-      if (`${c.category.id}` == event.categoryId) {
+      if (`${c.category.id}` === event.categoryId) {
         c.unselectItem(event);
       }
-    })
+    });
   }
 }

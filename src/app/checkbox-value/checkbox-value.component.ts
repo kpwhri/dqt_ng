@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {SliderModule} from 'primeng/primeng';
-import {EventItem} from "../categories";
+import {EventItem} from '../categories';
 
 @Component({
   selector: 'app-checkbox-value',
@@ -10,12 +10,12 @@ import {EventItem} from "../categories";
 })
 export class CheckboxValueComponent implements OnInit {
 
-  @Input('max') max: number = 100;
-  @Input('min') min: number = 0;
-  @Input('step') step: number = 5;
+  @Input('max') max = 100;
+  @Input('min') min = 0;
+  @Input('step') step = 5;
   @Output() onChange: EventEmitter<any> = new EventEmitter();
-  checked: boolean = false;
-  private vals: number[];
+  checked = false;
+  vals: number[];
 
   constructor() {
   }
@@ -33,7 +33,7 @@ export class CheckboxValueComponent implements OnInit {
   toggleChanged(e) {
     this.onChange.emit({
       eventItem: new EventItem().loadRange(e, e.checked, this.vals)
-    })
+    });
   }
 
 

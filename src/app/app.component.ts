@@ -1,19 +1,19 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Category, SearchResult, AgeGraphClass, EnrollGraphClass, EventItem, SubjectTableDataItem} from "./categories";
-import {CategoryService} from "./app.service";
-import {Observable} from "rxjs";
-import {Response} from "@angular/http";
-import {CategoryMasterComponent} from "./category-master/category-master.component";
-import {AgeChartComponent} from "./age-chart/age-chart.component";
-import {BreadcrumbComponent} from "./breadcrumb/breadcrumb.component";
-import {MenuListener} from "./menuListener";
-import {SubjectTableComponent} from "./subject-table/subject-table.component";
-import {FilterDialogComponent} from "./filter-dialog/filter-dialog.component";
+import {Category, SearchResult, AgeGraphClass, EventItem, SubjectTableDataItem} from './categories';
+import {CategoryService} from './app.service';
+import {Observable} from 'rxjs';
+import {Response} from '@angular/http';
+import {CategoryMasterComponent} from './category-master/category-master.component';
+import {AgeChartComponent} from './age-chart/age-chart.component';
+import {BreadcrumbComponent} from './breadcrumb/breadcrumb.component';
+import {MenuListener} from './menuListener';
+import {SubjectTableComponent} from './subject-table/subject-table.component';
+import {FilterDialogComponent} from './filter-dialog/filter-dialog.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   @ViewChild('master') masterComponent: CategoryMasterComponent;
@@ -24,13 +24,10 @@ export class AppComponent implements OnInit {
   title = 'ACT Data Query Tool';
   categories: Array<Category> = [];
   results: Observable<SearchResult[]>;
-  count: number = 0;
-  searchTerm: string = "";
+  searchTerm = '';
   checked: true;
-  display: boolean = false;
-  private chartData: string = "";
-  private ageGraphData: AgeGraphClass;
-  private enrollGraphData: EnrollGraphClass;
+  display = false;
+  private chartData = '';
   private rangeFilters: Map<string, string[]> = new Map<string, string[]>();
   private filters: Map<string, Map<string, boolean>> = new Map<string, Map<string, boolean>>();
 
@@ -62,16 +59,16 @@ export class AppComponent implements OnInit {
   }
 
   filterItems() {
-    var fs = this.parseFilters();
-    var rfs = this.parseRangeFilters();
-    var res = fs.concat(rfs);
+    const fs = this.parseFilters();
+    const rfs = this.parseRangeFilters();
+    const res = fs.concat(rfs);
     if (res.length > 0) {
-      this.chartData = res.join("&");
+      this.chartData = res.join('&');
     } else {
       this.chartData = '';
     }
 
-    var obs = this.categoryService.filterItems(this.chartData);
+    const obs = this.categoryService.filterItems(this.chartData);
     obs.map((r: Response) => r.json()).subscribe(e => {
       this.ageChartComponent.updateChart(e.age as AgeGraphClass);
       this.subjectTableComponent.updateTable(e.subject_counts as SubjectTableDataItem[]);
@@ -79,10 +76,10 @@ export class AppComponent implements OnInit {
   }
 
   parseFilters(): string[] {
-    var res: string[] = [];
+    const res: string[] = [];
     this.filters.forEach(
       (valMap: any, item) => {
-        var items = [];
+        const items = [];
         valMap.forEach(
           (checked, val) => {
             if (checked) {
@@ -99,7 +96,7 @@ export class AppComponent implements OnInit {
   }
 
   parseRangeFilters(): string[] {
-    var res: string[] = [];
+    const res: string[] = [];
     this.rangeFilters.forEach(
       (vals, item) => {
         res.push(`${item}=${vals[0]}~${vals[1]}`);
@@ -116,20 +113,21 @@ export class AppComponent implements OnInit {
     this.updateChanges(e.eventItem);
 
     this.filterItems();
-    if (e.eventItem.selected)
+    if (e.eventItem.selected) {
       this.breadcrumbComponent.addItem(e.eventItem);
-    else
-      this.breadcrumbComponent.removeItem(e.eventItem);
+    } else {
+        this.breadcrumbComponent.removeItem(e.eventItem);
+    }
   }
 
   updateChanges(e: EventItem) {
     if (e.id != null) {  // this is a single value
       if (this.filters.has(e.itemId)) {
-        var newVal = this.filters.get(e.itemId);
+        const newVal = this.filters.get(e.itemId);
         newVal.set(e.id, e.selected);
         this.filters.set(e.itemId, newVal);
       } else {
-        var m = new Map<string, boolean>();
+        const m = new Map<string, boolean>();
         m.set(e.id, e.selected);
         this.filters.set(e.itemId, m);
       }
@@ -157,9 +155,9 @@ export class AppComponent implements OnInit {
 
   exportFilters() {
     // don't update, just export most recent set of filters
-    var obs = this.categoryService.exportFilters(this.chartData);
+    const obs = this.categoryService.exportFilters(this.chartData);
     obs.map((r: Response) => r.json()).subscribe(e => {
-      this.filterDialogComponent.displayDialog("Current Filter", e.filterstring);
+      this.filterDialogComponent.displayDialog('Current Filter', e.filterstring);
     });
   }
 

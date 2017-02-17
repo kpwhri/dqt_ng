@@ -1,16 +1,16 @@
-import {Component, OnInit, Input, EventEmitter} from '@angular/core';
-import {EventItem, Value} from "../categories";
-import {MenuItem} from "primeng/components/common/api";
-import {MenuListener} from "../menuListener";
+import {Component, OnInit, EventEmitter} from '@angular/core';
+import {EventItem} from '../categories';
+import {MenuItem} from 'primeng/components/common/api';
+import {MenuListener} from '../menuListener';
 
 @Component({
   selector: 'app-breadcrumb',
   templateUrl: './breadcrumb.component.html',
-  styleUrls: ['./breadcrumb.component.css'],
+  styleUrls: ['./breadcrumb.component.css']
 })
 export class BreadcrumbComponent implements OnInit {
 
-  private items: MenuItem[];
+  items: MenuItem[];
 
   constructor(private menuListener: MenuListener) {
   }
@@ -34,13 +34,13 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   addItem(item: EventItem) {
-    var val = this.getValue(item);
-    var itemToAdd = new PrimaryMenuItem(this.menuListener, item.item,
+    const val = this.getValue(item);
+    const itemToAdd = new PrimaryMenuItem(this.menuListener, item.item,
       item.category, val, item);
 
-    var added: boolean = false;
+    let added = false;
     this.items.forEach(mi => {
-      if (mi instanceof PrimaryMenuItem && mi.label == item.item) {
+      if (mi instanceof PrimaryMenuItem && mi.label === item.item) {
         // add value to item list
         mi.addValue(new ValueMenuItem(this.menuListener, val, item));
         added = true;
@@ -53,8 +53,8 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   removeAllItems() {
-    for (var i=this.items.length-1; i >= 0; i--) {
-      var mi = this.items[i];
+    for (let i = this.items.length - 1; i >= 0; i--) {
+      const mi = this.items[i];
       if (mi instanceof PrimaryMenuItem) {
         mi.removeAllValues();
       }
@@ -62,10 +62,10 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   removeItem(item: EventItem) {
-    var val = this.getValue(item);
-    var idx = -1;
+    const val = this.getValue(item);
+    let idx = -1;
     this.items.some((mi, i) => {
-      if (mi instanceof PrimaryMenuItem && mi.label == item.item) {
+      if (mi instanceof PrimaryMenuItem && mi.label === item.item) {
         mi.removeValue(val);
         if (mi.isEmpty()) {
           idx = i;
@@ -96,8 +96,8 @@ class OptionsMenuItem implements MenuItem {
     this.label = 'Options';
     this.items = [
       new ClearAllFiltersMenuItem(clearAllFiltersFunction),
-      new ExportFiltersMenuItem(listener),
-    ]
+      new ExportFiltersMenuItem(listener)
+    ];
   }
 }
 
@@ -164,7 +164,7 @@ class PrimaryMenuItem implements MenuItem {
     }
     this.command = (e) => {
       menuListener.triggerSelectItem(event.itemId, event.categoryId);
-    }
+    };
   }
 
   addValue(val: ValueMenuItem) {
@@ -176,8 +176,8 @@ class PrimaryMenuItem implements MenuItem {
   }
 
   removeAllValues() {
-    for (var i=this.items.length-1; i >= 0; i--) {
-      var mi = this.items[i];
+    for (let i = this.items.length - 1; i >= 0; i--) {
+      const mi = this.items[i];
       if (mi instanceof ValueMenuItem) {
         mi.remove();  // send remove item command to each value
       }
@@ -186,16 +186,16 @@ class PrimaryMenuItem implements MenuItem {
 
 
   removeValue(val) {
-    var index = this.getIndex(val);
+    const index = this.getIndex(val);
     if (index > -1) {
       this.items.splice(index, 1);
     }
   }
 
   getIndex(value: string): number {
-    var idx = -1;
+    let idx = -1;
     this.items.some((item, i) => {
-      if (item.label == value) {
+      if (item.label === value) {
         idx = i;
         return true;
       }
@@ -204,7 +204,7 @@ class PrimaryMenuItem implements MenuItem {
   }
 
   isEmpty() {
-    return this.items.length == 1;  // the category will not be removed
+    return this.items.length === 1;  // the category will not be removed
   }
 }
 
@@ -224,7 +224,7 @@ class ValueMenuItem implements MenuItem {
     this.items = [new RemoveMenuItem(menuListener, event)];
     this.command = (e) => {
       menuListener.triggerSelectItem(event.itemId, event.categoryId);
-    }
+    };
   }
 
   remove() {
@@ -253,7 +253,7 @@ class RemoveMenuItem implements MenuItem {
     this.label = 'Remove';
     this.command = (e) => {
       menuListener.triggerRemove(event);
-    }
+    };
   }
 }
 
@@ -272,7 +272,7 @@ class CategoryMenuItem implements MenuItem {
     this.label = category;
     this.command = (e) => {
       menuListener.triggerSelectCategory(categoryId);
-    }
+    };
   }
 }
 
