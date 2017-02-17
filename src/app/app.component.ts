@@ -5,10 +5,8 @@ import {Observable} from "rxjs";
 import {Response} from "@angular/http";
 import {CategoryMasterComponent} from "./category-master/category-master.component";
 import {AgeChartComponent} from "./age-chart/age-chart.component";
-import {EnrollChartComponent} from "./enroll-chart/enroll-chart.component";
 import {BreadcrumbComponent} from "./breadcrumb/breadcrumb.component";
 import {MenuListener} from "./menuListener";
-import {PerfectScrollbarComponent, PerfectScrollbarDirective} from "angular2-perfect-scrollbar";
 import {SubjectTableComponent} from "./subject-table/subject-table.component";
 import {FilterDialogComponent} from "./filter-dialog/filter-dialog.component";
 
@@ -20,13 +18,9 @@ import {FilterDialogComponent} from "./filter-dialog/filter-dialog.component";
 export class AppComponent implements OnInit {
   @ViewChild('master') masterComponent: CategoryMasterComponent;
   @ViewChild('ageChart') ageChartComponent: AgeChartComponent;
-  @ViewChild('enrollChart') enrollChartComponent: EnrollChartComponent;
   @ViewChild('breadcrumb') breadcrumbComponent: BreadcrumbComponent;
   @ViewChild('subjectTable') subjectTableComponent: SubjectTableComponent;
   @ViewChild('filterDialog') filterDialogComponent: FilterDialogComponent;
-  @ViewChild('intakeDateChart') intakeDateComponent: AgeChartComponent;
-  @ViewChild(PerfectScrollbarComponent) componentScroll;
-  @ViewChild(PerfectScrollbarDirective) directiveScroll;
   title = 'ACT Data Query Tool';
   categories: Array<Category> = [];
   results: Observable<SearchResult[]>;
@@ -80,9 +74,7 @@ export class AppComponent implements OnInit {
     var obs = this.categoryService.filterItems(this.chartData);
     obs.map((r: Response) => r.json()).subscribe(e => {
       this.ageChartComponent.updateChart(e.age as AgeGraphClass);
-      this.enrollChartComponent.updateChart(e.enrollment as EnrollGraphClass);
       this.subjectTableComponent.updateTable(e.subject_counts as SubjectTableDataItem[]);
-      this.intakeDateComponent.updateChart(e.intake_date as AgeGraphClass);
     });
   }
 
