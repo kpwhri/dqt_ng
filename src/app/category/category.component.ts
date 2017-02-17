@@ -1,4 +1,7 @@
-import {Component, OnInit, Input, Output, EventEmitter, ViewChildren, QueryList, ViewChild} from '@angular/core';
+import {
+  Component, OnInit, Input, Output, EventEmitter, ViewChildren, QueryList, ViewChild,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import {Category, Item, EventItem} from "../categories";
 import {ItemComponent} from "../item/item.component";
 import {Fieldset} from "primeng/components/fieldset/fieldset";
@@ -7,7 +10,8 @@ import {AccordionTab} from "primeng/components/accordion/accordion";
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css']
+  styleUrls: ['./category.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryComponent implements OnInit {
   @ViewChildren('itemComponent') itemComponents: QueryList<ItemComponent>;
