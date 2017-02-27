@@ -26,6 +26,7 @@ import { SubjectTableComponent } from './subject-table/subject-table.component';
 import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
 import {ClipboardModule} from 'ngx-clipboard';
 import {SharedModule} from 'primeng/primeng';
+import { MainComponent } from './main/main.component';
 
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -43,7 +44,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AgeChartComponent,
     BreadcrumbComponent,
     SubjectTableComponent,
-    FilterDialogComponent
+    FilterDialogComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
