@@ -28,6 +28,8 @@ import {ClipboardModule} from 'ngx-clipboard';
 import {SharedModule} from 'primeng/primeng';
 import { MainComponent } from './main/main.component';
 import {TabViewModule} from 'primeng/components/tabview/tabview';
+import { HomePageComponent } from './home-page/home-page.component';
+import { FaqPageComponent } from './faq-page/faq-page.component';
 
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -46,7 +48,9 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BreadcrumbComponent,
     SubjectTableComponent,
     FilterDialogComponent,
-    MainComponent
+    MainComponent,
+    HomePageComponent,
+    FaqPageComponent
   ],
   imports: [
     BrowserModule,
