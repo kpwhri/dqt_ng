@@ -27,6 +27,7 @@ import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
 import {ClipboardModule} from 'ngx-clipboard';
 import {SharedModule} from 'primeng/primeng';
 import { MainComponent } from './main/main.component';
+import {TabViewModule} from "primeng/components/tabview/tabview";
 
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -61,6 +62,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AccordionModule,
     ClipboardModule,
     SharedModule,
+    TabViewModule,
     PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
     RouterModule.forRoot([])
   ],
