@@ -1,4 +1,10 @@
 
 <p>
-The ACT data query tool provides feasibility estimates for future grants or publications. These are rough, preliminary numbers. For publication or presentation purposes, please submit an ACT proposal.
+  The ACT data query tool provides feasibility estimates for future grants or publications.
+  These are rough, preliminary numbers.
+  For publication or presentation purposes, please contact us at KPWA.actproposals@kp.org to submit an ACT proposal.
 </p>
+
+<div *ngIf="! authenticated">
+  <app-user-form (onChange)="userFormSubmitted($event)"></app-user-form>
+</div>

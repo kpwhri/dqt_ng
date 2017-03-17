@@ -1,0 +1,23 @@
+<form [formGroup]="userForm" (ngSubmit)="update($event)">
+  <div>
+    <label for="name" class="control-label">Name</label>
+    <input id="name" required name="name" formControlName="name"
+           type="text" class="form-control" placeholder="Name">
+  </div>
+  <div>
+    <label for="email" class="control-label">Email Address</label>
+    <input id="email" required formControlName="email"
+           type="email" class="form-control" placeholder="Email Address">
+  </div>
+  <div>
+    <label for="affiliation" class="control-label">Affiliation</label>
+    <input id="affiliation" formControlName="affiliation"
+           type="text" class="form-control" placeholder="Affiliation">
+  </div>
+  <div>
+    <label for="reason" class="control-label">Reason for Visit</label>
+    <input id="reason" required formControlName="reasonForUse"
+           type="text" class="form-control" placeholder="Reason for Visit">
+  </div>
+  <button type="submit" class="btn btn-success" [disabled]="!userForm.valid">Submit</button>
+</form>

@@ -1,13 +1,11 @@
 <p-tabView>
   <p-tabPanel header="Home">
-    <app-home-page></app-home-page>
+    <app-home-page [authenticated]="authenticated" (onChange)="userFormSubmitted($event)"></app-home-page>
   </p-tabPanel>
   <p-tabPanel header="Tutorial">
 
   </p-tabPanel>
-  <p-tabPanel header="Query Tool">
-    <app-main></app-main>
-  </p-tabPanel>
+
   <p-tabPanel header="Data Dictionary">
 
   </p-tabPanel>
@@ -18,5 +16,9 @@
     <p>
       For questions about the data query tool, or to report problems with its use, please contact <a href="mailto:ACTproposals@ghc.org">ACTproposals@ghc.org</a>
     </p>
+  </p-tabPanel>
+
+  <p-tabPanel header="Query Tool" [disabled]="! authenticated">
+    <app-main></app-main>
   </p-tabPanel>
 </p-tabView>

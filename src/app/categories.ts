@@ -86,6 +86,21 @@ export class SubjectTableDataItem {
   value: string;
 }
 
+export class UserForm {
+    public name: string;
+    public email: string;
+    public affiliation: string;
+    public reasonForUse: string;
+
+    toJsonString(): any {
+      return {
+        name: this.name,
+        email: this.email,
+        affiliation: this.affiliation,
+        reasonForUse: this.reasonForUse
+      };
+    }
+}
 
 
 

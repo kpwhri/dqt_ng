@@ -1,6 +1,6 @@
 import { Injectable }     from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
-import {Category, SearchResult} from './categories';
+import {Category, SearchResult, UserForm} from './categories';
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
 
@@ -14,7 +14,11 @@ export class CategoryService {
     'Accept': 'application/json',
     'Access-Control-Allow-Origin': 'localhost'
   });
+  private postHeaders = new Headers({
+    'Content-Type': 'application/json',
+  });
   private options = new RequestOptions({headers: this.headers});
+  private postOptions = new RequestOptions({headers: this.postHeaders});
 
   constructor(private http: Http) {
     this.http.get('../../server.json')
@@ -51,5 +55,34 @@ export class CategoryService {
   exportFilters(querystring: string): Observable<any> {
     return this.http
       .get(`${this.serverAddress}/api/filter/export?${querystring}`, this.options);
+  }
+
+  /**
+   * Check if the user has already authenticated (ip address already seen)
+   */
+  checkAuthenticated(): any {
+    return this.http
+      .get(`${this.serverAddress}/api/user/check`, this.options);
+  }
+
+  submitUserForm(userModel: UserForm): any {
+    return this.http.post(
+      `${this.serverAddress}/api/user/submit`,
+      // TODO: why does calling userModel.toJsonString() cause forwarding to /?name=um.name??
+      {name: userModel.name, emailAddress: userModel.email,
+        affiliation: userModel.affiliation, reasonForVisiting: userModel.reasonForUse},
+      this.postOptions)
+      .map(this.extractData).catch(this.handleError);
+  }
+
+  private extractData(r: Response) {
+    let body = r.json();
+    return body || {};
+  }
+
+  private handleError(error: any) {
+    let msg = (error.message) ? error.message : (error.status ? `${error.status} - ${error.statusText}` : 'Server error');
+    console.error(msg);
+    return Observable.throw(msg);
   }
 }
