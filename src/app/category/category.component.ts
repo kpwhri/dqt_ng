@@ -69,7 +69,7 @@ export class CategoryComponent implements OnInit {
 
   unselectItem(event: EventItem) {
     this.itemComponents.forEach(i => {
-      if (`${i.item.id}` === event.itemId) {
+      if (i.item.id === +event.itemId) {
         i.unselectValue(event);
       }
     });

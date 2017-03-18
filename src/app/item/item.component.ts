@@ -43,7 +43,7 @@ export class ItemComponent implements OnInit {
   unselectValue(event: EventItem) {
     if (this.valueList.length > 0) {
       this.valueList.forEach(v => {
-        if (`${v.value.id}` === event.id) {
+        if (v.value.id === +event.id) {
           v.uncheckValue();
         }
       });
@@ -51,5 +51,4 @@ export class ItemComponent implements OnInit {
       this.valueCheckbox.checked = false;
     }
   }
-
 }

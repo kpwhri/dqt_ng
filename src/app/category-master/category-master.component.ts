@@ -57,7 +57,7 @@ export class CategoryMasterComponent implements OnInit {
 
   uncheck(event: EventItem) {
     this.categoryComponents.forEach(c => {
-      if (`${c.category.id}` === event.categoryId) {
+      if (c.category.id === +event.categoryId) {
         c.unselectItem(event);
       }
     });
