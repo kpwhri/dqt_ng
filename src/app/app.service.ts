@@ -62,7 +62,8 @@ export class CategoryService {
    */
   checkAuthenticated(): any {
     return this.http
-      .get(`${this.serverAddress}/api/user/check`, this.options);
+      .get(`${this.serverAddress}/api/user/check`, this.options)
+      .map(this.extractData).catch(this.handleError);
   }
 
   submitUserForm(userModel: UserForm): any {

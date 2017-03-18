@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserForm} from './categories';
 import {CategoryService} from './app.service';
-import {Response} from '@angular/http';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +26,6 @@ export class AppComponent implements OnInit {
 
   checkAuthenticated() {
     this.categoryService.checkAuthenticated()
-      .subscribe(result => this.authenticated = result.returnVisitor);
+      .subscribe(result => {this.authenticated = result.returnVisitor; console.warn(result.returnVisitor);});
   }
 }
