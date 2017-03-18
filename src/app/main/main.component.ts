@@ -9,6 +9,7 @@ import {BreadcrumbComponent} from '../breadcrumb/breadcrumb.component';
 import {MenuListener} from '../menuListener';
 import {SubjectTableComponent} from '../subject-table/subject-table.component';
 import {FilterDialogComponent} from '../filter-dialog/filter-dialog.component';
+import {OverlayPanel} from 'primeng/primeng';
 
 @Component({
   selector: 'app-main',
@@ -21,6 +22,7 @@ export class MainComponent implements OnInit {
   @ViewChild('breadcrumb') breadcrumbComponent: BreadcrumbComponent;
   @ViewChild('subjectTable') subjectTableComponent: SubjectTableComponent;
   @ViewChild('filterDialog') filterDialogComponent: FilterDialogComponent;
+  @ViewChild('searchPanel') searchPanelComponent: OverlayPanel;
   title = 'ACT Data Query Tool';
   categories: Array<Category> = [];
   results: Observable<SearchResult[]>;
@@ -48,13 +50,15 @@ export class MainComponent implements OnInit {
     this.masterComponent.bringCategoryToTop(itemId, categoryId);
   }
 
-  search(e, term: string) {
+  search(e, term: string, target) {
     if (term.length >= 3) {
       this.results = this.categoryService.search(term);
       this.display = true;
+      this.searchPanelComponent.show(e, target);
     } else {
       this.results = null;
       this.display = false;
+      this.searchPanelComponent.hide();
     }
   }
 

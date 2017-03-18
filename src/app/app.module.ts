@@ -25,7 +25,7 @@ import {PerfectScrollbarModule, PerfectScrollbarConfigInterface} from 'angular2-
 import { SubjectTableComponent } from './subject-table/subject-table.component';
 import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
 import {ClipboardModule} from 'ngx-clipboard';
-import {SharedModule} from 'primeng/primeng';
+import {SharedModule, OverlayPanelModule} from 'primeng/primeng';
 import { MainComponent } from './main/main.component';
 import {TabViewModule} from 'primeng/components/tabview/tabview';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -70,6 +70,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ClipboardModule,
     SharedModule,
     TabViewModule,
+    OverlayPanelModule,
     PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
     RouterModule.forRoot([])
   ],

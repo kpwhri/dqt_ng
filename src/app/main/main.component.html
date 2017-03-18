@@ -1,19 +1,7 @@
 <div id="MENUSIDE">
-  <input [(ngModel)]="searchTerm" placeholder="search" (keyup)="search($event, searchTerm)" />
-
-  <div class="scrollbar">
-    <perfect-scrollbar>
-      <app-category-master #master (onChange)="categoryUpdated($event)"></app-category-master>
-    </perfect-scrollbar>
-  </div>
-</div>
-
-<div id="TITLEAREA">
-  <h1>{{title}}</h1>
-</div>
-
-<div id="CONTENTSIDE">
-  <p-dialog header="Search Results" [(visible)]="display">
+  <input #target [(ngModel)]="searchTerm" placeholder="search" (keyup)="search($event, searchTerm, target)" />
+  <p-overlayPanel #searchPanel [showCloseIcon]="true">
+    <h2>Search Results</h2>
     <table>
       <thead>
       <tr>
@@ -32,7 +20,20 @@
       </tr>
       </tbody>
     </table>
-  </p-dialog>
+  </p-overlayPanel>
+
+  <div class="scrollbar">
+    <perfect-scrollbar>
+      <app-category-master #master (onChange)="categoryUpdated($event)"></app-category-master>
+    </perfect-scrollbar>
+  </div>
+</div>
+
+<div id="TITLEAREA">
+  <h1>{{title}}</h1>
+</div>
+
+<div id="CONTENTSIDE">
 
 
   <app-breadcrumb #breadcrumb></app-breadcrumb>
