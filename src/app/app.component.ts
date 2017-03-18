@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UserForm} from './categories';
+import {TabConfig, UserForm} from './categories';
 import {CategoryService} from './app.service';
 
 @Component({
@@ -10,11 +10,13 @@ import {CategoryService} from './app.service';
 export class AppComponent implements OnInit {
 
   authenticated = false;
+  tabs: TabConfig[] = [];
 
   ngOnInit(): void {
   }
 
   constructor(private categoryService: CategoryService) {
+    this.getTabs();
     this.checkAuthenticated();
   }
 
@@ -27,5 +29,10 @@ export class AppComponent implements OnInit {
   checkAuthenticated() {
     this.categoryService.checkAuthenticated()
       .subscribe(result => this.authenticated = result.returnVisitor);
+  }
+
+  getTabs() {
+    this.categoryService.getTabs()
+      .subscribe(result => this.tabs = result.tabs as TabConfig[]);
   }
 }

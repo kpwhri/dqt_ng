@@ -102,5 +102,14 @@ export class UserForm {
     }
 }
 
+export class TabConfig {
+  public header: string;
+  public lines: LineConfig[];
+}
+
+export class LineConfig {
+  public type: string;
+  public text: string;
+}
 
 

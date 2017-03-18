@@ -1,24 +1,25 @@
-<p-tabView>
-  <p-tabPanel header="Home">
-    <app-home-page [authenticated]="authenticated" (onChange)="userFormSubmitted($event)"></app-home-page>
-  </p-tabPanel>
-  <p-tabPanel header="Tutorial">
 
-  </p-tabPanel>
+<div *ngIf="tabs.length > 0">
+  <p-tabView>
+    <p-tabPanel header="{{tabconfig.header}}" [selected]="tabconfig.header === 'Home'" *ngFor="let tabconfig of tabs">
+      <div *ngFor="let line of tabconfig.lines">
+        <div *ngIf="line.type == 'text'">
+          <p>{{line.text}}</p>
+        </div>
+        <div *ngIf="line.type == 'header'">
+          <h1>{{line.text}}</h1>
+        </div>
+        <div *ngIf="line.type == 'bold'">
+          <b>{{line.text}}</b>
+        </div>
+      </div>
+      <div *ngIf="tabconfig.header == 'Home'">
+        <app-home-page [authenticated]="authenticated" (onChange)="userFormSubmitted($event)"></app-home-page>
+      </div>
+    </p-tabPanel>
 
-  <p-tabPanel header="Data Dictionary">
-
-  </p-tabPanel>
-  <p-tabPanel header="FAQ">
-    <app-faq-page></app-faq-page>
-  </p-tabPanel>
-  <p-tabPanel header="Contact">
-    <p>
-      For questions about the data query tool, or to report problems with its use, please contact <a href="mailto:ACTproposals@ghc.org">ACTproposals@ghc.org</a>
-    </p>
-  </p-tabPanel>
-
-  <p-tabPanel header="Query Tool" [disabled]="! authenticated">
-    <app-main></app-main>
-  </p-tabPanel>
-</p-tabView>
+    <p-tabPanel header="Query Tool" [disabled]="! authenticated">
+      <app-main></app-main>
+    </p-tabPanel>
+  </p-tabView>
+</div>
