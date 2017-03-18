@@ -26,6 +26,6 @@ export class AppComponent implements OnInit {
 
   checkAuthenticated() {
     this.categoryService.checkAuthenticated()
-      .subscribe(result => {this.authenticated = result.returnVisitor; console.warn(result.returnVisitor);});
+      .subscribe(result => this.authenticated = result.returnVisitor);
   }
 }
