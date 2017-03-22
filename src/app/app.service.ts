@@ -72,6 +72,12 @@ export class CategoryService {
       .map(this.extractData).catch(this.handleError);
   }
 
+  getComments(component: string): any {
+    return this.http
+      .get(`${this.serverAddress}/api/comments/${component}`, this.options)
+      .map(this.extractData).catch(this.handleError);
+  }
+
   submitUserForm(userModel: UserForm): any {
     return this.http.post(
       `${this.serverAddress}/api/user/submit`,
