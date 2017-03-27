@@ -3,12 +3,13 @@ import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {Category, SearchResult, UserForm} from './categories';
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
+import {Config} from './app.config';
 
 
 @Injectable()
 export class CategoryService {
 
-  public serverAddress = 'http://localhost:8090';
+  public serverAddress = new Config().getServerAddress();
   private headers = new Headers({
     'Content-Type': 'application/json',
     'Accept': 'application/json',
