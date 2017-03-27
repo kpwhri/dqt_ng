@@ -22,10 +22,14 @@
     </table>
   </p-overlayPanel>
 
+
+  <button (click)="collapseAll()">Collapse All</button>
+
   <div class="scrollbar">
-    <perfect-scrollbar>
+    <perfect-scrollbar #scrollbar>
       <app-category-master #master (onChange)="categoryUpdated($event)"></app-category-master>
     </perfect-scrollbar>
+
   </div>
 </div>
 

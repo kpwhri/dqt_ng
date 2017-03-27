@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, ChangeDetectorRef, ApplicationRef} from '@angular/core';
 import {Category, SearchResult, AgeGraphClass, EventItem, SubjectTableDataItem} from '../categories';
 import {CategoryService} from '../app.service';
 import {Observable} from 'rxjs';
@@ -10,6 +10,7 @@ import {MenuListener} from '../menuListener';
 import {SubjectTableComponent} from '../subject-table/subject-table.component';
 import {FilterDialogComponent} from '../filter-dialog/filter-dialog.component';
 import {OverlayPanel} from 'primeng/primeng';
+import {PerfectScrollbarComponent} from 'angular2-perfect-scrollbar';
 
 @Component({
   selector: 'app-main',
@@ -23,6 +24,7 @@ export class MainComponent implements OnInit {
   @ViewChild('subjectTable') subjectTableComponent: SubjectTableComponent;
   @ViewChild('filterDialog') filterDialogComponent: FilterDialogComponent;
   @ViewChild('searchPanel') searchPanelComponent: OverlayPanel;
+  @ViewChild('scrollbar') scrollbarComponent: PerfectScrollbarComponent;
   title = 'ACT Data Query Tool';
   categories: Array<Category> = [];
   results: Observable<SearchResult[]>;
@@ -42,7 +44,11 @@ export class MainComponent implements OnInit {
     this.menuListener.ExportFilter.on(e => this.exportFilters());
   }
 
-  constructor(private categoryService: CategoryService, private menuListener: MenuListener) {
+  constructor(private categoryService: CategoryService,
+              private menuListener: MenuListener,
+              private changeDetectorRef: ChangeDetectorRef,
+              private applicationRef: ApplicationRef
+  ) {
     this.filterItems();
   }
 
@@ -77,6 +83,13 @@ export class MainComponent implements OnInit {
       this.ageChartComponent.updateChart(e.age as AgeGraphClass);
       this.subjectTableComponent.updateTable(e.subject_counts as SubjectTableDataItem[]);
     });
+  }
+
+  collapseAll() {
+    this.masterComponent.collapseAll();
+    this.scrollbarComponent.scrollToTop();
+    this.changeDetectorRef.detectChanges();
+    this.applicationRef.tick();
   }
 
   parseFilters(): string[] {

@@ -52,7 +52,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MainComponent,
     HomePageComponent,
     FaqPageComponent,
-    UserFormComponent
+    UserFormComponent,
   ],
   imports: [
     BrowserModule,

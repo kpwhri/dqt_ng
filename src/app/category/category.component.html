@@ -11,9 +11,9 @@
 <div *ngIf="! description">
   <p-accordionTab #fieldset header="{{name}}">
     <p-accordion [multiple]="true">
-    <div *ngFor="let item of items">
-        <app-item #itemComponent [item]="item" (onChange)="itemUpdated($event)"></app-item>
-    </div>
+      <div *ngFor="let item of items">
+          <app-item #itemComponent [item]="item" (onChange)="itemUpdated($event)"></app-item>
+      </div>
     </p-accordion>
   </p-accordionTab>
 </div>
