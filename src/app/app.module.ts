@@ -31,6 +31,7 @@ import {TabViewModule} from 'primeng/components/tabview/tabview';
 import { HomePageComponent } from './home-page/home-page.component';
 import { FaqPageComponent } from './faq-page/faq-page.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -55,6 +56,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     UserFormComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
