@@ -43,7 +43,7 @@ export class AgeChartComponent implements OnInit {
   updateChart(data) {
     this.data = this.updateColors(data);
     setTimeout(() => {
-      this.chart.refresh();
+      this.chart.reinit();
     }, 500);
   }
 

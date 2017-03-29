@@ -10,7 +10,7 @@ import {MenuListener} from '../menuListener';
 import {SubjectTableComponent} from '../subject-table/subject-table.component';
 import {FilterDialogComponent} from '../filter-dialog/filter-dialog.component';
 import {OverlayPanel} from 'primeng/primeng';
-import {PerfectScrollbarComponent} from 'angular2-perfect-scrollbar';
+import {PerfectScrollbarComponent} from 'ngx-perfect-scrollbar';
 
 @Component({
   selector: 'app-main',

@@ -1,13 +1,15 @@
-<p-toggleButton [(ngModel)]="checked" onLabel="{{vals[0]}}-{{vals[1]}}" offLabel="{{vals[0]}}-{{vals[1]}}"
+<p-toggleButton [(ngModel)]="checked" onLabel="{{buttonVals[0]}}-{{buttonVals[1]}}" offLabel="{{buttonVals[0]}}-{{buttonVals[1]}}"
                 onIcon="fa-check-square"
                 offIcon="fa-square" [style]="{'width':'150px'}"
                 (onChange)="toggleChanged($event)"
 ></p-toggleButton>
 <div>
   <p-slider [(ngModel)]="vals"
-            [min]="min" [max]="max" [range]="true"
-            [step]="step"
-            (onSlideEnd)="valuesChanged($event)">
+            [min]="minAsInt" [max]="maxAsInt" [range]="true"
+            [step]="stepAsInt"
+            (onSlideEnd)="valuesChanged($event)"
+            (onChange)="onValueUpdate($event)"
+  >
   </p-slider>
 
   <div class="left-column">{{min}}</div>

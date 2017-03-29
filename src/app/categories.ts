@@ -18,7 +18,8 @@ export class Item {
   description: string;
   is_numeric: boolean;
   values: Value[] = null;
-  range: number[] = null;
+  range: string[] = null;
+  numericRange: number[] = null;
 }
 
 export class SearchResult {

@@ -1,6 +1,6 @@
 export class Config {
-	serverAddress: string = 'http://roc5sh:8090';
-	
+	serverAddress: string = 'http://127.0.0.1:8090';
+
 	getServerAddress() {
 		return this.serverAddress;
 	}
