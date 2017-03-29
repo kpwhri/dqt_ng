@@ -7,10 +7,10 @@
   </thead>
   <tbody>
   <tr *ngFor="let row of datarows">
-    <td *ngIf="row.header == 'Current selection'" class="column1"><b>{{row.header}}</b></td>
-    <td *ngIf="row.header != 'Current selection'" class="column1">{{row.header}}</td>
-    <td *ngIf="row.header == 'Current selection'"><b>{{row.value}}</b></td>
-    <td *ngIf="row.header != 'Current selection'">{{row.value}}</td>
+    <td *ngIf="row.header.toLowerCase() === 'current selection'" class="column1"><b>{{row.header}}</b></td>
+    <td *ngIf="row.header.toLowerCase() !== 'current selection'" class="column1">{{row.header}}</td>
+    <td *ngIf="row.header.toLowerCase() === 'current selection'"><b>{{row.value}}</b></td>
+    <td *ngIf="row.header.toLowerCase() !== 'current selection'">{{row.value}}</td>
   </tr>
   </tbody>
   <tfoot>
