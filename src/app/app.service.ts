@@ -22,9 +22,6 @@ export class CategoryService {
   private postOptions = new RequestOptions({headers: this.postHeaders});
 
   constructor(private http: Http) {
-    this.http.get('../../server.json')
-      .map((r: Response) => this.serverAddress = r.json().data.address);
-    console.warn(this.serverAddress);
     if (this.serverAddress[this.serverAddress.length - 1] === '/') {
       this.serverAddress = this.serverAddress.substr(0, this.serverAddress.length - 1);
     }

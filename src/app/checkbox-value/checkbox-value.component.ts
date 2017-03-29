@@ -47,7 +47,6 @@ export class CheckboxValueComponent implements OnInit {
     } else {
       this.buttonVals = [this.vals[0], this.vals[1]];
     }
-    console.warn(this.buttonVals);
   }
 
   valuesChanged(e) {

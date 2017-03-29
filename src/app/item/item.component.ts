@@ -52,7 +52,6 @@ export class ItemComponent implements OnInit {
       this.fieldset.toggle(event);
     }
     this.fieldset.selected = false;
-    console.warn(this.fieldset.selected);
     this.changeDetectorRef.detectChanges();
     this.applicationRef.tick();
     this.zone.run(() => {this.fieldset.selected = false; });
