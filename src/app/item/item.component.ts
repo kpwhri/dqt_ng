@@ -65,8 +65,9 @@ export class ItemComponent implements OnInit {
         }
       });
     } else if (this.valueCheckbox) {
-      this.valueCheckbox.checked = false;
+      this.zone.run(() => {this.valueCheckbox.checked = false; });
     }
+    this.collapse();
   }
 }
 

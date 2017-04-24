@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output, NgZone, ApplicationRef, ChangeDetectorRef} from '@angular/core';
 import {Value, EventItem} from '../categories';
 
 @Component({
@@ -11,7 +11,9 @@ export class ValueComponent implements OnInit {
   selected = false;
   @Output() onChange: EventEmitter<any> = new EventEmitter();
 
-  constructor() {
+  constructor(private changeDetectorRef: ChangeDetectorRef,
+              private applicationRef: ApplicationRef,
+              private zone: NgZone) {
   }
 
   ngOnInit() {
@@ -22,6 +24,6 @@ export class ValueComponent implements OnInit {
   }
 
   uncheckValue() {
-    this.selected = false;
+    this.zone.run(() => {this.selected = false; });
   }
 }
