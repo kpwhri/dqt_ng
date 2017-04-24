@@ -6,5 +6,6 @@
 </p>
 
 <div *ngIf="! authenticated">
+  <p>Please help us understand how this tool is being used by providing the requested information below:</p>
   <app-user-form (onChange)="userFormSubmitted($event)"></app-user-form>
 </div>
