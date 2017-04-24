@@ -1,6 +1,6 @@
 import {
   Component, OnInit, Input, Output, EventEmitter, ViewChildren, QueryList, ViewChild,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy, NgZone, ApplicationRef, ChangeDetectorRef
 } from '@angular/core';
 import {Category, Item, EventItem} from '../categories';
 import {ItemComponent} from '../item/item.component';
@@ -22,7 +22,9 @@ export class CategoryComponent implements OnInit {
   description: string;
   items: Item[] = [];
 
-  constructor() {
+  constructor(private changeDetectorRef: ChangeDetectorRef,
+              private applicationRef: ApplicationRef,
+              private zone: NgZone) {
   }
 
   ngOnInit() {
@@ -51,6 +53,7 @@ export class CategoryComponent implements OnInit {
         item.collapse();
       }
     });
+    this.refresh(true);
   }
 
   collapseAll() {
@@ -58,6 +61,7 @@ export class CategoryComponent implements OnInit {
     this.itemComponents.forEach(item => {
       item.collapse();
     });
+    this.refresh(false);
   }
 
   expandItems() {
@@ -65,6 +69,7 @@ export class CategoryComponent implements OnInit {
     this.itemComponents.forEach(item => {
       item.expand();
     });
+    this.refresh(true);
   }
 
   unselectItem(event: EventItem) {
@@ -73,5 +78,11 @@ export class CategoryComponent implements OnInit {
         i.unselectValue(event);
       }
     });
+  }
+
+  refresh(status: boolean) {
+    this.changeDetectorRef.detectChanges();
+    this.applicationRef.tick();
+    this.zone.run(() => {this.fieldset.selected = status; });
   }
 }

@@ -19,13 +19,16 @@ import {PerfectScrollbarComponent} from 'ngx-perfect-scrollbar';
 })
 export class MainComponent implements OnInit {
   @ViewChild('master') masterComponent: CategoryMasterComponent;
-  @ViewChild('ageChart') ageChartComponent: AgeChartComponent;
+  @ViewChild('ageBlChart') ageChartComponent: AgeChartComponent;
+  @ViewChild('ageFuChart') ageFuChartComponent: AgeChartComponent;
   @ViewChild('breadcrumb') breadcrumbComponent: BreadcrumbComponent;
   @ViewChild('subjectTable') subjectTableComponent: SubjectTableComponent;
   @ViewChild('filterDialog') filterDialogComponent: FilterDialogComponent;
   @ViewChild('searchPanel') searchPanelComponent: OverlayPanel;
   @ViewChild('scrollbar') scrollbarComponent: PerfectScrollbarComponent;
   title = 'ACT Data Query Tool';
+  ageBlTitle = 'Age Distribution (Baseline)';
+  ageFuTitle = 'Age Distribution (Follow-up)';
   categories: Array<Category> = [];
   results: Observable<SearchResult[]>;
   searchTerm = '';
@@ -80,7 +83,8 @@ export class MainComponent implements OnInit {
 
     const obs = this.categoryService.filterItems(this.chartData);
     obs.map((r: Response) => r.json()).subscribe(e => {
-      this.ageChartComponent.updateChart(e.age as AgeGraphClass);
+      this.ageChartComponent.updateChart(e.age_bl as AgeGraphClass);
+      this.ageFuChartComponent.updateChart(e.age_fu as AgeGraphClass);
       this.subjectTableComponent.updateTable(e.subject_counts as SubjectTableDataItem[]);
     });
   }
