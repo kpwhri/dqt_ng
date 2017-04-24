@@ -1,4 +1,7 @@
-import {Component, OnInit, Output, EventEmitter, ViewChildren, QueryList, NgZone, ApplicationRef, ChangeDetectorRef} from '@angular/core';
+import {
+  Component, OnInit, Output, EventEmitter, ViewChildren, QueryList, NgZone, ApplicationRef, ChangeDetectorRef,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import {Category, EventItem} from '../categories';
 import {CategoryService} from '../app.service';
 import {CategoryComponent} from '../category/category.component';
@@ -6,7 +9,7 @@ import {CategoryComponent} from '../category/category.component';
 @Component({
   selector: 'app-category-master',
   templateUrl: './category-master.component.html',
-  styleUrls: ['./category-master.component.css']
+  styleUrls: ['./category-master.component.css'],
 })
 export class CategoryMasterComponent implements OnInit {
 
