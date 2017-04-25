@@ -4,6 +4,7 @@ table {
   border-right:1px solid #e5eff8;
   margin:1em auto;
   border-collapse:collapse;
+  font-size: 14px;
 }
 tbody td {
   color:#678197;
@@ -22,6 +23,7 @@ tbody .column1 {
   background:#f9fcfe;
   text-align: left;
 }
+
 thead th {
   background: #243f86;
   text-align:center;
