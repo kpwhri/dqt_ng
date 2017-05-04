@@ -11,7 +11,7 @@ import {CategoryComponent} from '../category/category.component';
 export class CategoryMasterComponent implements OnInit {
 
   @ViewChildren('categoryComponent') categoryComponents: QueryList<CategoryComponent>;
-  private categories: Category[];
+  categories: Category[];
   @Output() onChange: EventEmitter<any> = new EventEmitter();
 
   constructor(private categoryService: CategoryService) {
