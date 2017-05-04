@@ -3,12 +3,13 @@ import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {Category, SearchResult, UserForm} from './categories';
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
+import {Config} from './app.config';
 
 
 @Injectable()
 export class CategoryService {
 
-  public serverAddress = 'http://localhost:8090';
+  public serverAddress = new Config().getServerAddress();
   private headers = new Headers({
     'Content-Type': 'application/json',
     'Accept': 'application/json',
@@ -21,9 +22,6 @@ export class CategoryService {
   private postOptions = new RequestOptions({headers: this.postHeaders});
 
   constructor(private http: Http) {
-    this.http.get('../../server.json')
-      .map((r: Response) => this.serverAddress = r.json().data.address);
-    console.warn(this.serverAddress);
     if (this.serverAddress[this.serverAddress.length - 1] === '/') {
       this.serverAddress = this.serverAddress.substr(0, this.serverAddress.length - 1);
     }
@@ -69,6 +67,12 @@ export class CategoryService {
   getTabs(): any {
     return this.http
       .get(`${this.serverAddress}/api/tabs`, this.options)
+      .map(this.extractData).catch(this.handleError);
+  }
+
+  getComments(component: string): any {
+    return this.http
+      .get(`${this.serverAddress}/api/comments/${component}`, this.options)
       .map(this.extractData).catch(this.handleError);
   }
 

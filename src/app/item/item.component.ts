@@ -1,6 +1,6 @@
 import {
   Component, OnInit, Input, Output, EventEmitter, ViewChild, ViewChildren, QueryList,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy, ChangeDetectorRef, ApplicationRef, NgZone
 } from '@angular/core';
 import {Item, EventItem} from '../categories';
 import {ValueComponent} from '../value/value.component';
@@ -20,7 +20,10 @@ export class ItemComponent implements OnInit {
   @Input('item') item: Item;
   @Output() onChange: EventEmitter<any> = new EventEmitter();
 
-  constructor() {
+  constructor(private changeDetectorRef: ChangeDetectorRef,
+              private applicationRef: ApplicationRef,
+              private zone: NgZone
+  ) {
   }
 
   ngOnInit() {
@@ -33,11 +36,25 @@ export class ItemComponent implements OnInit {
   }
 
   expand() {
-    this.fieldset.selected = true;
+    let event = new FakeEvent();
+    if (! this.fieldset.selected) {
+      this.fieldset.toggle(event);
+    }
+    // this.fieldset.selected = true;
+    this.changeDetectorRef.detectChanges();
+    this.applicationRef.tick();
+    this.zone.run(() => {this.fieldset.selected = true; });
   }
 
   collapse() {
+    let event = new FakeEvent();
+    if (this.fieldset.selected) {
+      this.fieldset.toggle(event);
+    }
     this.fieldset.selected = false;
+    this.changeDetectorRef.detectChanges();
+    this.applicationRef.tick();
+    this.zone.run(() => {this.fieldset.selected = false; });
   }
 
   unselectValue(event: EventItem) {
@@ -48,7 +65,17 @@ export class ItemComponent implements OnInit {
         }
       });
     } else if (this.valueCheckbox) {
-      this.valueCheckbox.checked = false;
+      this.zone.run(() => {this.valueCheckbox.checked = false; });
     }
+    this.collapse();
   }
+}
+
+export class FakeEvent {
+ preventDefault() {
+
+ }
+ stopPropogation() {
+
+ }
 }

@@ -1,4 +1,7 @@
-import {Component, OnInit, Output, EventEmitter, ViewChildren, QueryList} from '@angular/core';
+import {
+  Component, OnInit, Output, EventEmitter, ViewChildren, QueryList, NgZone, ApplicationRef, ChangeDetectorRef,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import {Category, EventItem} from '../categories';
 import {CategoryService} from '../app.service';
 import {CategoryComponent} from '../category/category.component';
@@ -6,7 +9,7 @@ import {CategoryComponent} from '../category/category.component';
 @Component({
   selector: 'app-category-master',
   templateUrl: './category-master.component.html',
-  styleUrls: ['./category-master.component.css']
+  styleUrls: ['./category-master.component.css'],
 })
 export class CategoryMasterComponent implements OnInit {
 
@@ -14,7 +17,11 @@ export class CategoryMasterComponent implements OnInit {
   categories: Category[];
   @Output() onChange: EventEmitter<any> = new EventEmitter();
 
-  constructor(private categoryService: CategoryService) {
+  constructor(private categoryService: CategoryService,
+              private changeDetectorRef: ChangeDetectorRef,
+              private applicationRef: ApplicationRef,
+              private zone: NgZone
+  ) {
     this.categoryService.getAllCategories().subscribe(e => this.categories = e);
   }
 
@@ -53,6 +60,18 @@ export class CategoryMasterComponent implements OnInit {
         }
       );
     }
+    this.applicationRef.tick();
+    this.changeDetectorRef.detectChanges();
+    this.zone.run(() => this.applicationRef.tick());
+  }
+
+  collapseAll() {
+    this.categoryComponents.forEach(cat => {
+        cat.collapseAll();
+      }
+    );
+    this.zone.run(() => this.applicationRef.tick());
+    this.changeDetectorRef.detectChanges();
   }
 
   uncheck(event: EventItem) {

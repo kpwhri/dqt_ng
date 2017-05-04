@@ -2,13 +2,25 @@
   <caption>{{caption}}</caption>
   <thead>
   <tr>
-    <th colspan="2">ACT Subjects</th>
+    <th colspan="2">{{title}} Subjects</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let row of datarows">
-    <td class="column1">{{row.header}}</td>
-    <td>{{row.value}}</td>
+    <td *ngIf="row.header.toLowerCase() === 'current selection'" class="column1"><b>{{row.header}}</b></td>
+    <td *ngIf="row.header.toLowerCase() !== 'current selection'" class="column1">{{row.header}}</td>
+    <td *ngIf="row.header.toLowerCase() === 'current selection'"><b>{{row.value}}</b></td>
+    <td *ngIf="row.header.toLowerCase() !== 'current selection'">{{row.value}}</td>
   </tr>
   </tbody>
+  <tfoot>
+    <tr *ngIf="maskValue > 0">
+      <td colspan="2">
+        * Cell size <{{maskValue}} are not shown.
+      </td>
+    </tr>
+    <tr *ngFor="let comment of comments">
+      <td colspan="2" style="word-wrap: break-word;">* {{comment}}</td>
+    </tr>
+  </tfoot>
 </table>
