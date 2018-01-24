@@ -1,5 +1,5 @@
-import { Injectable }     from '@angular/core';
-import {Http, Response, Headers, RequestOptions} from '@angular/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders, HttpClientModule} from '@angular/common/http';
 import {Category, SearchResult, UserForm} from './categories';
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
@@ -10,18 +10,18 @@ import {Config} from './app.config';
 export class CategoryService {
 
   public serverAddress = new Config().getServerAddress();
-  private headers = new Headers({
+  private headers = new HttpHeaders({
     'Content-Type': 'application/json',
     'Accept': 'application/json',
     'Access-Control-Allow-Origin': 'localhost'
   });
-  private postHeaders = new Headers({
+  private postHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
   });
-  private options = new RequestOptions({headers: this.headers});
-  private postOptions = new RequestOptions({headers: this.postHeaders});
+  private options = {headers: this.headers};
+  private postOptions = {headers: this.postHeaders};
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
     if (this.serverAddress[this.serverAddress.length - 1] === '/') {
       this.serverAddress = this.serverAddress.substr(0, this.serverAddress.length - 1);
     }
@@ -29,20 +29,17 @@ export class CategoryService {
 
   search(term: string): Observable<SearchResult[]> {
     return this.http
-      .get(`${this.serverAddress}/api/search?query=${term}`, this.options)
-      .map((r: Response) => r.json().search as SearchResult[]);
+      .get<SearchResult[]>(`${this.serverAddress}/api/search?query=${term}`, this.options);
   }
 
   getCategory(stype: string, elementId: number): Observable<Category> {
     return this.http
-      .get(`${this.serverAddress}/api/${stype}/add/${elementId}`, this.options)
-      .map((r: Response) => r.json() as Category);
+      .get<Category>(`${this.serverAddress}/api/${stype}/add/${elementId}`, this.options);
   }
 
   getAllCategories(): Observable<Category[]> {
     return this.http
-      .get(`${this.serverAddress}/api/category/all`, this.options)
-      .map((r: Response) => r.json().categories as Category[]);
+      .get<Category[]>(`${this.serverAddress}/api/category/all`, this.options);
   }
 
   filterItems(querystring: string): Observable<any> {
@@ -60,30 +57,28 @@ export class CategoryService {
    */
   checkAuthenticated(): any {
     return this.http
-      .get(`${this.serverAddress}/api/user/check`, this.options)
-      .map(this.extractData).catch(this.handleError);
+      .get(`${this.serverAddress}/api/user/check`, this.options);
   }
 
   getTabs(): any {
     return this.http
-      .get(`${this.serverAddress}/api/tabs`, this.options)
-      .map(this.extractData).catch(this.handleError);
+      .get(`${this.serverAddress}/api/tabs`, this.options);
   }
 
   getComments(component: string): any {
     return this.http
-      .get(`${this.serverAddress}/api/comments/${component}`, this.options)
-      .map(this.extractData).catch(this.handleError);
+      .get(`${this.serverAddress}/api/comments/${component}`, this.options);
   }
 
   submitUserForm(userModel: UserForm): any {
     return this.http.post(
       `${this.serverAddress}/api/user/submit`,
       // TODO: why does calling userModel.toJsonString() cause forwarding to /?name=um.name??
-      {name: userModel.name, emailAddress: userModel.email,
-        affiliation: userModel.affiliation, reasonForVisiting: userModel.reasonForUse},
-      this.postOptions)
-      .map(this.extractData).catch(this.handleError);
+      {
+        name: userModel.name, emailAddress: userModel.email,
+        affiliation: userModel.affiliation, reasonForVisiting: userModel.reasonForUse
+      },
+      this.postOptions);
   }
 
   private extractData(r: Response) {

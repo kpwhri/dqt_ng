@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {HttpModule} from '@angular/http';
 import { AppComponent } from './app.component';
 import {CategoryService} from './app.service';
 import { SliderModule } from 'primeng/primeng';
@@ -21,7 +20,7 @@ import {MenubarModule} from 'primeng/components/menubar/menubar';
 import {RouterModule} from '@angular/router';
 import {MenuListener} from './menuListener';
 import {AccordionModule} from 'primeng/components/accordion/accordion';
-import {PerfectScrollbarModule, PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
+import {PerfectScrollbarModule, PerfectScrollbarConfigInterface, PERFECT_SCROLLBAR_CONFIG} from 'ngx-perfect-scrollbar';
 import { SubjectTableComponent } from './subject-table/subject-table.component';
 import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
 import {ClipboardModule} from 'ngx-clipboard';
@@ -32,9 +31,10 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { FaqPageComponent } from './faq-page/faq-page.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http';
 
 
-const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
 
@@ -60,7 +60,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     SliderModule,
     ToggleButtonModule,
     FieldsetModule,
@@ -73,10 +73,17 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SharedModule,
     TabViewModule,
     OverlayPanelModule,
-    PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
+    PerfectScrollbarModule,
     RouterModule.forRoot([])
   ],
-  providers: [CategoryService, MenuListener],
+  providers: [
+    CategoryService,
+    MenuListener,
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

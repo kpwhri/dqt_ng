@@ -22,7 +22,8 @@ export class CategoryMasterComponent implements OnInit {
               private applicationRef: ApplicationRef,
               private zone: NgZone
   ) {
-    this.categoryService.getAllCategories().subscribe(e => this.categories = e);
+    this.categoryService.getAllCategories()
+      .subscribe(data => this.categories = data['categories']);
   }
 
   ngOnInit() {

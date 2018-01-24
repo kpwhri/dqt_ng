@@ -61,7 +61,16 @@ export class MainComponent implements OnInit {
 
   search(e, term: string, target) {
     if (term.length >= 3) {
-      this.results = this.categoryService.search(term);
+      this.categoryService.search(term)
+        .subscribe(
+          data => {
+            this.results = data['search'];
+          },
+          err => {
+            console.log('Error');
+            this.results = null;
+          }
+        );
       this.display = true;
       this.searchPanelComponent.show(e, target);
     } else {
@@ -82,7 +91,7 @@ export class MainComponent implements OnInit {
     }
 
     const obs = this.categoryService.filterItems(this.chartData);
-    obs.map((r: Response) => r.json()).subscribe(e => {
+    obs.subscribe(e => {
       this.ageChartComponent.updateChart(e.age_bl as AgeGraphClass);
       this.ageFuChartComponent.updateChart(e.age_fu as AgeGraphClass);
       this.subjectTableComponent.updateTable(e.subject_counts as SubjectTableDataItem[]);
@@ -91,7 +100,7 @@ export class MainComponent implements OnInit {
 
   collapseAll() {
     this.masterComponent.collapseAll();
-    this.scrollbarComponent.scrollToTop();
+    this.scrollbarComponent.directiveRef.scrollToTop();
     this.changeDetectorRef.detectChanges();
     this.applicationRef.tick();
   }
