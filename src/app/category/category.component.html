@@ -1,7 +1,9 @@
-<div *ngIf="description">
+<div *ngIf="description"
+>
   <p-accordionTab #fieldset header="{{name}}"
-                  pTooltip="{{description}}" tooltipPosition="right"
-                  [showDelay]="1000" [hideDelay]="100"
+                  matTooltip="{{description}}"
+                  [matTooltipPosition]="position"
+
   >
     <p-accordion [multiple]="true">
       <div *ngFor="let item of items">

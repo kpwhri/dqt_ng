@@ -21,6 +21,7 @@ export class CategoryComponent implements OnInit {
   name: string;
   description: string;
   items: Item[] = [];
+  position = 'before';
 
   constructor(private changeDetectorRef: ChangeDetectorRef,
               private applicationRef: ApplicationRef,

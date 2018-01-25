@@ -19,6 +19,7 @@ export class ItemComponent implements OnInit {
   @ViewChild('valueCheckbox') valueCheckbox: CheckboxValueComponent;
   @Input('item') item: Item;
   @Output() onChange: EventEmitter<any> = new EventEmitter();
+  position = 'before';
 
   constructor(private changeDetectorRef: ChangeDetectorRef,
               private applicationRef: ApplicationRef,

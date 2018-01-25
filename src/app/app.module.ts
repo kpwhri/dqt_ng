@@ -32,6 +32,7 @@ import { FaqPageComponent } from './faq-page/faq-page.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
+import {MatTooltipModule} from '@angular/material';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -56,6 +57,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     UserFormComponent,
   ],
   imports: [
+    MatTooltipModule,
     BrowserAnimationsModule,
     BrowserModule,
     ReactiveFormsModule,
