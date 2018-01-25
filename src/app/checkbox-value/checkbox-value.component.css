@@ -1,5 +1,5 @@
 .wrapper {
-  width: 100%;
+  /*width: 100%;*/
   display: table;
 }
 
@@ -8,7 +8,7 @@
 }
 
 .center-column {
-  width: 80%;
+  width: 30%;
 }
 
 .left-column {

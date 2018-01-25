@@ -1,6 +1,6 @@
 
 <div *ngIf="tabs.length > 0">
-  <p-tabView>
+  <p-tabView (onChange)="update()">
     <p-tabPanel header="{{tabconfig.header}}" [selected]="tabconfig.header === 'Home'" *ngFor="let tabconfig of tabs">
       <div *ngFor="let line of tabconfig.lines">
         <div *ngIf="line.type == 'text'">
@@ -19,7 +19,7 @@
     </p-tabPanel>
 
     <p-tabPanel header="Query Tool" [disabled]="! authenticated">
-      <app-main></app-main>
+      <app-main #dqt></app-main>
     </p-tabPanel>
   </p-tabView>
 </div>

@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {TabConfig, UserForm} from './categories';
 import {CategoryService} from './app.service';
+import {MainComponent} from './main/main.component';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ import {CategoryService} from './app.service';
 })
 export class AppComponent implements OnInit {
 
+  @ViewChild('dqt') mainComponent: MainComponent;
   authenticated = false;
   tabs: TabConfig[] = [];
 
@@ -34,5 +36,9 @@ export class AppComponent implements OnInit {
   getTabs() {
     this.categoryService.getTabs()
       .subscribe(result => this.tabs = result.tabs as TabConfig[]);
+  }
+
+  update() {
+    this.mainComponent.showSideNav();
   }
 }

@@ -7,13 +7,15 @@ input {
 
 #TITLEAREA {
   background-color: #20272a;
-  overflow: hidden;
-  z-index: 1;
-  width: 65%;
-  margin: 0.25%;
-  height: 10%;
-  position: absolute;
-  right: 0;
+  /*overflow: hidden;*/
+  /*z-index: 1;*/
+  /*!*width: 65%;*!*/
+  /*!*margin: 0.25%;*!*/
+  /*height: 10%;*/
+  /*position: absolute;*/
+  float: left;
+  margin-right: auto;
+  /*!*right: 0;*!*/
   color: white;
   font-family: monospace;
 }
@@ -21,35 +23,57 @@ input {
 #MENUSIDE {
   background-color: #20272a;
   display: inline-block;
-  padding: 0.25%;
-  margin-top: 5px;
-  width: 20%;
-  height: 100%;
-  position: fixed;
+  /*padding: 0.25%;*/
+  float: left;
+  width: 10%;
+  height: auto;
 }
 
-#CONTENTSIDE {
+/*#CONTENTSIDE {*/
+  /*overflow: hidden;*/
+  /*z-index: 1;*/
+  /*background-color: white;*/
+  /*width: 78%;*/
+  /*margin: 75px 0.25% 0.25%;*/
+  /*height: auto;*/
+  /*position: absolute;*/
+  /*right: 0;*/
+/*}*/
+
+#FULLWIDTH {
   overflow: hidden;
   z-index: 1;
   background-color: white;
-  width: 78%;
+  width: 100%;
   margin: 75px 0.25% 0.25%;
-  height: auto;
+  height: 80%;
   position: absolute;
   right: 0;
 }
 
-.scrollbar {
-  height: 90%;
-  justify-content: flex-start;
-  align-items: stretch;
-  align-content: stretch;
-  display: flex;
-  flex-direction: row;
-  box-sizing: border-box;
-  -webkit-box-pack: start;
-  -webkit-box-align: stretch;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
+.example-container {
+  height: 100%;
 }
+
+.content {
+  padding-left: 20px;
+}
+
+.sidenav {
+  height: 100%;
+}
+
+/*.scrollbar {*/
+  /*height: 90%;*/
+  /*justify-content: flex-start;*/
+  /*align-items: stretch;*/
+  /*align-content: stretch;*/
+  /*display: flex;*/
+  /*flex-direction: row;*/
+  /*box-sizing: border-box;*/
+  /*-webkit-box-pack: start;*/
+  /*-webkit-box-align: stretch;*/
+  /*-webkit-box-orient: horizontal;*/
+  /*-webkit-box-direction: normal;*/
+/*}*/
 

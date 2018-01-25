@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ChangeDetectorRef, ApplicationRef} from '@angular/core';
+import {Component, OnInit, ViewChild, ChangeDetectorRef, ApplicationRef } from '@angular/core';
 import {Category, SearchResult, AgeGraphClass, EventItem, SubjectTableDataItem} from '../categories';
 import {CategoryService} from '../app.service';
 import {Observable} from 'rxjs';
@@ -11,6 +11,7 @@ import {SubjectTableComponent} from '../subject-table/subject-table.component';
 import {FilterDialogComponent} from '../filter-dialog/filter-dialog.component';
 import {OverlayPanel} from 'primeng/primeng';
 import {PerfectScrollbarComponent} from 'ngx-perfect-scrollbar';
+import {MatSidenav} from '@angular/material';
 
 @Component({
   selector: 'app-main',
@@ -26,6 +27,7 @@ export class MainComponent implements OnInit {
   @ViewChild('filterDialog') filterDialogComponent: FilterDialogComponent;
   @ViewChild('searchPanel') searchPanelComponent: OverlayPanel;
   @ViewChild('scrollbar') scrollbarComponent: PerfectScrollbarComponent;
+  @ViewChild('sidenav') sidenav: MatSidenav;
   title = 'ACT Data Query Tool';
   ageBlTitle = 'Age Distribution (Baseline)';
   ageFuTitle = 'Age Distribution (Follow-up)';
@@ -34,6 +36,7 @@ export class MainComponent implements OnInit {
   searchTerm = '';
   checked: true;
   display = false;
+  opened = false;
   private chartData = '';
   private rangeFilters: Map<string, string[]> = new Map<string, string[]>();
   private filters: Map<string, Map<string, boolean>> = new Map<string, Map<string, boolean>>();
@@ -45,6 +48,14 @@ export class MainComponent implements OnInit {
     this.menuListener.SelectCategory.on(categoryId => this.selectCategory(null, categoryId));
     this.menuListener.SelectItem.on(itemCatId => this.selectCategory(itemCatId[0], itemCatId[1]));
     this.menuListener.ExportFilter.on(e => this.exportFilters());
+  }
+
+  showSideNav(): void {
+    /*
+    Without toggling twice, the navbar covers one of the graphs
+     */
+    this.sidenav.toggle(false);
+    this.sidenav.toggle(true);
   }
 
   constructor(private categoryService: CategoryService,
