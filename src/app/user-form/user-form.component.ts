@@ -15,10 +15,10 @@ export class UserFormComponent implements OnInit {
   model: UserForm = new UserForm();
 
   public userForm = this.formBuilder.group({
-    name: new FormControl(this.model.name, [Validators.required, Validators.minLength(4)]),
+    name: new FormControl(this.model.name, [Validators.required, Validators.minLength(2)]),
     email: new FormControl(this.model.email, [Validators.required, Validators.pattern(new RegExp('^\\s*\\S+@\\S+\\.\\S+\\s*$'))]),
     affiliation: new FormControl(this.model.affiliation),
-    reasonForUse: new FormControl(this.model.reasonForUse, [Validators.required, Validators.minLength(4)])
+    reasonForUse: new FormControl(this.model.reasonForUse, [Validators.required, Validators.minLength(2)])
   });
 
 

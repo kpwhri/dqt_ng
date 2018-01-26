@@ -26,11 +26,11 @@ export class MainComponent implements OnInit {
   @ViewChild('filterDialog') filterDialogComponent: FilterDialogComponent;
   // @ViewChild('searchPanel') searchDialogComponent: SearchDialogComponent;
   @ViewChild('sidenav') sidenav: MatSidenav;
-  title = 'ACT Data Query Tool';
   ageBlTitle = 'Age Distribution (Baseline)';
   ageFuTitle = 'Age Distribution (Follow-up)';
   categories: Array<Category> = [];
   searchTerm = '';
+  buttonText = 'Show';
   opened = false;
   private chartData = '';
   private rangeFilters: Map<string, string[]> = new Map<string, string[]>();
@@ -45,12 +45,16 @@ export class MainComponent implements OnInit {
     this.menuListener.ExportFilter.on(e => this.exportFilters());
   }
 
-  showSideNav(): void {
+  toggleSidenav(): void {
     /*
     Without toggling twice, the navbar covers one of the graphs
      */
-    this.sidenav.toggle(false);
-    this.sidenav.toggle(true);
+    this.sidenav.toggle();
+    if (this.sidenav.opened) {
+      this.buttonText = 'Hide';
+    } else {
+      this.buttonText = 'Show';
+    }
   }
 
   constructor(private categoryService: CategoryService,

@@ -4,32 +4,30 @@
       <input #target [(ngModel)]="searchTerm" placeholder="search"
              (click)="openDialog()"
       />
-      <!--<app-search-dialog #searchPanel></app-search-dialog>-->
       <button (click)="collapseAll()">Collapse All</button>
 
       <app-category-master #master (onChange)="categoryUpdated($event)"></app-category-master>
     </mat-sidenav>
 
-    <mat-sidenav-content class="content">
+    <mat-sidenav-content>
 
-      <app-breadcrumb #breadcrumb></app-breadcrumb>
-      <app-age-chart #ageBlChart [title]="ageBlTitle"></app-age-chart>
-      <app-age-chart #ageFuChart [title]="ageFuTitle"></app-age-chart>
-      <app-subject-table #subjectTable></app-subject-table>
+      <div class="button-div">
+        <button class="button" mat-button (click)="toggleSidenav()">
+          <span>{{buttonText}}</span>
+        </button>
+      </div>
+      <div class="content">
+        <div class="innercontent">
+          <app-breadcrumb #breadcrumb></app-breadcrumb>
+          <app-age-chart #ageBlChart [title]="ageBlTitle"></app-age-chart>
+          <app-age-chart #ageFuChart [title]="ageFuTitle"></app-age-chart>
+          <app-subject-table #subjectTable></app-subject-table>
+        </div>
+      </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
 
 
-</div>
-
-<div>
-  <div id="MENUSIDE">
-    <p><button mat-button (click)="sidenav.toggle()">View/Hide Filters</button></p>
-  </div>
-
-  <div id="TITLEAREA">
-    <h1>{{title}}</h1>
-  </div>
 </div>
 
 

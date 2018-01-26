@@ -1,6 +1,8 @@
-
+<div>
+<h1 class="title">{{title}}</h1>
+</div>
 <div *ngIf="tabs.length > 0">
-  <p-tabView (onChange)="update()">
+  <p-tabView>
     <p-tabPanel header="{{tabconfig.header}}" [selected]="tabconfig.header === 'Home'" *ngFor="let tabconfig of tabs">
       <div *ngFor="let line of tabconfig.lines">
         <div *ngIf="line.type == 'text'">

@@ -3,4 +3,9 @@ p {
 }
 .ui-tabview .ui-tabview-nav .ui-tabview-title {
   font-size: 24px;
-} 
+}
+
+.title {
+  padding: 0 0 0 10%;
+  color: #e5eff8;
+}

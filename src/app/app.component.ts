@@ -11,6 +11,7 @@ import {MainComponent} from './main/main.component';
 export class AppComponent implements OnInit {
 
   @ViewChild('dqt') mainComponent: MainComponent;
+  title = 'Adult Changes in Thought Data Query Tool';
   authenticated = false;
   tabs: TabConfig[] = [];
 
@@ -36,9 +37,5 @@ export class AppComponent implements OnInit {
   getTabs() {
     this.categoryService.getTabs()
       .subscribe(result => this.tabs = result.tabs as TabConfig[]);
-  }
-
-  update() {
-    this.mainComponent.showSideNav();
   }
 }
