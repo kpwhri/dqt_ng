@@ -40,7 +40,6 @@ import {
   MatCheckboxModule,
   MatChipsModule,
   MatDatepickerModule,
-  MatDialogModule,
   MatExpansionModule,
   MatGridListModule,
   MatIconModule,
@@ -62,10 +61,11 @@ import {
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
+  MatDialogModule,
   MatTooltipModule,
   MatStepperModule,
 } from '@angular/material';
-import { SidenavComponent } from './sidenav/sidenav.component';
+import { SearchDialogComponent } from './search-dialog/search-dialog.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -88,12 +88,14 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HomePageComponent,
     FaqPageComponent,
     UserFormComponent,
-    SidenavComponent,
+    SearchDialogComponent,
   ],
+  entryComponents: [SearchDialogComponent],
   imports: [
     MatTooltipModule,
     MatSidenavModule,
     MatCheckboxModule,
+    MatDialogModule,
     BrowserAnimationsModule,
     BrowserModule,
     ReactiveFormsModule,

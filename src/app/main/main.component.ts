@@ -2,16 +2,16 @@ import {Component, OnInit, ViewChild, ChangeDetectorRef, ApplicationRef } from '
 import {Category, SearchResult, AgeGraphClass, EventItem, SubjectTableDataItem} from '../categories';
 import {CategoryService} from '../app.service';
 import {Observable} from 'rxjs';
-import {Response} from '@angular/http';
 import {CategoryMasterComponent} from '../category-master/category-master.component';
 import {AgeChartComponent} from '../age-chart/age-chart.component';
 import {BreadcrumbComponent} from '../breadcrumb/breadcrumb.component';
 import {MenuListener} from '../menuListener';
 import {SubjectTableComponent} from '../subject-table/subject-table.component';
 import {FilterDialogComponent} from '../filter-dialog/filter-dialog.component';
-import {OverlayPanel} from 'primeng/primeng';
 import {PerfectScrollbarComponent} from 'ngx-perfect-scrollbar';
 import {MatSidenav} from '@angular/material';
+import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
+import {SearchDialogComponent} from '../search-dialog/search-dialog.component';
 
 @Component({
   selector: 'app-main',
@@ -25,7 +25,7 @@ export class MainComponent implements OnInit {
   @ViewChild('breadcrumb') breadcrumbComponent: BreadcrumbComponent;
   @ViewChild('subjectTable') subjectTableComponent: SubjectTableComponent;
   @ViewChild('filterDialog') filterDialogComponent: FilterDialogComponent;
-  @ViewChild('searchPanel') searchPanelComponent: OverlayPanel;
+  // @ViewChild('searchPanel') searchDialogComponent: SearchDialogComponent;
   @ViewChild('scrollbar') scrollbarComponent: PerfectScrollbarComponent;
   @ViewChild('sidenav') sidenav: MatSidenav;
   title = 'ACT Data Query Tool';
@@ -61,7 +61,8 @@ export class MainComponent implements OnInit {
   constructor(private categoryService: CategoryService,
               private menuListener: MenuListener,
               private changeDetectorRef: ChangeDetectorRef,
-              private applicationRef: ApplicationRef
+              private applicationRef: ApplicationRef,
+              public dialog: MatDialog
   ) {
     this.filterItems();
   }
@@ -69,6 +70,17 @@ export class MainComponent implements OnInit {
   promoteCategory(itemId: number, categoryId: number) {
     this.masterComponent.bringCategoryToTop(itemId, categoryId);
   }
+
+  openDialog() {
+    let dialogRef = this.dialog.open(SearchDialogComponent, {
+      width: '250px',
+    });
+    dialogRef.afterClosed().subscribe(r => {
+        console.log('Dialog was closed.');
+      }
+    )
+  }
+
 
   search(e, term: string, target) {
     if (term.length >= 3) {
@@ -83,11 +95,11 @@ export class MainComponent implements OnInit {
           }
         );
       this.display = true;
-      this.searchPanelComponent.show(e, target);
+      // this.searchDialogComponent.show(e, target);
     } else {
       this.results = null;
       this.display = false;
-      this.searchPanelComponent.hide();
+      // this.searchDialogComponent.hide();
     }
   }
 
@@ -197,8 +209,8 @@ export class MainComponent implements OnInit {
   exportFilters() {
     // don't update, just export most recent set of filters
     const obs = this.categoryService.exportFilters(this.chartData);
-    obs.map((r: Response) => r.json()).subscribe(e => {
-      this.filterDialogComponent.displayDialog('Current Filter', e.filterstring);
+    obs.subscribe(r => {
+      this.filterDialogComponent.displayDialog('Current Filter', r['filterstring']);
     });
   }
 
