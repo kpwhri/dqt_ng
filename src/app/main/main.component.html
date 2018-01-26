@@ -2,7 +2,6 @@
   <mat-sidenav-container class="example-container">
     <mat-sidenav class="sidenav" #sidenav mode="side" [(opened)]="opened">
       <input #target [(ngModel)]="searchTerm" placeholder="search"
-             (keyup)="search($event, searchTerm, target)"
              (click)="openDialog()"
       />
       <!--<app-search-dialog #searchPanel></app-search-dialog>-->

@@ -32,10 +32,7 @@ export class MainComponent implements OnInit {
   ageBlTitle = 'Age Distribution (Baseline)';
   ageFuTitle = 'Age Distribution (Follow-up)';
   categories: Array<Category> = [];
-  results: Observable<SearchResult[]>;
   searchTerm = '';
-  checked: true;
-  display = false;
   opened = false;
   private chartData = '';
   private rangeFilters: Map<string, string[]> = new Map<string, string[]>();
@@ -73,34 +70,14 @@ export class MainComponent implements OnInit {
 
   openDialog() {
     let dialogRef = this.dialog.open(SearchDialogComponent, {
-      width: '250px',
+      width: '500px',
     });
     dialogRef.afterClosed().subscribe(r => {
-        console.log('Dialog was closed.');
+        if (r) {
+          this.promoteCategory(r['itemId'], r['categoryId']);
+        }
       }
     )
-  }
-
-
-  search(e, term: string, target) {
-    if (term.length >= 3) {
-      this.categoryService.search(term)
-        .subscribe(
-          data => {
-            this.results = data['search'];
-          },
-          err => {
-            console.log('Error');
-            this.results = null;
-          }
-        );
-      this.display = true;
-      // this.searchDialogComponent.show(e, target);
-    } else {
-      this.results = null;
-      this.display = false;
-      // this.searchDialogComponent.hide();
-    }
   }
 
   filterItems() {
