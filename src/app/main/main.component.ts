@@ -8,7 +8,6 @@ import {BreadcrumbComponent} from '../breadcrumb/breadcrumb.component';
 import {MenuListener} from '../menuListener';
 import {SubjectTableComponent} from '../subject-table/subject-table.component';
 import {FilterDialogComponent} from '../filter-dialog/filter-dialog.component';
-import {PerfectScrollbarComponent} from 'ngx-perfect-scrollbar';
 import {MatSidenav} from '@angular/material';
 import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
 import {SearchDialogComponent} from '../search-dialog/search-dialog.component';
@@ -26,7 +25,6 @@ export class MainComponent implements OnInit {
   @ViewChild('subjectTable') subjectTableComponent: SubjectTableComponent;
   @ViewChild('filterDialog') filterDialogComponent: FilterDialogComponent;
   // @ViewChild('searchPanel') searchDialogComponent: SearchDialogComponent;
-  @ViewChild('scrollbar') scrollbarComponent: PerfectScrollbarComponent;
   @ViewChild('sidenav') sidenav: MatSidenav;
   title = 'ACT Data Query Tool';
   ageBlTitle = 'Age Distribution (Baseline)';
@@ -100,7 +98,6 @@ export class MainComponent implements OnInit {
 
   collapseAll() {
     this.masterComponent.collapseAll();
-    this.scrollbarComponent.directiveRef.scrollToTop();
     this.changeDetectorRef.detectChanges();
     this.applicationRef.tick();
   }

@@ -26,7 +26,6 @@ export class CheckboxValueComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.warn(this.step);
     if (this.step.indexOf('.') >= 0) {
       this.isDecimal = true;
       this.minAsInt = +this.min * 10;
