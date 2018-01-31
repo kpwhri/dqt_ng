@@ -9,8 +9,8 @@ import {AgeGraphClass} from '../categories';
 })
 export class AgeChartComponent implements OnInit {
   @ViewChild('chart') chart: UIChart;
-  @Input() data: AgeGraphClass;
-  @Input('title') title: string = 'Age Distribution';
+  @Input('title') title = 'Age Distribution';
+  data: AgeGraphClass;
   options: any;
   colors: string[] = ['#243f86', '#92cdee', '#678197', '#F2D65C'];
   bgColors: string[] = ['#243f86', '#92cdee', '#678197', '#F2D65C'];

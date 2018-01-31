@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewChild, ChangeDetectorRef, ApplicationRef } from '@angular/core';
 import {Category, SearchResult, AgeGraphClass, EventItem, SubjectTableDataItem} from '../categories';
 import {CategoryService} from '../app.service';
-import {Observable} from 'rxjs';
 import {CategoryMasterComponent} from '../category-master/category-master.component';
 import {AgeChartComponent} from '../age-chart/age-chart.component';
 import {BreadcrumbComponent} from '../breadcrumb/breadcrumb.component';

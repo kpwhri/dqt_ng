@@ -1,9 +1,10 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {DebugElement, NO_ERRORS_SCHEMA} from '@angular/core';
 
 import { CategoryMasterComponent } from './category-master.component';
+import {CategoryService} from '../app.service';
 
 describe('CategoryMasterComponent', () => {
   let component: CategoryMasterComponent;
@@ -11,7 +12,11 @@ describe('CategoryMasterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CategoryMasterComponent ]
+      declarations: [ CategoryMasterComponent ],
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [
+        {provide: CategoryService, useValue: true}
+      ]
     })
     .compileComponents();
   }));

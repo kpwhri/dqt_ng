@@ -4,6 +4,8 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { AgeChartComponent } from './age-chart.component';
+import {UIChart} from 'primeng/primeng';
+import {AgeGraphClass} from '../categories';
 
 describe('AgeChartComponent', () => {
   let component: AgeChartComponent;
@@ -11,7 +13,10 @@ describe('AgeChartComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AgeChartComponent ]
+      declarations: [
+        AgeChartComponent,
+        UIChart
+      ]
     })
     .compileComponents();
   }));
