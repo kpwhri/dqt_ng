@@ -11,6 +11,7 @@ import {SearchResult} from '../categories';
 })
 export class SearchDialogComponent implements OnInit {
 
+  searchTerm = '';
   results: Observable<SearchResult[]>;
   display = false;
 
