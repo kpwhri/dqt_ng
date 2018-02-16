@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   @ViewChild('dqt') mainComponent: MainComponent;
   title = 'Adult Changes in Thought Data Query Tool';
   authenticated = false;
+  ieComment = 'You may experience issues with your current browser.';
   tabs: TabConfig[] = [];
 
   ngOnInit(): void {
@@ -37,5 +38,9 @@ export class AppComponent implements OnInit {
   getTabs() {
     this.categoryService.getTabs()
       .subscribe(result => this.tabs = result.tabs as TabConfig[]);
+  }
+
+  dismissIEComment() {
+    this.ieComment = '';
   }
 }
