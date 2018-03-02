@@ -5,6 +5,7 @@ import {MainComponent} from './main/main.component';
 import {LoaderService} from './loader.service';
 import {Subscription} from 'rxjs/Subscription';
 import {NgcCookieConsentService, NgcInitializeEvent} from 'ngx-cookieconsent';
+import {CookieService} from 'ngx-cookie';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit {
   authenticated = false;
   ieComment = 'You may experience issues with your current browser.';
   tabs: TabConfig[] = [];
+  private cookieName = 'login';
 
   private popupOpenSubscription: Subscription;
 
@@ -27,16 +29,22 @@ export class AppComponent implements OnInit {
 
   constructor(
     private categoryService: CategoryService,
-    private ccService: NgcCookieConsentService
+    private ccService: NgcCookieConsentService,
+    private cookieService: CookieService
   ) {
 
     this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
       () => {
-        console.log('popupOpen')
         // you can use this.ccService.getConfig() to do stuff...
       });
     this.getTabs();
-    this.checkAuthenticated();
+    let cookie = this.cookieService.get(this.cookieName);
+    if (cookie !== undefined) {
+      this.authenticated = true;
+      this.categoryService.communicateCookie(cookie)
+    } else {
+      this.checkAuthenticated();
+    }
   }
 
   userFormSubmitted(event) {
@@ -47,7 +55,10 @@ export class AppComponent implements OnInit {
 
   checkAuthenticated() {
     this.categoryService.checkAuthenticated()
-      .subscribe(result => this.authenticated = result.returnVisitor);
+      .subscribe(result => {
+        this.authenticated = result.returnVisitor;
+        this.cookieService.put(this.cookieName, result.cookie);
+      });
   }
 
   getTabs() {

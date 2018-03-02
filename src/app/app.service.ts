@@ -61,6 +61,15 @@ export class CategoryService {
       .get(`${this.serverAddress}/api/user/check`, this.options);
   }
 
+  communicateCookie(cookie: string): any {
+    return this.http.post(
+      `${this.serverAddress}/api/user/cookie`,
+      {
+        cookie: cookie
+      },
+      this.postOptions);
+  }
+
   getTabs(): any {
     return this.http
       .get(`${this.serverAddress}/api/tabs`, this.options);

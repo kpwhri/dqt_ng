@@ -70,6 +70,7 @@ import {LoaderService} from './loader.service';
 import { SpinnerComponent } from './spinner/spinner.component';
 import {NgcCookieConsentConfig, NgcCookieConsentModule, NgcCookieConsentService, NgcCookieConsentStatus} from 'ngx-cookieconsent';
 import { environment } from '../environments/environment';
+import {CookieModule} from 'ngx-cookie';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -125,6 +126,7 @@ const cookieConfig: NgcCookieConsentConfig = {
   ],
   entryComponents: [SearchDialogComponent],
   imports: [
+    CookieModule.forRoot(),
     NgcCookieConsentModule.forRoot(cookieConfig),
     MatTooltipModule,
     MatSidenavModule,
