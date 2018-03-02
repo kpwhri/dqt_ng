@@ -3,6 +3,8 @@ import {TabConfig, UserForm} from './categories';
 import {CategoryService} from './app.service';
 import {MainComponent} from './main/main.component';
 import {LoaderService} from './loader.service';
+import {Subscription} from 'rxjs/Subscription';
+import {NgcCookieConsentService, NgcInitializeEvent} from 'ngx-cookieconsent';
 
 @Component({
   selector: 'app-root',
@@ -17,12 +19,22 @@ export class AppComponent implements OnInit {
   ieComment = 'You may experience issues with your current browser.';
   tabs: TabConfig[] = [];
 
+  private popupOpenSubscription: Subscription;
+
+
   ngOnInit(): void {
   }
 
   constructor(
     private categoryService: CategoryService,
+    private ccService: NgcCookieConsentService
   ) {
+
+    this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
+      () => {
+        console.log('popupOpen')
+        // you can use this.ccService.getConfig() to do stuff...
+      });
     this.getTabs();
     this.checkAuthenticated();
   }
@@ -46,4 +58,6 @@ export class AppComponent implements OnInit {
   dismissIEComment() {
     this.ieComment = '';
   }
+
+
 }

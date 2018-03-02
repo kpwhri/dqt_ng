@@ -68,10 +68,40 @@ import {
 import { SearchDialogComponent } from './search-dialog/search-dialog.component';
 import {LoaderService} from './loader.service';
 import { SpinnerComponent } from './spinner/spinner.component';
-
+import {NgcCookieConsentConfig, NgcCookieConsentModule, NgcCookieConsentService, NgcCookieConsentStatus} from 'ngx-cookieconsent';
+import { environment } from '../environments/environment';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
+};
+
+const cookieConfig: NgcCookieConsentConfig = {
+  'cookie': {
+    'domain': environment.domain
+  },
+  'position': 'bottom',
+  'theme': 'classic',
+  'palette': {
+    'popup': {
+      'background': '#434343',
+      'text': '#ffffff',
+      'link': '#ffffff'
+    },
+    'button': {
+      'background': '#0683ff',
+      'text': '#ffffff',
+      'border': 'transparent'
+    }
+  },
+  'type': 'info',
+  'content': {
+    'message': 'In order to expedite the login process, we use a cookie. ' +
+      'By further use of this website, you agree to our use of cookies.',
+    'dismiss': 'Dismiss',
+    'deny': 'Refuse cookies',
+    'link': 'Learn More About Cookies',
+    'href': 'https://cookiesandyou.com'
+  }
 };
 
 @NgModule({
@@ -95,6 +125,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   ],
   entryComponents: [SearchDialogComponent],
   imports: [
+    NgcCookieConsentModule.forRoot(cookieConfig),
     MatTooltipModule,
     MatSidenavModule,
     MatCheckboxModule,
