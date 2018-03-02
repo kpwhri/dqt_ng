@@ -10,6 +10,7 @@ import {FilterDialogComponent} from '../filter-dialog/filter-dialog.component';
 import {MatSidenav} from '@angular/material';
 import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
 import {SearchDialogComponent} from '../search-dialog/search-dialog.component';
+import {LoaderService} from '../loader.service';
 
 @Component({
   selector: 'app-main',
@@ -35,7 +36,6 @@ export class MainComponent implements OnInit {
   private rangeFilters: Map<string, string[]> = new Map<string, string[]>();
   private filters: Map<string, Map<string, boolean>> = new Map<string, Map<string, boolean>>();
 
-
   ngOnInit(): void {
     // give everything a chance to get loaded before starting the animation to reduce choppiness
     this.menuListener.RemoveValue.on(e => this.removeFilter(e));
@@ -60,7 +60,8 @@ export class MainComponent implements OnInit {
               private menuListener: MenuListener,
               private changeDetectorRef: ChangeDetectorRef,
               private applicationRef: ApplicationRef,
-              public dialog: MatDialog
+              public dialog: MatDialog,
+              private spinnerService: LoaderService
   ) {
     this.filterItems();
   }
@@ -93,6 +94,7 @@ export class MainComponent implements OnInit {
 
     const obs = this.categoryService.filterItems(this.chartData);
     obs.subscribe(e => {
+      this.spinnerService.hide('startSpinner');
       this.ageChartComponent.updateChart(e.age_bl as AgeGraphClass);
       this.ageFuChartComponent.updateChart(e.age_fu as AgeGraphClass);
       this.subjectTableComponent.updateTable(e.subject_counts as SubjectTableDataItem[]);

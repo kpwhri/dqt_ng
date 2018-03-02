@@ -1,0 +1,30 @@
+<div *ngIf="show">
+  <div *ngIf="size == 'large'">
+    <img [src]="loadingImage"
+         *ngIf="loadingImage"
+         style="max-height: 100px; max-width: 100px;"
+    />
+    <ng-content></ng-content>
+  </div>
+  <div *ngIf="size == 'medium'">
+    <img [src]="loadingImage"
+         *ngIf="loadingImage"
+         style="max-height: 50px; max-width: 50px;"
+    />
+    <ng-content></ng-content>
+  </div>
+  <div *ngIf="size == 'small'">
+    <img [src]="loadingImage"
+         *ngIf="loadingImage"
+         style="max-height: 30px; max-width: 30px;"
+    />
+    <ng-content></ng-content>
+  </div>
+  <div *ngIf="size == 'tiny'">
+    <img [src]="loadingImage"
+         *ngIf="loadingImage"
+         style="max-height: 10px; max-width: 10px;"
+    />
+    <ng-content></ng-content>
+  </div>
+</div>

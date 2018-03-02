@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {TabConfig, UserForm} from './categories';
 import {CategoryService} from './app.service';
 import {MainComponent} from './main/main.component';
+import {LoaderService} from './loader.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,9 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  constructor(private categoryService: CategoryService) {
+  constructor(
+    private categoryService: CategoryService,
+  ) {
     this.getTabs();
     this.checkAuthenticated();
   }

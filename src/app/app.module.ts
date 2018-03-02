@@ -66,6 +66,8 @@ import {
   MatStepperModule,
 } from '@angular/material';
 import { SearchDialogComponent } from './search-dialog/search-dialog.component';
+import {LoaderService} from './loader.service';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -89,6 +91,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FaqPageComponent,
     UserFormComponent,
     SearchDialogComponent,
+    SpinnerComponent,
   ],
   entryComponents: [SearchDialogComponent],
   imports: [
@@ -122,7 +125,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-    }
+    },
+    LoaderService
   ],
   bootstrap: [AppComponent]
 })
