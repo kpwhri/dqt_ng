@@ -13,10 +13,11 @@ export class CategoryService {
   private headers = new HttpHeaders({
     'Content-Type': 'application/json',
     'Accept': 'application/json',
-    'Access-Control-Allow-Origin': 'localhost'
+    'Access-Control-Allow-Origin': '*'
   });
   private postHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
   });
   private options = {headers: this.headers};
   private postOptions = {headers: this.postHeaders};
