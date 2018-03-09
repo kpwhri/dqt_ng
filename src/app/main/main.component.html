@@ -1,4 +1,6 @@
 <div id="FULLWIDTH">
+
+  <app-breadcrumb #breadcrumb></app-breadcrumb>
   <mat-sidenav-container class="example-container">
     <mat-sidenav class="sidenav" #sidenav mode="side" [(opened)]="opened">
       <input #target [(ngModel)]="searchTerm" placeholder="search"
@@ -11,19 +13,23 @@
 
     <mat-sidenav-content>
 
-      <div class="button-div">
-        <button class="button" mat-button (click)="toggleSidenav()">
-          <span>{{buttonText}}</span>
-        </button>
-      </div>
-      <div class="content">
-        <div class="innercontent">
-          <app-breadcrumb #breadcrumb></app-breadcrumb>
-          <app-age-chart #ageBlChart [title]="ageBlTitle"></app-age-chart>
-          <app-age-chart #ageFuChart [title]="ageFuTitle"></app-age-chart>
-          <app-subject-table #subjectTable></app-subject-table>
+        <div class="button-div">
+          <button class="button" mat-button (click)="toggleSidenav()">
+            <span>{{buttonText}}</span>
+          </button>
         </div>
-      </div>
+        <div class="row" style="margin-left: 20px;">
+          <div class="col-md-4">
+            <app-age-chart #ageBlChart [title]="ageBlTitle"></app-age-chart>
+          </div>
+          <div class="col-md-4">
+            <app-age-chart #ageFuChart [title]="ageFuTitle"></app-age-chart>
+          </div>
+          <div class="col-md-4">
+            <app-subject-table #subjectTable></app-subject-table>
+          </div>
+        </div>
+
     </mat-sidenav-content>
   </mat-sidenav-container>
 

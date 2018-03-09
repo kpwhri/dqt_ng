@@ -21,6 +21,8 @@ export class AgeChartComponent implements OnInit {
 
   ngOnInit() {
     this.options = {
+      // responsive: true,
+      // maintainAspectRatio: true,
       title: {
         display: true,
         text: this.title
