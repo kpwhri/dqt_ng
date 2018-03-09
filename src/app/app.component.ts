@@ -78,6 +78,4 @@ export class AppComponent implements OnInit {
       this.selectedTab = 0;
     }
   }
-
-
 }
