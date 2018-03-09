@@ -15,8 +15,11 @@
   </div>
 </div>
 <div *ngIf="tabs.length > 0">
-  <p-tabView>
-    <p-tabPanel header="{{tabconfig.header}}" [selected]="tabconfig.header === 'Home'" *ngFor="let tabconfig of tabs">
+  <p-tabView
+    (onChanage)="goToQueryTool(false)">
+    <p-tabPanel header="{{tabconfig.header}}"
+                [selected]="tabconfig.header === 'Home' && selectedTab !== 1"
+                *ngFor="let tabconfig of tabs">
       <div *ngFor="let line of tabconfig.lines">
         <div *ngIf="line.type == 'text'">
           <p>{{line.text}}</p>
@@ -29,11 +32,18 @@
         </div>
       </div>
       <div *ngIf="tabconfig.header == 'Home'">
-        <app-home-page [authenticated]="authenticated" (onChange)="userFormSubmitted($event)"></app-home-page>
+        <app-home-page [authenticated]="authenticated"
+                       (onChange)="userFormSubmitted($event)"
+                       (onNavigate)="goToQueryTool(true)"
+        ></app-home-page>
       </div>
     </p-tabPanel>
 
-    <p-tabPanel header="Query Tool" [disabled]="! authenticated">
+    <p-tabPanel
+      header="Query Tool"
+      [disabled]="! authenticated"
+      [selected]="selectedTab === 1"
+    >
       <app-main #dqt></app-main>
     </p-tabPanel>
   </p-tabView>
