@@ -1,3 +1,29 @@
 p {
 	font-size: 24px;
 }
+.btn {
+  background: #62b5ed;
+  background-image: -webkit-linear-gradient(top, #62b5ed, #044d7a);
+  background-image: -moz-linear-gradient(top, #62b5ed, #044d7a);
+  background-image: -ms-linear-gradient(top, #62b5ed, #044d7a);
+  background-image: -o-linear-gradient(top, #62b5ed, #044d7a);
+  background-image: linear-gradient(to bottom, #62b5ed, #044d7a);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}

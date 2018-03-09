@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   authenticated = false;
   ieComment = 'You may experience issues with your current browser.';
   tabs: TabConfig[] = [];
+  selectedTab = 0;
   private cookieName = 'login';
 
   private popupOpenSubscription: Subscription;
@@ -32,7 +33,6 @@ export class AppComponent implements OnInit {
     private ccService: NgcCookieConsentService,
     private cookieService: CookieService
   ) {
-
     this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
       () => {
         // you can use this.ccService.getConfig() to do stuff...
@@ -68,6 +68,17 @@ export class AppComponent implements OnInit {
 
   dismissIEComment() {
     this.ieComment = '';
+  }
+
+  goToQueryTool(status: boolean) {
+    console.log(status);
+    console.log('go to query tool');
+    this.selectedTab = 0;
+    if (status) {
+      this.selectedTab = 1;
+    } else {
+      this.selectedTab = 0;
+    }
   }
 
 

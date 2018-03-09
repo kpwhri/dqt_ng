@@ -11,6 +11,9 @@ export class HomePageComponent implements OnInit {
   @Input() authenticated: boolean;
 
   @Output() onChange: EventEmitter<any> = new EventEmitter();
+  @Output() onNavigate: EventEmitter<any> = new EventEmitter();
+
+  buttonClicked = false;
 
   constructor() { }
 
@@ -18,6 +21,12 @@ export class HomePageComponent implements OnInit {
 
   userFormSubmitted(event) {
     this.onChange.emit(event);
+  }
+
+  goToQueryTool(event) {
+    console.log('button clicked');
+    this.buttonClicked = true;
+    this.onNavigate.emit(event);
   }
 
 }
