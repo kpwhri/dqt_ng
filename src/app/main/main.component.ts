@@ -30,11 +30,13 @@ export class MainComponent implements OnInit {
   ageFuTitle = 'Age Distribution (Follow-up)';
   categories: Array<Category> = [];
   searchTerm = '';
-  buttonText = 'Show';
+  buttonText = 'SHOW · FILTERS';
   opened = false;
   private chartData = '';
   private rangeFilters: Map<string, string[]> = new Map<string, string[]>();
   private filters: Map<string, Map<string, boolean>> = new Map<string, Map<string, boolean>>();
+  private showFilters = 'SHOW · FILTERS';
+  private hideFilters = 'HIDE · FILTERS';
 
   ngOnInit(): void {
     // give everything a chance to get loaded before starting the animation to reduce choppiness
@@ -50,9 +52,9 @@ export class MainComponent implements OnInit {
      */
     this.sidenav.toggle();
     if (this.sidenav.opened) {
-      this.buttonText = 'Hide';
+      this.buttonText = this.hideFilters;
     } else {
-      this.buttonText = 'Show';
+      this.buttonText = this.showFilters;
     }
   }
 
