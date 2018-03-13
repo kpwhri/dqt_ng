@@ -155,6 +155,7 @@ export class MainComponent implements OnInit {
   }
 
   updateChanges(e: EventItem) {
+    console.log(e);
     if (e.id != null) {  // this is a single value
       if (this.filters.has(e.itemId)) {
         const newVal = this.filters.get(e.itemId);

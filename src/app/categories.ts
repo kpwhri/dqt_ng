@@ -44,10 +44,15 @@ export class EventItem {
   categoryId: string = null;
 
 
-  loadRange(originalEvent, selected: boolean, values: number[]) {
+  loadRange(originalEvent, selected: boolean, values: number[], max: string, min: string) {
     this.originalEvent = originalEvent;
     this.selected = selected;
     this.values = [`${values[0]}`, `${values[1]}`];
+    if (this.values[0] === min) {
+      this.values[0] = '';
+    } else if (this.values[1] === max) {
+      this.values[1] = '';
+    }
     return this;
   }
 

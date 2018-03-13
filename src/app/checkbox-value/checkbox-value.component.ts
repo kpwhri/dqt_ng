@@ -51,14 +51,16 @@ export class CheckboxValueComponent implements OnInit {
   valuesChanged(e) {
     this.onValueUpdate(null);
     if (this.checked) {
-      this.onChange.emit({eventItem: new EventItem().loadRange(e, true, this.buttonVals)});
+      this.onChange.emit({
+        eventItem: new EventItem().loadRange(e, true, this.buttonVals, this.max, this.min)
+      });
     }
   }
 
   toggleChanged(e) {
     this.onValueUpdate(null);
     this.onChange.emit({
-      eventItem: new EventItem().loadRange(e, e.checked, this.buttonVals)
+      eventItem: new EventItem().loadRange(e, e.checked, this.buttonVals, this.max, this.min)
     });
   }
 
