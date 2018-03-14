@@ -63,7 +63,7 @@ import {
   MatToolbarModule,
   MatDialogModule,
   MatTooltipModule,
-  MatStepperModule,
+  MatStepperModule, MatSnackBar,
 } from '@angular/material';
 import { SearchDialogComponent } from './search-dialog/search-dialog.component';
 import {LoaderService} from './loader.service';
@@ -71,6 +71,9 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import {NgcCookieConsentConfig, NgcCookieConsentModule, NgcCookieConsentService, NgcCookieConsentStatus} from 'ngx-cookieconsent';
 import { environment } from '../environments/environment';
 import {CookieModule} from 'ngx-cookie';
+import {AlertService} from './alert.service';
+import {BreakpointObserver} from '@angular/cdk/layout';
+import { MessageHistoryDialogComponent } from './message-history-dialog/message-history-dialog.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -123,8 +126,9 @@ const cookieConfig: NgcCookieConsentConfig = {
     UserFormComponent,
     SearchDialogComponent,
     SpinnerComponent,
+    MessageHistoryDialogComponent,
   ],
-  entryComponents: [SearchDialogComponent],
+  entryComponents: [SearchDialogComponent, MessageHistoryDialogComponent],
   imports: [
     CookieModule.forRoot(),
     NgcCookieConsentModule.forRoot(cookieConfig),
@@ -132,6 +136,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     MatSidenavModule,
     MatCheckboxModule,
     MatDialogModule,
+    MatSnackBarModule,
     BrowserAnimationsModule,
     BrowserModule,
     ReactiveFormsModule,
@@ -155,6 +160,7 @@ const cookieConfig: NgcCookieConsentConfig = {
   providers: [
     CategoryService,
     MenuListener,
+    AlertService,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

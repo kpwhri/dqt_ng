@@ -2,10 +2,10 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {TabConfig, UserForm} from './categories';
 import {CategoryService} from './app.service';
 import {MainComponent} from './main/main.component';
-import {LoaderService} from './loader.service';
 import {Subscription} from 'rxjs/Subscription';
-import {NgcCookieConsentService, NgcInitializeEvent} from 'ngx-cookieconsent';
+import {NgcCookieConsentService} from 'ngx-cookieconsent';
 import {CookieService} from 'ngx-cookie';
+import {AlertService} from './alert.service';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +31,8 @@ export class AppComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private ccService: NgcCookieConsentService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private alertService: AlertService
   ) {
     this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
       () => {
@@ -40,8 +41,14 @@ export class AppComponent implements OnInit {
     this.getTabs();
     let cookie = this.cookieService.get(this.cookieName);
     if (cookie !== undefined) {
-      this.authenticated = true;
       this.categoryService.communicateCookie(cookie)
+        .subscribe(r => {
+          console.log(r);
+          this.alertService.showMessages(r.messages);
+          if (r['status']) {
+            this.authenticated = true;
+          }
+        })
     } else {
       this.checkAuthenticated();
     }

@@ -24,7 +24,6 @@ export class HomePageComponent implements OnInit {
   }
 
   goToQueryTool(event) {
-    console.log('button clicked');
     this.buttonClicked = true;
     this.onNavigate.emit(event);
   }
