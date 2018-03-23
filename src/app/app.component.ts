@@ -56,7 +56,10 @@ export class AppComponent implements OnInit {
   userFormSubmitted(event) {
     let userModel: UserForm = event.userForm;
     this.categoryService.submitUserForm(userModel)
-      .subscribe(result => this.authenticated = result.validUser);
+      .subscribe(result => {
+        this.authenticated = result.validUser;
+        this.cookieService.put(this.cookieName, result.cookie);
+    });
   }
 
   checkAuthenticated() {
