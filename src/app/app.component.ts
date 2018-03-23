@@ -43,7 +43,6 @@ export class AppComponent implements OnInit {
     if (cookie !== undefined) {
       this.categoryService.communicateCookie(cookie)
         .subscribe(r => {
-          console.log(r);
           this.alertService.showMessages(r.messages);
           if (r['status']) {
             this.authenticated = true;
