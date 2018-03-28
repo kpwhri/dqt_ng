@@ -29,7 +29,12 @@ export class AlertService {
             this.viewMessagesVisible = false;
             this.matSnackbar.open(
               term,
-              'Dismiss'
+              'Dismiss',
+              {
+                horizontalPosition: 'right',
+                verticalPosition: 'top',
+                duration: 3000
+              }
             ).onAction().subscribe(() => {
               this.showHistoryButton();
             });
@@ -46,12 +51,16 @@ export class AlertService {
       data: this.messages
     });
     dialogRef.afterClosed().subscribe(r => {
-      this.showHistoryButton();
+      // this.showHistoryButton();
     });
   }
 
   showHistoryButton() {
-    this.matSnackbar.open('', 'View Messages')
+    this.matSnackbar.open('', 'View Messages', {
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      duration: 3000
+    })
       .onAction().subscribe(() => {
         this.showMessageHistoryDialog();
         // this.matSnackbar.dismiss();

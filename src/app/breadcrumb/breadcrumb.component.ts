@@ -1,7 +1,8 @@
-import {Component, OnInit, EventEmitter} from '@angular/core';
+import {Component, OnInit, EventEmitter, Injectable} from '@angular/core';
 import {EventItem} from '../categories';
 import {MenuItem} from 'primeng/components/common/api';
 import {MenuListener} from '../menuListener';
+import {AlertService} from '../alert.service';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -12,7 +13,10 @@ export class BreadcrumbComponent implements OnInit {
 
   items: MenuItem[];
 
-  constructor(private menuListener: MenuListener) {
+  constructor(
+    private menuListener: MenuListener,
+    private alertService: AlertService
+  ) {
   }
 
   ngOnInit() {
@@ -20,7 +24,8 @@ export class BreadcrumbComponent implements OnInit {
     this.items.push(
       new OptionsMenuItem(
         () => this.removeAllItems(),
-        this.menuListener
+        this.menuListener,
+        this.alertService
       )
     );
   }
@@ -92,11 +97,16 @@ class OptionsMenuItem implements MenuItem {
   expanded?: boolean;
   disabled?: boolean;
 
-  constructor(clearAllFiltersFunction, listener: MenuListener) {
+  constructor(
+    clearAllFiltersFunction,
+    listener: MenuListener,
+    alerts: AlertService
+  ) {
     this.label = 'Options';
     this.items = [
       new ClearAllFiltersMenuItem(clearAllFiltersFunction),
-      new ExportFiltersMenuItem(listener)
+      new ExportFiltersMenuItem(listener),
+      new MessagesMenuItem(alerts)
     ];
   }
 }
@@ -132,6 +142,25 @@ class ExportFiltersMenuItem implements MenuItem {
     this.label = 'Export Filters';
     this.command = (e) => {
       listener.triggerExportFilters(null);
+    };
+  }
+}
+@Injectable()
+class MessagesMenuItem implements MenuItem {
+  label?: string;
+  icon?: string;
+  command?: (event?: any) => void;
+  url?: string;
+  routerLink?: any;
+  eventEmitter?: EventEmitter<any>;
+  items?: MenuItem[];
+  expanded?: boolean;
+  disabled?: boolean;
+
+  constructor(alerts: AlertService) {
+    this.label = 'View Messages';
+    this.command = (e) => {
+      alerts.showMessageHistoryDialog();
     };
   }
 }
