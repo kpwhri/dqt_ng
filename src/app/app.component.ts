@@ -59,7 +59,7 @@ export class AppComponent implements OnInit {
       .subscribe(result => {
         this.authenticated = result.validUser;
         this.cookieService.put(this.cookieName, result.cookie);
-      });
+    });
   }
 
   checkAuthenticated() {
