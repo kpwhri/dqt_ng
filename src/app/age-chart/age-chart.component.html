@@ -1,8 +1,8 @@
 <script src="../breadcrumb/breadcrumb.component.ts"></script>
-<div *ngIf="data" style="width: 450px; float: left;">
+<div *ngIf="data">
   <div class="chart-container">
     <p-chart #chart type="bar" [data]="data" [options]="options"
-             [width]="400" [height]="400"
+             [width]="410" [height]="410" responsive="true"
     ></p-chart>
   </div>
 </div>
