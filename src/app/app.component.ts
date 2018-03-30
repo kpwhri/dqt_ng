@@ -21,7 +21,9 @@ export class AppComponent implements OnInit {
   tabs: TabConfig[] = [];
   selectedTab = 0;
   private cookieName = 'login';
-
+  private cookieConfig: any = {
+    expires: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)  // one year
+  };
   private popupOpenSubscription: Subscription;
 
 
@@ -58,7 +60,11 @@ export class AppComponent implements OnInit {
     this.categoryService.submitUserForm(userModel)
       .subscribe(result => {
         this.authenticated = result.validUser;
-        this.cookieService.put(this.cookieName, result.cookie);
+        this.cookieService.put(
+          this.cookieName,
+          result.cookie,
+          this.cookieConfig
+        );
     });
   }
 
@@ -66,7 +72,11 @@ export class AppComponent implements OnInit {
     this.categoryService.checkAuthenticated()
       .subscribe(result => {
         this.authenticated = result.returnVisitor;
-        this.cookieService.put(this.cookieName, result.cookie);
+        this.cookieService.put(
+          this.cookieName,
+          result.cookie,
+          this.cookieConfig
+        );
       });
   }
 

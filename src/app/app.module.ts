@@ -81,7 +81,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 
 const cookieConfig: NgcCookieConsentConfig = {
   'cookie': {
-    'domain': environment.domain
+    'domain': environment.domain,
+    'expiryDays': 365
   },
   'position': 'bottom',
   'theme': 'classic',
