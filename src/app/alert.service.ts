@@ -19,13 +19,16 @@ export class AlertService {
   }
 
   showMessages(messages) {
+    if (messages == null) {
+      return;
+    }
     Object.keys(messages).forEach(name => {
       messages[name].forEach(
         text => {
           name = name.toUpperCase();
+          const term = name + ': ' + text;
+          this.messages.push(term);
           if (name === 'ERROR' || name === 'WARNING' || ! environment.production) {
-            const term = name + ': ' + text;
-            this.messages.push(term);
             this.viewMessagesVisible = false;
             this.matSnackbar.open(
               term,
