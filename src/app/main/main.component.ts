@@ -47,6 +47,7 @@ export class MainComponent implements OnInit {
     this.menuListener.SelectCategory.on(categoryId => this.selectCategory(null, categoryId));
     this.menuListener.SelectItem.on(itemCatId => this.selectCategory(itemCatId[0], itemCatId[1]));
     this.menuListener.ExportFilter.on(e => this.exportFilters());
+    this.menuListener.CollapseAll.on(e => this.collapseAll());
   }
 
   toggleSidenav(): void {

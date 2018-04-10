@@ -5,6 +5,7 @@ export class MenuListener {
   private selectCategory: Event<string> = new Event<string>();
   private selectItem: Event<string[]> = new Event<string[]>();
   private exportFilters: Event<string> = new Event<string>();
+  private collapseAll: Event<string> = new Event<string>();
 
   public get RemoveValue(): IEvent<EventItem> {
     return this.removeValue;
@@ -22,6 +23,10 @@ export class MenuListener {
     return this.exportFilters;
   }
 
+  public get CollapseAll(): IEvent<string> {
+    return this.exportFilters;
+  }
+
   triggerRemove(e: EventItem) {
     this.removeValue.trigger(e);
   }
@@ -35,6 +40,10 @@ export class MenuListener {
   }
 
   triggerExportFilters(arg: string) {
+    this.exportFilters.trigger(arg);
+  }
+
+  triggerCollapseAll(arg: string) {
     this.exportFilters.trigger(arg);
   }
 }
