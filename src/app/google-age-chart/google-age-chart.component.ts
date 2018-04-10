@@ -28,28 +28,30 @@ export class GoogleAgeChartComponent implements OnInit {
   constructor(increment: IdIncrement) {
     this.id = increment.increment();
     this.elementId = 'chart_' + this.id;
-    console.log(this.id, increment.counter, this.elementId);
   }
 
   ngOnInit() {
     google.charts.load('current', {
       'packages': ['corechart', 'bar']
     });
-    // google.charts.setOnLoadCallback(() => this.drawGraph());
 
     this.options = {
+      chartArea: {
+        right: 100
+      },
       chart: {
 
       },
       title: this.title,
-      // bars: 'vertical',
-      legend: {position: 'bottom', maxLines: 2},
+      legend: {
+        position: 'right',  // otherwise legend overlaps
+        maxLines: 2,
+      },
       isStacked: true,
       height: 400,
       width: 400,
       colors: ['#243f86', '#92cdee', '#678197', '#F2D65C']
-    }
-
+    };
   }
 
   drawGraph() {
@@ -58,8 +60,6 @@ export class GoogleAgeChartComponent implements OnInit {
   }
 
   createBarChart(element: any): any {
-    // return new google.visualization.BarChart(element);
-    // return new google.charts.Bar(element);
     return new google.visualization.ColumnChart(element);
   }
 
@@ -68,7 +68,6 @@ export class GoogleAgeChartComponent implements OnInit {
   }
 
   updateChart(data: any[]) {
-    console.log('updating chart');
     this.data = this.createDataTable(data);
     this.drawGraph();
   };
