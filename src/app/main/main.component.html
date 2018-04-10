@@ -17,25 +17,31 @@
           <span>{{buttonText}}</span>
         </button>
       </div>
-      <div class="row" style="margin-left: 20px; display: block;">
-        <div class="col-md-4">
-          <app-google-age-chart #gAgeBlChart [title]="ageBlTitle"></app-google-age-chart>
-        </div>
-        <div class="col-md-4">
-          <app-google-age-chart #gAgeFuChart [title]="ageFuTitle"></app-google-age-chart>
-        </div>
-      </div>
-      <div class="row" style="margin-left: 20px; display: block;">
-        <div class="col-md-4">
-          <app-age-chart #ageBlChart [title]="ageBlTitle"></app-age-chart>
-        </div>
-        <div class="col-md-4">
-          <app-age-chart #ageFuChart [title]="ageFuTitle"></app-age-chart>
-        </div>
-        <div class="col-md-4">
-          <app-subject-table #subjectTable></app-subject-table>
+      <div style="padding-left: 40px;">
+        <div class="row justify-content-center" style="margin-left: 20px;">
+          <div class="col-md-4" style="margin-right: 50px;">
+            <app-google-age-chart #gAgeBlChart [title]="ageBlTitle"></app-google-age-chart>
+          </div>
+          <div class="col-md-4" style="margin-right: 50px; margin-left: 50px;">
+            <app-google-age-chart #gAgeFuChart [title]="ageFuTitle"></app-google-age-chart>
+          </div>
+          <div class="col-md-3">
+            <app-subject-table #subjectTable style="margin-left: 50px;"></app-subject-table>
+          </div>
         </div>
       </div>
+
+      <!--<div class="row" style="margin-left: 20px; display: block;">-->
+        <!--<div class="col-md-3">-->
+          <!--<app-age-chart #ageBlChart [title]="ageBlTitle"></app-age-chart>-->
+        <!--</div>-->
+        <!--<div class="col-md-3">-->
+          <!--<app-age-chart #ageFuChart [title]="ageFuTitle"></app-age-chart>-->
+        <!--</div>-->
+        <!--<div class="col-md-3">-->
+          <!--<app-subject-table #subjectTable></app-subject-table>-->
+        <!--</div>-->
+      <!--</div>-->
     </mat-sidenav-content>
   </mat-sidenav-container>
 

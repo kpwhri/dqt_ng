@@ -20,14 +20,13 @@ import {GoogleAgeChartComponent} from '../google-age-chart/google-age-chart.comp
 })
 export class MainComponent implements OnInit {
   @ViewChild('master') masterComponent: CategoryMasterComponent;
-  @ViewChild('ageBlChart') ageChartComponent: AgeChartComponent;
-  @ViewChild('ageFuChart') ageFuChartComponent: AgeChartComponent;
+  // @ViewChild('ageBlChart') ageChartComponent: AgeChartComponent;
+  // @ViewChild('ageFuChart') ageFuChartComponent: AgeChartComponent;
   @ViewChild('gAgeBlChart') gAgeChartComponent: GoogleAgeChartComponent;
   @ViewChild('gAgeFuChart') gAgeFuChartComponent: GoogleAgeChartComponent;
   @ViewChild('breadcrumb') breadcrumbComponent: BreadcrumbComponent;
   @ViewChild('subjectTable') subjectTableComponent: SubjectTableComponent;
   @ViewChild('filterDialog') filterDialogComponent: FilterDialogComponent;
-  // @ViewChild('searchPanel') searchDialogComponent: SearchDialogComponent;
   @ViewChild('sidenav') sidenav: MatSidenav;
   ageBlTitle = 'Age Distribution (Baseline)';
   ageFuTitle = 'Age Distribution (Follow-up)';
@@ -101,8 +100,8 @@ export class MainComponent implements OnInit {
     const obs = this.categoryService.filterItems(this.chartData);
     obs.subscribe(e => {
       this.spinnerService.hide('startSpinner');
-      this.ageChartComponent.updateChart(e.age_bl as AgeGraphClass);
-      this.ageFuChartComponent.updateChart(e.age_fu as AgeGraphClass);
+      // this.ageChartComponent.updateChart(e.age_bl as AgeGraphClass);
+      // this.ageFuChartComponent.updateChart(e.age_fu as AgeGraphClass);
       this.gAgeChartComponent.updateChart(e.age_bl_g as any[]);
       this.gAgeFuChartComponent.updateChart(e.age_fu_g as any[]);
       this.subjectTableComponent.updateTable(e.subject_counts as SubjectTableDataItem[]);
