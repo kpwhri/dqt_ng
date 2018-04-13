@@ -24,7 +24,7 @@ export class MenuListener {
   }
 
   public get CollapseAll(): IEvent<string> {
-    return this.exportFilters;
+    return this.collapseAll;
   }
 
   triggerRemove(e: EventItem) {
@@ -44,7 +44,7 @@ export class MenuListener {
   }
 
   triggerCollapseAll(arg: string) {
-    this.exportFilters.trigger(arg);
+    this.collapseAll.trigger(arg);
   }
 }
 
