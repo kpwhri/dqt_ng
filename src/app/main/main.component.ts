@@ -34,6 +34,7 @@ export class MainComponent implements OnInit {
   searchTerm = '';
   buttonText = 'SHOW · FILTERS';
   opened = false;
+  mode = 'over';
   private chartData = '';
   private rangeFilters: Map<string, string[]> = new Map<string, string[]>();
   private filters: Map<string, Map<string, boolean>> = new Map<string, Map<string, boolean>>();
@@ -47,6 +48,7 @@ export class MainComponent implements OnInit {
     this.menuListener.SelectItem.on(itemCatId => this.selectCategory(itemCatId[0], itemCatId[1]));
     this.menuListener.ExportFilter.on(e => this.exportFilters());
     this.menuListener.CollapseAll.on(e => this.collapseAll());
+    this.menuListener.NavigationMode.on(e => this.switchNavigationMode());
   }
 
   toggleSidenav(): void {
@@ -54,10 +56,18 @@ export class MainComponent implements OnInit {
     Without toggling twice, the navbar covers one of the graphs
      */
     this.sidenav.toggle();
-    if (this.sidenav.opened) {
+    if (this.sidenav.opened && this.mode === 'side') {
       this.buttonText = this.hideFilters;
     } else {
       this.buttonText = this.showFilters;
+    }
+  }
+
+  switchNavigationMode(): void {
+    if (this.mode === 'over') {
+      this.mode = 'side';
+    } else {
+      this.mode = 'over';
     }
   }
 
@@ -160,7 +170,6 @@ export class MainComponent implements OnInit {
   }
 
   updateChanges(e: EventItem) {
-    console.log(e);
     if (e.id != null) {  // this is a single value
       if (this.filters.has(e.itemId)) {
         const newVal = this.filters.get(e.itemId);

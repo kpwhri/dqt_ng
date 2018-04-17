@@ -2,7 +2,7 @@
 
   <app-breadcrumb #breadcrumb></app-breadcrumb>
   <mat-sidenav-container class="example-container">
-    <mat-sidenav class="sidenav" #sidenav mode="side" [(opened)]="opened">
+    <mat-sidenav class="sidenav" #sidenav [(mode)]="mode" [(opened)]="opened">
       <input #target [(ngModel)]="searchTerm" placeholder="search"
              (click)="openDialog()"
       />

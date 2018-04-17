@@ -108,6 +108,7 @@ class OptionsMenuItem implements MenuItem {
       new ExportFiltersMenuItem(listener),
       new MessagesMenuItem(alerts),
       new CollapseAllMenuItem(listener),
+      new NavigationModeMenuItem(listener),
     ];
   }
 }
@@ -183,6 +184,31 @@ class CollapseAllMenuItem implements MenuItem {
     this.label = 'Collapse All';
     this.command = (e) => {
       this.listener.triggerCollapseAll(null);
+    };
+  }
+}
+
+@Injectable()
+class NavigationModeMenuItem implements MenuItem {
+  label?: string;
+  icon?: string;
+  command?: (event?: any) => void;
+  url?: string;
+  routerLink?: any;
+  eventEmitter?: EventEmitter<any>;
+  items?: MenuItem[];
+  expanded?: boolean;
+  disabled?: boolean;
+
+  constructor(private listener: MenuListener) {
+    this.label = 'Side Navigation';
+    this.command = (e) => {
+      if (this.label === 'Side Navigation') {
+        this.label = 'Pop-up Navigation';
+      } else {
+        this.label = 'Side Navigation';
+      }
+      this.listener.triggerNavigationMode(null);
     };
   }
 }
