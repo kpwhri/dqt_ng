@@ -46,5 +46,12 @@
     >
       <app-main #dqt></app-main>
     </p-tabPanel>
+
+    <p-tabPanel
+      header="Data Dictionary"
+      [disabled]="! authenticated"
+    >
+      <app-data-dictionary #dd></app-data-dictionary>
+    </p-tabPanel>
   </p-tabView>
 </div>

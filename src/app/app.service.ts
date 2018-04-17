@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpClientModule} from '@angular/common/http';
-import {Category, SearchResult, UserForm} from './categories';
+import {Category, DataCategory, SearchResult, UserForm} from './categories';
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
 import {Config} from './app.config';
@@ -41,6 +41,12 @@ export class CategoryService {
   getAllCategories(): Observable<Category[]> {
     return this.http
       .get<Category[]>(`${this.serverAddress}/api/category/all`, this.options);
+  }
+
+  getDataDictionary(): Observable<DataCategory[]> {
+    console.log('requested');
+    return this.http
+      .get<DataCategory[]>(`${this.serverAddress}/api/dictionary/get`, this.options);
   }
 
   filterItems(querystring: string): Observable<any> {
