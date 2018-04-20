@@ -65,6 +65,7 @@ export class AppComponent implements OnInit {
           result.cookie,
           this.cookieConfig
         );
+        this.alertService.showMessages(result.messages);
     });
   }
 
@@ -77,6 +78,7 @@ export class AppComponent implements OnInit {
           result.cookie,
           this.cookieConfig
         );
+        this.alertService.showMessages(result.messages);
       });
   }
 

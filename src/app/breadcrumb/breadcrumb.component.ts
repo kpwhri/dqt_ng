@@ -106,7 +106,9 @@ class OptionsMenuItem implements MenuItem {
     this.items = [
       new ClearAllFiltersMenuItem(clearAllFiltersFunction),
       new ExportFiltersMenuItem(listener),
-      new MessagesMenuItem(alerts)
+      new MessagesMenuItem(alerts),
+      new CollapseAllMenuItem(listener),
+      new NavigationModeMenuItem(listener),
     ];
   }
 }
@@ -145,6 +147,7 @@ class ExportFiltersMenuItem implements MenuItem {
     };
   }
 }
+
 @Injectable()
 class MessagesMenuItem implements MenuItem {
   label?: string;
@@ -161,6 +164,51 @@ class MessagesMenuItem implements MenuItem {
     this.label = 'View Messages';
     this.command = (e) => {
       alerts.showMessageHistoryDialog();
+    };
+  }
+}
+
+@Injectable()
+class CollapseAllMenuItem implements MenuItem {
+  label?: string;
+  icon?: string;
+  command?: (event?: any) => void;
+  url?: string;
+  routerLink?: any;
+  eventEmitter?: EventEmitter<any>;
+  items?: MenuItem[];
+  expanded?: boolean;
+  disabled?: boolean;
+
+  constructor(private listener: MenuListener) {
+    this.label = 'Collapse All';
+    this.command = (e) => {
+      this.listener.triggerCollapseAll(null);
+    };
+  }
+}
+
+@Injectable()
+class NavigationModeMenuItem implements MenuItem {
+  label?: string;
+  icon?: string;
+  command?: (event?: any) => void;
+  url?: string;
+  routerLink?: any;
+  eventEmitter?: EventEmitter<any>;
+  items?: MenuItem[];
+  expanded?: boolean;
+  disabled?: boolean;
+
+  constructor(private listener: MenuListener) {
+    this.label = 'Side Navigation';
+    this.command = (e) => {
+      if (this.label === 'Side Navigation') {
+        this.label = 'Pop-up Navigation';
+      } else {
+        this.label = 'Side Navigation';
+      }
+      this.listener.triggerNavigationMode(null);
     };
   }
 }

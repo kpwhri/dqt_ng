@@ -12,6 +12,19 @@ export class Category {
   items: Item[];
 }
 
+export class DataEntry {
+  id: number;
+  label: string;
+  category: string;
+  description: string;
+  values: string;
+}
+
+export class DataCategory {
+  name: string;
+  items: DataEntry[];
+}
+
 export class Item {
   id: number;
   name: string;

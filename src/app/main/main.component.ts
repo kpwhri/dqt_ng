@@ -11,6 +11,7 @@ import {MatSidenav} from '@angular/material';
 import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
 import {SearchDialogComponent} from '../search-dialog/search-dialog.component';
 import {LoaderService} from '../loader.service';
+import {GoogleAgeChartComponent} from '../google-age-chart/google-age-chart.component';
 
 @Component({
   selector: 'app-main',
@@ -19,12 +20,13 @@ import {LoaderService} from '../loader.service';
 })
 export class MainComponent implements OnInit {
   @ViewChild('master') masterComponent: CategoryMasterComponent;
-  @ViewChild('ageBlChart') ageChartComponent: AgeChartComponent;
-  @ViewChild('ageFuChart') ageFuChartComponent: AgeChartComponent;
+  // @ViewChild('ageBlChart') ageChartComponent: AgeChartComponent;
+  // @ViewChild('ageFuChart') ageFuChartComponent: AgeChartComponent;
+  @ViewChild('gAgeBlChart') gAgeChartComponent: GoogleAgeChartComponent;
+  @ViewChild('gAgeFuChart') gAgeFuChartComponent: GoogleAgeChartComponent;
   @ViewChild('breadcrumb') breadcrumbComponent: BreadcrumbComponent;
   @ViewChild('subjectTable') subjectTableComponent: SubjectTableComponent;
   @ViewChild('filterDialog') filterDialogComponent: FilterDialogComponent;
-  // @ViewChild('searchPanel') searchDialogComponent: SearchDialogComponent;
   @ViewChild('sidenav') sidenav: MatSidenav;
   ageBlTitle = 'Age Distribution (Baseline)';
   ageFuTitle = 'Age Distribution (Follow-up)';
@@ -32,6 +34,7 @@ export class MainComponent implements OnInit {
   searchTerm = '';
   buttonText = 'SHOW · FILTERS';
   opened = false;
+  mode = 'over';
   private chartData = '';
   private rangeFilters: Map<string, string[]> = new Map<string, string[]>();
   private filters: Map<string, Map<string, boolean>> = new Map<string, Map<string, boolean>>();
@@ -44,6 +47,8 @@ export class MainComponent implements OnInit {
     this.menuListener.SelectCategory.on(categoryId => this.selectCategory(null, categoryId));
     this.menuListener.SelectItem.on(itemCatId => this.selectCategory(itemCatId[0], itemCatId[1]));
     this.menuListener.ExportFilter.on(e => this.exportFilters());
+    this.menuListener.CollapseAll.on(e => this.collapseAll());
+    this.menuListener.NavigationMode.on(e => this.switchNavigationMode());
   }
 
   toggleSidenav(): void {
@@ -51,10 +56,18 @@ export class MainComponent implements OnInit {
     Without toggling twice, the navbar covers one of the graphs
      */
     this.sidenav.toggle();
-    if (this.sidenav.opened) {
+    if (this.sidenav.opened && this.mode === 'side') {
       this.buttonText = this.hideFilters;
     } else {
       this.buttonText = this.showFilters;
+    }
+  }
+
+  switchNavigationMode(): void {
+    if (this.mode === 'over') {
+      this.mode = 'side';
+    } else {
+      this.mode = 'over';
     }
   }
 
@@ -97,8 +110,10 @@ export class MainComponent implements OnInit {
     const obs = this.categoryService.filterItems(this.chartData);
     obs.subscribe(e => {
       this.spinnerService.hide('startSpinner');
-      this.ageChartComponent.updateChart(e.age_bl as AgeGraphClass);
-      this.ageFuChartComponent.updateChart(e.age_fu as AgeGraphClass);
+      // this.ageChartComponent.updateChart(e.age_bl as AgeGraphClass);
+      // this.ageFuChartComponent.updateChart(e.age_fu as AgeGraphClass);
+      this.gAgeChartComponent.updateChart(e.age_bl_g as any[]);
+      this.gAgeFuChartComponent.updateChart(e.age_fu_g as any[]);
       this.subjectTableComponent.updateTable(e.subject_counts as SubjectTableDataItem[]);
     });
   }
@@ -155,7 +170,6 @@ export class MainComponent implements OnInit {
   }
 
   updateChanges(e: EventItem) {
-    console.log(e);
     if (e.id != null) {  // this is a single value
       if (this.filters.has(e.itemId)) {
         const newVal = this.filters.get(e.itemId);

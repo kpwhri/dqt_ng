@@ -74,6 +74,8 @@ import {CookieModule} from 'ngx-cookie';
 import {AlertService} from './alert.service';
 import {BreakpointObserver} from '@angular/cdk/layout';
 import { MessageHistoryDialogComponent } from './message-history-dialog/message-history-dialog.component';
+import {GoogleAgeChartComponent, IdIncrement} from './google-age-chart/google-age-chart.component';
+import { DataDictionaryComponent } from './data-dictionary/data-dictionary.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -118,6 +120,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     ItemComponent,
     ValueComponent,
     AgeChartComponent,
+    GoogleAgeChartComponent,
     BreadcrumbComponent,
     SubjectTableComponent,
     FilterDialogComponent,
@@ -128,6 +131,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     SearchDialogComponent,
     SpinnerComponent,
     MessageHistoryDialogComponent,
+    GoogleAgeChartComponent,
+    DataDictionaryComponent,
   ],
   entryComponents: [SearchDialogComponent, MessageHistoryDialogComponent],
   imports: [
@@ -166,7 +171,8 @@ const cookieConfig: NgcCookieConsentConfig = {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     },
-    LoaderService
+    LoaderService,
+    IdIncrement
   ],
   bootstrap: [AppComponent]
 })

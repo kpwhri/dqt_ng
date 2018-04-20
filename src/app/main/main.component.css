@@ -38,6 +38,7 @@ input {
   float: left;
   width: 20px;
   /*display: inline-block;*/
+  margin-right: 20px;
 }
 
 .button {
