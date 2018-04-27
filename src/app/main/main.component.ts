@@ -34,7 +34,7 @@ export class MainComponent implements OnInit {
   searchTerm = '';
   buttonText = 'SHOW · FILTERS';
   opened = false;
-  mode = 'over';
+  mode = 'side';
   private chartData = '';
   private rangeFilters: Map<string, string[]> = new Map<string, string[]>();
   private filters: Map<string, Map<string, boolean>> = new Map<string, Map<string, boolean>>();
@@ -58,7 +58,7 @@ export class MainComponent implements OnInit {
     this.sidenav.toggle();
     if (this.sidenav.opened && this.mode === 'side') {
       this.buttonText = this.hideFilters;
-    } else {
+    } else {  // open
       this.buttonText = this.showFilters;
     }
   }

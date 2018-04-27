@@ -201,12 +201,12 @@ class NavigationModeMenuItem implements MenuItem {
   disabled?: boolean;
 
   constructor(private listener: MenuListener) {
-    this.label = 'Side Navigation';
+    this.label = 'Pop-up Navigation';
     this.command = (e) => {
-      if (this.label === 'Side Navigation') {
-        this.label = 'Pop-up Navigation';
-      } else {
+      if (this.label === 'Pop-up Navigation') {
         this.label = 'Side Navigation';
+      } else {
+        this.label = 'Pop-up Navigation';
       }
       this.listener.triggerNavigationMode(null);
     };
