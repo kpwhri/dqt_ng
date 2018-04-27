@@ -32,7 +32,7 @@ export class GoogleAgeChartComponent implements OnInit {
 
   ngOnInit() {
     google.charts.load('current', {
-      'packages': ['corechart', 'bar']
+      'packages': ['corechart']
     });
 
     this.options = {
