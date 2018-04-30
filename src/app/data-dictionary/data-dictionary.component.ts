@@ -32,6 +32,6 @@ export class DataDictionaryComponent implements OnInit {
   }
 
   downloadFile() {
-    console.warn('downloading');
+    window.location.href = this.categoryService.getDataDictionaryFile();
   }
 }

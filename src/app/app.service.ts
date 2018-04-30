@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpClientModule} from '@angular/common/http';
-import {Category, DataCategory, SearchResult, UserForm} from './categories';
+import {Category, Checksum, DataCategory, SearchResult, UserForm} from './categories';
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
 import {Config} from './app.config';
@@ -44,21 +44,17 @@ export class CategoryService {
   }
 
   getDataDictionary(): Observable<DataCategory[]> {
-    console.log('requested');
     return this.http
       .get<DataCategory[]>(`${this.serverAddress}/api/dictionary/get`, this.options);
   }
 
-  getDataDictionaryMeta(): Observable<DataCategory[]> {
-    console.log('requested meta');
+  getDataDictionaryMeta(): Observable<Checksum[]> {
     return this.http
-      .get<DataCategory[]>(`${this.serverAddress}/api/data/dictionary/meta`, this.options);
+      .get<Checksum[]>(`${this.serverAddress}/api/data/dictionary/meta`, this.options);
   }
 
-  getDataDictionaryFile(): Observable<DataCategory[]> {
-    console.log('requested file');
-    return this.http
-      .get<DataCategory[]>(`${this.serverAddress}/api/data/dictionary/get`, this.options);
+  getDataDictionaryFile(): string {
+    return `${this.serverAddress}/api/data/dictionary/get`;
   }
 
   filterItems(querystring: string): Observable<any> {

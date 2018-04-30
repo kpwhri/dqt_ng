@@ -1,3 +1,4 @@
+<h1>Download</h1>
 <table>
   <tr>
     <th>Download as Excel</th>
@@ -9,6 +10,7 @@
   </tr>
 </table>
 
+<h1>Variable Categories</h1>
 <div class="row">
   <div class="col-md-2" *ngFor="let category of dataDictionary">
     <h2><a href="#x{{category.id}}" class="category">
@@ -17,6 +19,7 @@
   </div>
 </div>
 
+<h1>Variables</h1>
 <div class="row">
   <div class="col-md-3" *ngFor="let category of dataDictionary">
     <h2 id="x{{category.id}}" class="category">{{category.name}}</h2>
@@ -42,7 +45,7 @@
       <td>{{entry.category}}</td>
       <td>{{entry.values}}</td>
       <td>{{entry.description}}</td>
-      <td><a href="#x{{category.id}}">{{category.name}}</a></td>
+      <td><a href="#x{{category.id}}">^{{category.name}}</a></td>
     </tr>
   </ng-container>
 </table>

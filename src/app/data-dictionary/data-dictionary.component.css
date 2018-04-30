@@ -41,3 +41,9 @@ a {
 .category {
   color: #7a3104;
 }
+
+h1 {
+  background-color: #044d7a;
+  color: white;
+  text-align: center;
+}
