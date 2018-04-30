@@ -5,6 +5,11 @@ export class Value {
     selected = true;
 }
 
+export class Checksum {
+  type: string;
+  value: string;
+}
+
 export class Category {
   id: number;
   name: string;

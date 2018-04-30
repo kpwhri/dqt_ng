@@ -1,3 +1,14 @@
+<table>
+  <tr>
+    <th>Download as Excel</th>
+    <td><button (click)="downloadFile()">Download</button></td>
+  </tr>
+  <tr *ngFor="let checksum of checksums">
+    <th>{{checksum.type}} checksum</th>
+    <td>{{checksum.value}}</td>
+  </tr>
+</table>
+
 <div class="row">
   <div class="col-md-2" *ngFor="let category of dataDictionary">
     <h2><a href="#x{{category.id}}" class="category">

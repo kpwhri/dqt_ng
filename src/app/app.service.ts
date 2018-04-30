@@ -49,6 +49,18 @@ export class CategoryService {
       .get<DataCategory[]>(`${this.serverAddress}/api/dictionary/get`, this.options);
   }
 
+  getDataDictionaryMeta(): Observable<DataCategory[]> {
+    console.log('requested meta');
+    return this.http
+      .get<DataCategory[]>(`${this.serverAddress}/api/data/dictionary/meta`, this.options);
+  }
+
+  getDataDictionaryFile(): Observable<DataCategory[]> {
+    console.log('requested file');
+    return this.http
+      .get<DataCategory[]>(`${this.serverAddress}/api/data/dictionary/get`, this.options);
+  }
+
   filterItems(querystring: string): Observable<any> {
     return this.http
       .get(`${this.serverAddress}/api/filter/chart?${querystring}`, this.options);

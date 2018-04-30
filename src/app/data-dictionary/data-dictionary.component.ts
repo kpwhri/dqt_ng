@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CategoryService} from '../app.service';
-import {DataCategory} from '../categories';
+import {Checksum, DataCategory} from '../categories';
 
 @Component({
   selector: 'app-data-dictionary',
@@ -10,6 +10,7 @@ import {DataCategory} from '../categories';
 export class DataDictionaryComponent implements OnInit {
 
   dataDictionary: DataCategory[];
+  checksums: Checksum[];
 
   constructor(private categoryService: CategoryService) {
     this.loadDataDictionary();
@@ -24,5 +25,13 @@ export class DataDictionaryComponent implements OnInit {
       .subscribe(
         data => this.dataDictionary = data['data_entries']
       );
+    this.categoryService.getDataDictionaryMeta()
+      .subscribe(
+        data => this.checksums = data['checksums']
+      );
+  }
+
+  downloadFile() {
+    console.warn('downloading');
   }
 }
