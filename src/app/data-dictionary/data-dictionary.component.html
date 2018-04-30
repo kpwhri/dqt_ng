@@ -1,17 +1,27 @@
-<div class="col-md-3" *ngFor="let category of dataDictionary">
-  <h2 id="x{{category.id}}">{{category.name}}</h2>
-  <ul *ngFor="let entry of category.data">
-    <li><a href="#{{entry.label}}">{{entry.label}}</a></li>
-  </ul>
+<div class="row">
+  <div class="col-md-2" *ngFor="let category of dataDictionary">
+    <h2><a href="#x{{category.id}}" class="category">
+      {{category.name}}
+    </a></h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3" *ngFor="let category of dataDictionary">
+    <h2 id="x{{category.id}}" class="category">{{category.name}}</h2>
+    <ul *ngFor="let entry of category.data">
+      <li><a href="#{{entry.label}}">{{entry.label}}</a></li>
+    </ul>
+  </div>
 </div>
 
 <table>
   <tr>
     <th>Variable</th>
-    <th>Category</th>
+    <th>Abbrev</th>
     <th>Values</th>
     <th>Description</th>
-    <th></th>
+    <th>Category</th>
   </tr>
   <ng-container *ngFor="let category of dataDictionary">
     <tr *ngFor="let entry of category.data">
