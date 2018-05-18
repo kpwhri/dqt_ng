@@ -3,4 +3,10 @@ body {
 }
 .chart-container {
   display: block;
+  height: 400px !important;
+  width: 400px !important;
+}
+canvas{
+  width: 400px !important;
+  height: 400px !important;
 }
