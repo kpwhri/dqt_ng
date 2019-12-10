@@ -14,7 +14,7 @@ import {AlertService} from './alert.service';
 })
 export class AppComponent implements OnInit {
 
-  @ViewChild('dqt') mainComponent: MainComponent;
+  @ViewChild('dqt', {static: false}) mainComponent: MainComponent;
   title = 'Adult Changes in Thought Data Query Tool';
   authenticated = false;
   ieComment = 'You may experience issues with your current browser.';

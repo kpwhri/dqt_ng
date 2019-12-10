@@ -5,7 +5,7 @@ import {
 import {Item, EventItem} from '../categories';
 import {ValueComponent} from '../value/value.component';
 import {CheckboxValueComponent} from '../checkbox-value/checkbox-value.component';
-import {AccordionTab} from 'primeng/components/accordion/accordion';
+import {AccordionTab} from 'primeng';
 
 @Component({
   selector: 'app-item',
@@ -14,9 +14,9 @@ import {AccordionTab} from 'primeng/components/accordion/accordion';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItemComponent implements OnInit {
-  @ViewChild('fieldset') fieldset: AccordionTab;
+  @ViewChild('fieldset', {static: false}) fieldset: AccordionTab;
   @ViewChildren('valueItem') valueList: QueryList<ValueComponent>;
-  @ViewChild('valueCheckbox') valueCheckbox: CheckboxValueComponent;
+  @ViewChild('valueCheckbox', {static: false}) valueCheckbox: CheckboxValueComponent;
   @Input('item') item: Item;
   @Output() onChange: EventEmitter<any> = new EventEmitter();
   position = 'before';

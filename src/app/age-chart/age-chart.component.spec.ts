@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { AgeChartComponent } from './age-chart.component';
-import {UIChart} from 'primeng/primeng';
+import {UIChart} from 'primeng';
 import {AgeGraphClass} from '../categories';
 
 describe('AgeChartComponent', () => {

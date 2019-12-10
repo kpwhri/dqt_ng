@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {Category, Item, EventItem} from '../categories';
 import {ItemComponent} from '../item/item.component';
-import {AccordionTab} from 'primeng/components/accordion/accordion';
+import {AccordionTab} from 'primeng';
 
 @Component({
   selector: 'app-category',
@@ -14,7 +14,7 @@ import {AccordionTab} from 'primeng/components/accordion/accordion';
 })
 export class CategoryComponent implements OnInit {
   @ViewChildren('itemComponent') itemComponents: QueryList<ItemComponent>;
-  @ViewChild('fieldset') fieldset: AccordionTab;
+  @ViewChild('fieldset', {static: false}) fieldset: AccordionTab;
   @Input('category') category: Category;
   @Output() onChange: EventEmitter<any> = new EventEmitter();
   private id: number;

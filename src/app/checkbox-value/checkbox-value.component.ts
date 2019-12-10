@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {SliderModule} from 'primeng/primeng';
+import {SliderModule} from 'primeng';
 import {EventItem} from '../categories';
 
 @Component({

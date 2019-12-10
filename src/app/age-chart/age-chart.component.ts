@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, ViewChild} from '@angular/core';
-import {UIChart} from 'primeng/components/chart/chart';
 import {AgeGraphClass} from '../categories';
+import {UIChart} from 'primeng';
 
 @Component({
   selector: 'app-age-chart',
@@ -8,7 +8,7 @@ import {AgeGraphClass} from '../categories';
   styleUrls: ['./age-chart.component.css']
 })
 export class AgeChartComponent implements OnInit {
-  @ViewChild('chart') chart: UIChart;
+  @ViewChild('chart', {static: false}) chart: UIChart;
   @Input('title') title = 'Age Distribution';
   data: AgeGraphClass;
   options: any;

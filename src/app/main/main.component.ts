@@ -19,15 +19,15 @@ import {GoogleAgeChartComponent} from '../google-age-chart/google-age-chart.comp
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  @ViewChild('master') masterComponent: CategoryMasterComponent;
-  // @ViewChild('ageBlChart') ageChartComponent: AgeChartComponent;
-  // @ViewChild('ageFuChart') ageFuChartComponent: AgeChartComponent;
-  @ViewChild('gAgeBlChart') gAgeChartComponent: GoogleAgeChartComponent;
-  @ViewChild('gAgeFuChart') gAgeFuChartComponent: GoogleAgeChartComponent;
-  @ViewChild('breadcrumb') breadcrumbComponent: BreadcrumbComponent;
-  @ViewChild('subjectTable') subjectTableComponent: SubjectTableComponent;
-  @ViewChild('filterDialog') filterDialogComponent: FilterDialogComponent;
-  @ViewChild('sidenav') sidenav: MatSidenav;
+  @ViewChild('master', {static: false}) masterComponent: CategoryMasterComponent;
+  // @ViewChild('ageBlChart', {static: false}) ageChartComponent: AgeChartComponent;
+  // @ViewChild('ageFuChart', {static: false}) ageFuChartComponent: AgeChartComponent;
+  @ViewChild('gAgeBlChart', {static: false}) gAgeChartComponent: GoogleAgeChartComponent;
+  @ViewChild('gAgeFuChart', {static: false}) gAgeFuChartComponent: GoogleAgeChartComponent;
+  @ViewChild('breadcrumb', {static: false}) breadcrumbComponent: BreadcrumbComponent;
+  @ViewChild('subjectTable', {static: false}) subjectTableComponent: SubjectTableComponent;
+  @ViewChild('filterDialog', {static: false}) filterDialogComponent: FilterDialogComponent;
+  @ViewChild('sidenav', {static: false}) sidenav: MatSidenav;
   ageBlTitle = 'Age Distribution (Baseline)';
   ageFuTitle = 'Age Distribution (Follow-up)';
   categories: Array<Category> = [];

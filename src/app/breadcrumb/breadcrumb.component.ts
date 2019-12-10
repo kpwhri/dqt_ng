@@ -1,6 +1,6 @@
 import {Component, OnInit, EventEmitter, Injectable} from '@angular/core';
 import {EventItem} from '../categories';
-import {MenuItem} from 'primeng/components/common/api';
+import {MenuItem} from 'primeng';
 import {MenuListener} from '../menuListener';
 import {AlertService} from '../alert.service';
 
