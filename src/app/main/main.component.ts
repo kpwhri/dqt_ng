@@ -49,6 +49,7 @@ export class MainComponent implements OnInit {
     this.menuListener.ExportFilter.on(e => this.exportFilters());
     this.menuListener.CollapseAll.on(e => this.collapseAll());
     this.menuListener.NavigationMode.on(e => this.switchNavigationMode());
+    this.menuListener.Refresh.on(e => this.refreshData());
   }
 
   toggleSidenav(): void {
@@ -95,6 +96,10 @@ export class MainComponent implements OnInit {
         }
       }
     )
+  }
+
+  refreshData() {
+    this.filterItems();
   }
 
   filterItems() {

@@ -7,6 +7,7 @@ export class MenuListener {
   private exportFilters: Event<string> = new Event<string>();
   private collapseAll: Event<string> = new Event<string>();
   private navigationMode: Event<string> = new Event<string>();
+  private refresh: Event<string> = new Event<string>();  // refresh data
 
   public get RemoveValue(): IEvent<EventItem> {
     return this.removeValue;
@@ -32,6 +33,10 @@ export class MenuListener {
     return this.navigationMode;
   }
 
+  public get Refresh(): IEvent<string> {
+    return this.refresh;
+  }
+
   triggerRemove(e: EventItem) {
     this.removeValue.trigger(e);
   }
@@ -55,10 +60,15 @@ export class MenuListener {
   triggerNavigationMode(arg: string) {
     this.navigationMode.trigger(arg);
   }
+
+  triggerRefresh(arg: string) {
+    this.refresh.trigger(arg);
+  }
 }
 
 export interface IEvent<T> {
   on(handler: { (data?: T): void }): void;
+
   off(handler: { (data?: T): void }): void;
 }
 

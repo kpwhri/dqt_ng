@@ -63,7 +63,8 @@ export class BreadcrumbComponent implements OnInit {
       if (mi instanceof PrimaryMenuItem) {
         mi.removeAllValues();
       }
-    };
+    }
+    this.menuListener.triggerRefresh('all');
   }
 
   removeItem(item: EventItem) {
@@ -258,7 +259,7 @@ class PrimaryMenuItem implements MenuItem {
       if (mi instanceof ValueMenuItem) {
         mi.remove();  // send remove item command to each value
       }
-    };
+    }
   }
 
 
