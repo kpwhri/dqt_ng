@@ -28,16 +28,15 @@ export class GoogleAgeChartComponent implements OnInit {
   loaded = false;
 
   constructor(increment: IdIncrement) {
+    google.charts.load('current', {
+      'packages': ['controls', 'corechart']
+    });
+    google.charts.setOnLoadCallback(() => {this.loaded = false;})
     this.id = increment.increment();
     this.elementId = 'chart_' + this.id;
   }
 
   ngOnInit() {
-    google.charts.load('current', {
-      'packages': ['controls', 'corechart']
-    });
-    google.charts.setOnLoadCallback(() => {this.loaded = false;})
-
     this.options = {
       chartArea: {
         right: 100

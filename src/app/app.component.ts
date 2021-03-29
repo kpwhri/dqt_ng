@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   ieComment = 'You may experience issues with your current browser.';
   tabs: TabConfig[] = [];
   selectedTab = 0;
+  private isFirstRun = true;
   private cookieName = 'login';
   private cookieConfig: any = {
     expires: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)  // one year
@@ -97,6 +98,14 @@ export class AppComponent implements OnInit {
       this.selectedTab = 1;
     } else {
       this.selectedTab = 0;
+    }
+    this.refreshQueryTool()
+  }
+
+  refreshQueryTool() {
+    if (this.isFirstRun) {
+      this.mainComponent.refreshData();
+      this.isFirstRun = false;
     }
   }
 }

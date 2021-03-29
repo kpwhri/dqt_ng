@@ -77,7 +77,7 @@ export class MainComponent implements OnInit {
               public dialog: MatDialog,
               private spinnerService: LoaderService
   ) {
-    this.filterItems();
+    // this.filterItems();
   }
 
   promoteCategory(itemId: number, categoryId: number) {

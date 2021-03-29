@@ -5,18 +5,9 @@
 <![endif]-->
 <div>
   <h1 class="title">{{title}}</h1>
-  <div style="margin-left: 45%">
-    <app-spinner
-      name="startSpinner"
-      loadingImage="assets/Spin-1s-200px.svg"
-      [show]="true"
-      size="large"
-    ></app-spinner>
-  </div>
 </div>
 <div *ngIf="tabs.length > 0">
-  <p-tabView
-    (onChanage)="goToQueryTool(false)">
+  <p-tabView (onChange)="refreshQueryTool()">
     <p-tabPanel header="{{tabconfig.header}}"
                 [selected]="tabconfig.header === 'Home' && selectedTab !== 1"
                 *ngFor="let tabconfig of tabs">
