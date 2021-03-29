@@ -1,17 +1,17 @@
-import {Component, OnInit, ViewChild, ChangeDetectorRef, ApplicationRef } from '@angular/core';
-import {Category, SearchResult, AgeGraphClass, EventItem, SubjectTableDataItem} from '../categories';
+import {Component, OnInit, ViewChild, ChangeDetectorRef, ApplicationRef} from '@angular/core';
+import {Category, EventItem, SubjectTableDataItem} from '../categories';
 import {CategoryService} from '../app.service';
 import {CategoryMasterComponent} from '../category-master/category-master.component';
-import {AgeChartComponent} from '../age-chart/age-chart.component';
 import {BreadcrumbComponent} from '../breadcrumb/breadcrumb.component';
 import {MenuListener} from '../menuListener';
 import {SubjectTableComponent} from '../subject-table/subject-table.component';
 import {FilterDialogComponent} from '../filter-dialog/filter-dialog.component';
-import {MatSidenav} from '@angular/material';
-import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
+
+import {MatDialog} from '@angular/material/dialog';
 import {SearchDialogComponent} from '../search-dialog/search-dialog.component';
 import {LoaderService} from '../loader.service';
 import {GoogleAgeChartComponent} from '../google-age-chart/google-age-chart.component';
+import {MatSidenav} from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-main',
@@ -20,8 +20,6 @@ import {GoogleAgeChartComponent} from '../google-age-chart/google-age-chart.comp
 })
 export class MainComponent implements OnInit {
   @ViewChild('master', {static: false}) masterComponent: CategoryMasterComponent;
-  // @ViewChild('ageBlChart', {static: false}) ageChartComponent: AgeChartComponent;
-  // @ViewChild('ageFuChart', {static: false}) ageFuChartComponent: AgeChartComponent;
   @ViewChild('gAgeBlChart', {static: false}) gAgeChartComponent: GoogleAgeChartComponent;
   @ViewChild('gAgeFuChart', {static: false}) gAgeFuChartComponent: GoogleAgeChartComponent;
   @ViewChild('breadcrumb', {static: false}) breadcrumbComponent: BreadcrumbComponent;

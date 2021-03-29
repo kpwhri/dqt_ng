@@ -1,4 +1,5 @@
 import {Component, Injectable, Input, OnInit} from '@angular/core';
+
 declare var google: any;
 
 @Injectable()
@@ -24,6 +25,7 @@ export class GoogleAgeChartComponent implements OnInit {
   data: any[];
   options: any;
   chart: any;
+  loaded = false;
 
   constructor(increment: IdIncrement) {
     this.id = increment.increment();
@@ -34,14 +36,13 @@ export class GoogleAgeChartComponent implements OnInit {
     google.charts.load('current', {
       'packages': ['controls', 'corechart']
     });
+    google.charts.setOnLoadCallback(() => {this.loaded = false;})
 
     this.options = {
       chartArea: {
         right: 100
       },
-      chart: {
-
-      },
+      chart: {},
       title: this.title,
       legend: {
         position: 'right',  // otherwise legend overlaps

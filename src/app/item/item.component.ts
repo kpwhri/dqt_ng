@@ -5,7 +5,7 @@ import {
 import {Item, EventItem} from '../categories';
 import {ValueComponent} from '../value/value.component';
 import {CheckboxValueComponent} from '../checkbox-value/checkbox-value.component';
-import {AccordionTab} from 'primeng';
+import {AccordionTab} from 'primeng/accordion';
 
 @Component({
   selector: 'app-item',

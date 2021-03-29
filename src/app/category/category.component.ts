@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {Category, Item, EventItem} from '../categories';
 import {ItemComponent} from '../item/item.component';
-import {AccordionTab} from 'primeng';
+import {AccordionTab} from 'primeng/accordion';
 
 @Component({
   selector: 'app-category',

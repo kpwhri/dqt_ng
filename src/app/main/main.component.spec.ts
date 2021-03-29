@@ -4,7 +4,9 @@ import {DebugElement, NO_ERRORS_SCHEMA} from '@angular/core';
 
 import { MainComponent } from './main.component';
 import {FormsModule} from '@angular/forms';
-import {AccordionModule, DialogModule, MenubarModule, UIChart} from 'primeng';
+import {AccordionModule} from 'primeng/accordion';
+import {DialogModule} from 'primeng/dialog';
+import {MenubarModule} from 'primeng/menubar';
 
 describe('MainComponent', () => {
   let component: MainComponent;

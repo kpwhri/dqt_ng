@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, ViewChild} from '@angular/core';
 import {AgeGraphClass} from '../categories';
-import {UIChart} from 'primeng';
+import {UIChart} from 'primeng/chart';
 
 @Component({
   selector: 'app-age-chart',

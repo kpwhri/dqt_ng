@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {SliderModule} from 'primeng';
 import {EventItem} from '../categories';
+import {SliderModule} from 'primeng/slider';
 
 @Component({
   selector: 'app-checkbox-value',

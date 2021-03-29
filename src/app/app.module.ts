@@ -3,17 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import {CategoryService} from './app.service';
-import {
-  AccordionModule,
-  ChartModule,
-  DialogModule,
-  FieldsetModule,
-  MenubarModule,
-  SliderModule,
-  TabViewModule,
-  TooltipModule
-} from 'primeng';
-import {ToggleButtonModule} from 'primeng';
 import { CheckboxValueComponent } from './checkbox-value/checkbox-value.component';
 import { CategoryMasterComponent } from './category-master/category-master.component';
 import { CategoryComponent } from './category/category.component';
@@ -26,7 +15,6 @@ import {MenuListener} from './menuListener';
 import {PerfectScrollbarModule, PerfectScrollbarConfigInterface, PERFECT_SCROLLBAR_CONFIG} from 'ngx-perfect-scrollbar';
 import { SubjectTableComponent } from './subject-table/subject-table.component';
 import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
-import {SharedModule, OverlayPanelModule} from 'primeng';
 import { MainComponent } from './main/main.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { FaqPageComponent } from './faq-page/faq-page.component';
@@ -34,13 +22,6 @@ import { UserFormComponent } from './user-form/user-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import {ClipboardModule} from 'ngx-clipboard';
-import {
-  MatCheckboxModule,
-  MatSidenavModule,
-  MatSnackBarModule,
-  MatDialogModule,
-  MatTooltipModule,
-} from '@angular/material';
 import { SearchDialogComponent } from './search-dialog/search-dialog.component';
 import {LoaderService} from './loader.service';
 import { SpinnerComponent } from './spinner/spinner.component';
@@ -51,6 +32,22 @@ import {AlertService} from './alert.service';
 import { MessageHistoryDialogComponent } from './message-history-dialog/message-history-dialog.component';
 import {GoogleAgeChartComponent, IdIncrement} from './google-age-chart/google-age-chart.component';
 import { DataDictionaryComponent } from './data-dictionary/data-dictionary.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {SliderModule} from 'primeng/slider';
+import {ToggleButtonModule} from 'primeng/togglebutton';
+import {AccordionModule} from 'primeng/accordion';
+import {MenubarModule} from 'primeng/menubar';
+import {ChartModule} from 'primeng/chart';
+import {DialogModule} from 'primeng/dialog';
+import {TooltipModule} from 'primeng/tooltip';
+import {FieldsetModule} from 'primeng/fieldset';
+import {SharedModule} from 'primeng/api';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
+import {TabViewModule} from 'primeng/tabview';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true

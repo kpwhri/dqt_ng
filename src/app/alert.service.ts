@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {MatDialog, MatSnackBar} from '@angular/material';
 import {MessageHistoryDialogComponent} from './message-history-dialog/message-history-dialog.component';
 import { environment } from '../environments/environment';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog} from '@angular/material/dialog';
 
 @Injectable()
 export class AlertService {

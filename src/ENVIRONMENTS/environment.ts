@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
   domain: 'localhost',
-  serverAddress: 'http://10.1.179.20:8090'
+  serverAddress: 'http://127.0.0.1:8090'
 };
