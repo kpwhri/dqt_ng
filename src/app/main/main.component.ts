@@ -13,6 +13,8 @@ import {LoaderService} from '../loader.service';
 import {GoogleAgeChartComponent} from '../google-age-chart/google-age-chart.component';
 import {MatSidenav} from '@angular/material/sidenav';
 
+declare var google: any;
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -77,7 +79,16 @@ export class MainComponent implements OnInit {
               public dialog: MatDialog,
               private spinnerService: LoaderService
   ) {
-    // this.filterItems();
+    this.loadGoogle();
+  }
+
+  loadGoogle() {
+    google.charts.load('current', {
+      'packages': ['controls', 'corechart']
+    });
+    google.charts.setOnLoadCallback(() => {
+      this.filterItems();
+    });
   }
 
   promoteCategory(itemId: number, categoryId: number) {
@@ -113,10 +124,8 @@ export class MainComponent implements OnInit {
     const obs = this.categoryService.filterItems(this.chartData);
     obs.subscribe(e => {
       this.spinnerService.hide('startSpinner');
-      // this.ageChartComponent.updateChart(e.age_bl as AgeGraphClass);
-      // this.ageFuChartComponent.updateChart(e.age_fu as AgeGraphClass);
-      this.gAgeChartComponent.updateChart(e.age_bl_g as any[]);
-      this.gAgeFuChartComponent.updateChart(e.age_fu_g as any[]);
+      this.gAgeChartComponent.updateChart(google, e.age_bl_g as any[]);
+      this.gAgeFuChartComponent.updateChart(google, e.age_fu_g as any[]);
       this.subjectTableComponent.updateTable(e.subject_counts as SubjectTableDataItem[]);
     });
   }

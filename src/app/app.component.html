@@ -7,7 +7,7 @@
   <h1 class="title">{{title}}</h1>
 </div>
 <div *ngIf="tabs.length > 0">
-  <p-tabView (onChange)="refreshQueryTool()">
+  <p-tabView>
     <p-tabPanel header="{{tabconfig.header}}"
                 [selected]="tabconfig.header === 'Home' && selectedTab !== 1"
                 *ngFor="let tabconfig of tabs">

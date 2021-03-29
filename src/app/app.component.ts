@@ -99,13 +99,5 @@ export class AppComponent implements OnInit {
     } else {
       this.selectedTab = 0;
     }
-    this.refreshQueryTool()
-  }
-
-  refreshQueryTool() {
-    if (this.isFirstRun) {
-      this.mainComponent.refreshData();
-      this.isFirstRun = false;
-    }
   }
 }

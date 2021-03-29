@@ -1,7 +1,5 @@
 import {Component, Injectable, Input, OnInit} from '@angular/core';
 
-declare var google: any;
-
 @Injectable()
 export class IdIncrement {
   counter = 0;
@@ -28,10 +26,6 @@ export class GoogleAgeChartComponent implements OnInit {
   loaded = false;
 
   constructor(increment: IdIncrement) {
-    google.charts.load('current', {
-      'packages': ['controls', 'corechart']
-    });
-    google.charts.setOnLoadCallback(() => {this.loaded = false;})
     this.id = increment.increment();
     this.elementId = 'chart_' + this.id;
   }
@@ -54,22 +48,22 @@ export class GoogleAgeChartComponent implements OnInit {
     };
   }
 
-  drawGraph() {
-    this.chart = this.createBarChart(document.getElementById(this.elementId));
+  drawGraph(google: any) {
+    this.chart = this.createBarChart(google, document.getElementById(this.elementId));
     this.chart.draw(this.data, this.options);
   }
 
-  createBarChart(element: any): any {
+  createBarChart(google: any, element: any): any {
     return new google.visualization.ColumnChart(element);
   }
 
-  createDataTable(array: any[]): any {
+  createDataTable(google: any, array: any[]): any {
     return google.visualization.arrayToDataTable(array);
   }
 
-  updateChart(data: any[]) {
-    this.data = this.createDataTable(data);
-    this.drawGraph();
+  updateChart(google: any, data: any[]) {
+    this.data = this.createDataTable(google, data);
+    this.drawGraph(google);
   };
 
 }
