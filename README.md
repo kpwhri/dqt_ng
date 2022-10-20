@@ -4,8 +4,9 @@
 
 * Install nodejs from https://nodejs.org/en/download/
 * Run `npm install npm@latest -g`
-* Run `npm install -g @angular/cli`
+* Run `npm install -g @angular/cli@latest`
 * `ng serve`: development server
+* `ng build --prod`: build dist directory for deployment
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
