@@ -21,6 +21,20 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 # Upgrades
 
+## Upgrade Angular to Latest Version
+
+Angular versions seem to last about 18 months (6 months as primary version, then 1y of support).
+
+To update version:
+* Check `package.json` for the version of Angular (this is the first number in `dependencies` > `@angular/SOMETHING`).
+* Navigate to the [Angular Update Guide](https://update.angular.io/)
+* Change the 'From' version to this repo's current version.
+* The 'To:' version should be set to the current stable release.
+  * https://angular.io/guide/releases#release-schedule
+* Run the steps in the order provided on the 'Angular Update Page'
+
+## Other
+
 * npm i -g npm-check-updates
 * ncu -u
 * npm install
