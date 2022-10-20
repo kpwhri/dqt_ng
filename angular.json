@@ -122,7 +122,6 @@
       }
     }
   },
-  "defaultProject": "dqt",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
