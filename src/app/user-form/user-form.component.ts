@@ -1,7 +1,6 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {UserForm} from '../categories';
-import {CategoryService} from '../app.service';
 
 @Component({
   selector: 'app-user-form',
@@ -27,7 +26,7 @@ export class UserFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  update(event) {
+  update() {
     this.onChange.emit({userForm: this.model});
   }
 }
