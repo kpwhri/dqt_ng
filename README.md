@@ -2,7 +2,7 @@
 
 # Initial Setup
 
-* Install nodejs
+* Install nodejs from https://nodejs.org/en/download/
 * Run `npm install npm@latest -g`
 * Run `npm install -g @angular/cli`
 * `ng serve`: development server
