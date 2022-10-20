@@ -16,3 +16,7 @@ body {
   -webkit-font-smoothing: antialiased;
   font-size: 1em;
 }
+
+.p-menuitem-active {
+  z-index: 100;
+}
