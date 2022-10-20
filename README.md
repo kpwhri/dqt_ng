@@ -33,6 +33,15 @@ To update version:
   * https://angular.io/guide/releases#release-schedule
 * Run the steps in the order provided on the 'Angular Update Page'
 
+### Troubleshooting
+
+* `Repository is not clean. Please commit or stash any changes before updating.`
+  * Ensure that all changes have been committed
+  * Delete `package-lock.json` file (or cut to location outside repo)
+* Package "x" has an incompatible peer dependency to "y"...
+  * Run `ng update x`
+  * (or) add the `--force` option
+
 ## Other
 
 * npm i -g npm-check-updates
