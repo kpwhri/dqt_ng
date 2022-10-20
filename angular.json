@@ -102,7 +102,8 @@
               "src/favicon.ico",
               "src/robots.txt",
               "src/.well-known/security.txt"
-            ]
+            ],
+            "tsConfig": ""
           }
         }
       }
@@ -125,10 +126,13 @@
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
-      "style": "css"
+      "name": "",
+      "project": ""
     },
     "@schematics/angular:directive": {
-      "prefix": "app"
+      "prefix": "app",
+      "name": "",
+      "project": ""
     }
   }
 }
