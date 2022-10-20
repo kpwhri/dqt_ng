@@ -25,7 +25,7 @@ import {ClipboardModule} from 'ngx-clipboard';
 import { SearchDialogComponent } from './search-dialog/search-dialog.component';
 import {LoaderService} from './loader.service';
 import { SpinnerComponent } from './spinner/spinner.component';
-import {NgcCookieConsentConfig, NgcCookieConsentModule, NgcCookieConsentService, NgcCookieConsentStatus} from 'ngx-cookieconsent';
+import {NgcCookieConsentConfig, NgcCookieConsentModule} from 'ngx-cookieconsent';
 import { environment } from '../environments/environment';
 import {CookieModule} from 'ngx-cookie';
 import {AlertService} from './alert.service';
