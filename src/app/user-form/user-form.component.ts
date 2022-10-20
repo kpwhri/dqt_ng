@@ -28,7 +28,6 @@ export class UserFormComponent implements OnInit {
   }
 
   update(event) {
-    this.model = this.userForm.value;
     this.onChange.emit({userForm: this.model});
   }
 }
