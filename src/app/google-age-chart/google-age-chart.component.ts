@@ -42,8 +42,8 @@ export class GoogleAgeChartComponent implements OnInit {
         maxLines: 2,
       },
       isStacked: true,
-      height: 350,
-      width: 450,
+      height: 400,
+      width: 400,
       colors: ['#243f86', '#92cdee', '#678197', '#F2D65C']
     };
   }

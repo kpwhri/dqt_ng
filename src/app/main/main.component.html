@@ -17,20 +17,23 @@
           <span>{{buttonText}}</span>
         </button>
       </div>
-      <div>
-        <app-spinner
-          name="startSpinner"
-          loadingImage="assets/Spin-1s-200px.svg"
-          [show]="true"
-          size="large"
-        ></app-spinner>
-        <div class="row justify-content-center" style="margin-left: 5px;">
-          <div class="col-md-6">
-              <app-google-age-chart #gAgeBlChart [title]="ageBlTitle"></app-google-age-chart>
-              <app-google-age-chart #gAgeFuChart [title]="ageFuTitle"></app-google-age-chart>
+      <div style="padding-left: 40px;">
+        <div class="row justify-content-center" style="margin-left: 20px;">
+          <div class="col-md-6" style="margin-right: 50px;">
+
+            <div style="margin-left: 45%">
+              <app-spinner
+                name="startSpinner"
+                loadingImage="assets/Spin-1s-200px.svg"
+                [show]="true"
+                size="large"
+              ></app-spinner>
+            </div>
+            <app-google-age-chart #gAgeBlChart [title]="ageBlTitle"></app-google-age-chart>
+            <app-google-age-chart #gAgeFuChart [title]="ageFuTitle"></app-google-age-chart>
           </div>
-          <div class="col-md-4 col-sm-6">
-            <app-subject-table #subjectTable style="margin-left: 5px;"></app-subject-table>
+          <div class="col-md-4">
+            <app-subject-table #subjectTable style="margin-left: 50px;"></app-subject-table>
           </div>
         </div>
       </div>
