@@ -83,7 +83,12 @@ export class MainComponent implements OnInit {
   }
 
   loadGoogle() {
-    google.charts.load('current', {
+    /*
+      TODO: reset to 'current' when this bug resolved:
+        * https://github.com/google/google-visualization-issues/issues/2693
+        Alternatively, need to load chart after page is viewed (refresh). Worried about viz not yet being loaded, etc.
+     */
+    google.charts.load('45.2', {
       'packages': ['controls', 'corechart']
     });
     google.charts.setOnLoadCallback(() => {
