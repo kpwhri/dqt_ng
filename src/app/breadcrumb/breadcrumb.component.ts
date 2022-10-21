@@ -54,6 +54,7 @@ export class BreadcrumbComponent implements OnInit {
 
     if (!added) {
       this.items.push(itemToAdd);
+      this.items = [...this.items];  // required to refresh menubar
     }
   }
 
