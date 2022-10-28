@@ -27,6 +27,10 @@ export class UserFormComponent implements OnInit {
   }
 
   update() {
+    this.model.name = this.userForm.value['name'];
+    this.model.email = this.userForm.value['email'];
+    this.model.affiliation = this.userForm.value['affiliation'];
+    this.model.reasonForUse = this.userForm.value['reasonForUse'];
     this.onChange.emit({userForm: this.model});
   }
 }

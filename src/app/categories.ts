@@ -115,15 +115,6 @@ export class UserForm {
     public email: string;
     public affiliation: string;
     public reasonForUse: string;
-
-    toJsonString(): any {
-      return {
-        name: this.name,
-        email: this.email,
-        affiliation: this.affiliation,
-        reasonForUse: this.reasonForUse
-      };
-    }
 }
 
 export class TabConfig {
