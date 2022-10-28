@@ -6,7 +6,7 @@
       <input #target [(ngModel)]="searchTerm" placeholder="search"
              (click)="openDialog()"
       />
-      <button (click)="collapseAll()">Collapse All</button>
+      <button class="btn-info" (click)="collapseAll()">Collapse All</button>
 
       <app-category-master #master (onChange)="categoryUpdated($event)"></app-category-master>
     </mat-sidenav>
