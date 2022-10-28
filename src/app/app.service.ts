@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Category, Checksum, DataCategory, SearchResult, UserForm} from './categories';
 import {Observable} from 'rxjs';
-import 'rxjs/add/operator/map';
 import {Config} from './app.config';
 
 

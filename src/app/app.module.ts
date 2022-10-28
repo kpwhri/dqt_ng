@@ -8,7 +8,6 @@ import { CategoryMasterComponent } from './category-master/category-master.compo
 import { CategoryComponent } from './category/category.component';
 import { ItemComponent } from './item/item.component';
 import { ValueComponent } from './value/value.component';
-import { AgeChartComponent } from './age-chart/age-chart.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import {RouterModule} from '@angular/router';
 import {MenuListener} from './menuListener';
@@ -41,7 +40,6 @@ import {SliderModule} from 'primeng/slider';
 import {ToggleButtonModule} from 'primeng/togglebutton';
 import {AccordionModule} from 'primeng/accordion';
 import {MenubarModule} from 'primeng/menubar';
-import {ChartModule} from 'primeng/chart';
 import {DialogModule} from 'primeng/dialog';
 import {TooltipModule} from 'primeng/tooltip';
 import {FieldsetModule} from 'primeng/fieldset';
@@ -91,7 +89,6 @@ const cookieConfig: NgcCookieConsentConfig = {
         CategoryComponent,
         ItemComponent,
         ValueComponent,
-        AgeChartComponent,
         GoogleAgeChartComponent,
         BreadcrumbComponent,
         SubjectTableComponent,
@@ -124,7 +121,6 @@ const cookieConfig: NgcCookieConsentConfig = {
         FieldsetModule,
         TooltipModule,
         DialogModule,
-        ChartModule,
         MenubarModule,
         AccordionModule,
         ClipboardModule,

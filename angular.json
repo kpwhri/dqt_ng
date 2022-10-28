@@ -135,5 +135,8 @@
       "name": "",
       "project": ""
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
