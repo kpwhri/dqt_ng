@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {EventItem} from '../categories';
 import {SliderModule} from 'primeng/slider';
+import {AlertService} from '../alert.service';
 
 @Component({
   selector: 'app-checkbox-value',
@@ -22,7 +23,10 @@ export class CheckboxValueComponent implements OnInit {
   vals: number[] = [];
   buttonVals: number[] = [];
 
-  constructor() {
+  constructor(
+    private alertService: AlertService
+  ) {
+
   }
 
   ngOnInit() {
@@ -41,10 +45,30 @@ export class CheckboxValueComponent implements OnInit {
   }
 
   onValueUpdate(e) {
+    /**
+     * Update, but first check and ensure min != max, if it does send a toast
+     */
+    let newMin;
+    let newMax;
     if (this.isDecimal) {
-      this.buttonVals = [this.vals[0] / 10, this.vals[1] / 10];
+      newMin = this.vals[0] / 10;
+      newMax = this.vals[1] / 10;
     } else {
-      this.buttonVals = [this.vals[0], this.vals[1]];
+      newMin = this.vals[0];
+      newMax = this.vals[1];
+    }
+    // ensure newMin !== newMax
+    if (newMin === newMax) {
+      if (this.isDecimal) {
+        this.vals = [this.buttonVals[0] * 10, this.buttonVals[1] * 10]
+      } else {
+        this.vals = [this.buttonVals[0], this.buttonVals[1]]
+      }
+      this.alertService.showMessages(
+        {'error': ['Invalid range: minimum and maximum values cannot be equal.']}
+      );
+    } else {
+      this.buttonVals = [newMin, newMax];
     }
   }
 
