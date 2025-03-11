@@ -106,6 +106,7 @@ export class PieDataItem {
 }
 
 export class SubjectTableDataItem {
+  id: string;
   header: string;
   value: string;
 }
