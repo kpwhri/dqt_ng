@@ -29,7 +29,7 @@ export class MainComponent implements OnInit {
   @ViewChild('filterDialog', {static: false}) filterDialogComponent: FilterDialogComponent;
   @ViewChild('sidenav', {static: false}) sidenav: MatSidenav;
   ageBlTitle = 'Age Distribution (Baseline)';
-  ageFuTitle = 'Age Distribution (Follow-up)';
+  ageFuTitle = 'Age Distribution (Most Recent Visit)';
   categories: Array<Category> = [];
   searchTerm = '';
   buttonText = 'SHOW · FILTERS';
