@@ -16,11 +16,11 @@
   <tfoot>
     <tr *ngIf="maskValue > 0">
       <td colspan="2">
-        * Cell size <{{maskValue}} are not shown.
+        <ul><li>Cell size &le;{{maskValue}} are not shown.</li></ul>
       </td>
     </tr>
     <tr *ngFor="let comment of comments">
-      <td colspan="2" style="word-wrap: break-word;">* {{comment}}</td>
+      <td colspan="2" style="word-wrap: break-word;"><ul><li>{{comment}}</li></ul></td>
     </tr>
   </tfoot>
 </table>
