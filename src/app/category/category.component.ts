@@ -7,15 +7,14 @@ import {ItemComponent} from '../item/item.component';
 import {Accordion} from 'primeng/accordion';
 
 @Component({
-    selector: 'app-category',
-    templateUrl: './category.component.html',
-    styleUrls: ['./category.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class CategoryComponent implements OnInit {
   @ViewChildren('itemComponent') itemComponents: QueryList<ItemComponent>;
-  @ViewChild('fieldset', {static: false}) fieldset: Accordion;
   @Input('category') category: Category;
   @Output() onChange: EventEmitter<any> = new EventEmitter();
   private id: number;
@@ -23,6 +22,7 @@ export class CategoryComponent implements OnInit {
   description: string;
   items: Item[] = [];
   position = 'before';
+  activeIndex: number | null = null;
 
   constructor(private changeDetectorRef: ChangeDetectorRef,
               private applicationRef: ApplicationRef,
@@ -47,7 +47,7 @@ export class CategoryComponent implements OnInit {
   }
 
   expandItem(itemId: number) {
-    this.fieldset.selected = true;
+    this.activeIndex = 0;
     this.itemComponents.forEach(item => {
       if (item.item.id === itemId) {
         item.expand();
@@ -59,7 +59,7 @@ export class CategoryComponent implements OnInit {
   }
 
   collapseAll() {
-    this.fieldset.selected = false;
+    this.activeIndex = null;
     this.itemComponents.forEach(item => {
       item.collapse();
     });
@@ -67,7 +67,7 @@ export class CategoryComponent implements OnInit {
   }
 
   expandItems() {
-    this.fieldset.selected = true;
+    this.activeIndex = 0;
     this.itemComponents.forEach(item => {
       item.expand();
     });
@@ -85,6 +85,8 @@ export class CategoryComponent implements OnInit {
   refresh(status: boolean) {
     this.changeDetectorRef.detectChanges();
     this.applicationRef.tick();
-    this.zone.run(() => {this.fieldset.selected = status; });
+    this.zone.run(() => {
+      this.activeIndex = status ? 0 : null;
+    });
   }
 }

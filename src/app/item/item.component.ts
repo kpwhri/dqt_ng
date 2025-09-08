@@ -8,11 +8,11 @@ import {CheckboxValueComponent} from '../checkbox-value/checkbox-value.component
 import {Accordion} from 'primeng/accordion';
 
 @Component({
-    selector: 'app-item',
-    templateUrl: './item.component.html',
-    styleUrls: ['./item.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'app-item',
+  templateUrl: './item.component.html',
+  styleUrls: ['./item.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class ItemComponent implements OnInit {
   @ViewChild('fieldset', {static: false}) fieldset: Accordion;
@@ -21,6 +21,7 @@ export class ItemComponent implements OnInit {
   @Input('item') item: Item;
   @Output() onChange: EventEmitter<any> = new EventEmitter();
   position = 'before';
+  isExpanded = false;  // track accordion open/close state
 
   constructor(private changeDetectorRef: ChangeDetectorRef,
               private applicationRef: ApplicationRef,
@@ -38,25 +39,17 @@ export class ItemComponent implements OnInit {
   }
 
   expand() {
-    let event = new FakeEvent();
-    if (! this.fieldset.selected) {
-      this.fieldset.toggle(event);
-    }
-    // this.fieldset.selected = true;
-    this.changeDetectorRef.detectChanges();
-    this.applicationRef.tick();
-    this.zone.run(() => {this.fieldset.selected = true; });
+    this.zone.run(() => {
+      this.isExpanded = true;
+      this.changeDetectorRef.markForCheck();
+    });
   }
 
   collapse() {
-    let event = new FakeEvent();
-    if (this.fieldset.selected) {
-      this.fieldset.toggle(event);
-    }
-    this.fieldset.selected = false;
-    this.changeDetectorRef.detectChanges();
-    this.applicationRef.tick();
-    this.zone.run(() => {this.fieldset.selected = false; });
+    this.zone.run(() => {
+      this.isExpanded = false;
+      this.changeDetectorRef.markForCheck();
+    });
   }
 
   unselectValue(event: EventItem) {
@@ -67,17 +60,21 @@ export class ItemComponent implements OnInit {
         }
       });
     } else if (this.valueCheckbox) {
-      this.zone.run(() => {this.valueCheckbox.checked = false; });
+      this.zone.run(() => {
+        this.valueCheckbox.checked = false;
+      });
     }
     this.collapse();
   }
-}
 
-export class FakeEvent {
- preventDefault() {
+  onAccordionValueChange(val: number | number[]) {
+    // keep local state in sync when user toggles
+    if (Array.isArray(val)) {
+      this.isExpanded = val.includes(0);
+    } else {
+      this.isExpanded = val === 0;
+    }
+    this.changeDetectorRef.markForCheck();
+  }
 
- }
- stopPropogation() {
-
- }
 }

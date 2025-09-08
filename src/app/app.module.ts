@@ -11,7 +11,7 @@ import {ValueComponent} from './value/value.component';
 import {BreadcrumbComponent} from './breadcrumb/breadcrumb.component';
 import {RouterModule} from '@angular/router';
 import {MenuListener} from './menuListener';
-import {PerfectScrollbarModule, PerfectScrollbarConfigInterface, PERFECT_SCROLLBAR_CONFIG} from 'ngx-perfect-scrollbar';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {SubjectTableComponent} from './subject-table/subject-table.component';
 import {FilterDialogComponent} from './filter-dialog/filter-dialog.component';
 import {MainComponent} from './main/main.component';
@@ -46,10 +46,6 @@ import {FieldsetModule} from 'primeng/fieldset';
 import {SharedModule} from 'primeng/api';
 import {TabsModule} from 'primeng/tabs';
 import {providePrimeNG} from 'primeng/config';
-
-const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true
-};
 
 const cookieConfig: NgcCookieConsentConfig = {
   'cookie': {
@@ -124,7 +120,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     ClipboardModule,
     SharedModule,
     TabsModule,
-    PerfectScrollbarModule,
+    ScrollPanelModule,
     RouterModule.forRoot([])],
   providers: [
     providePrimeNG({
@@ -134,10 +130,6 @@ const cookieConfig: NgcCookieConsentConfig = {
     CategoryService,
     MenuListener,
     AlertService,
-    {
-      provide: PERFECT_SCROLLBAR_CONFIG,
-      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-    },
     LoaderService,
     IdIncrement,
     provideHttpClient(withInterceptorsFromDi())

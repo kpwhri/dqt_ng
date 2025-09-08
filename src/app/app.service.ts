@@ -23,7 +23,7 @@ export class CategoryService {
 
   constructor(private http: HttpClient) {
     if (this.serverAddress[this.serverAddress.length - 1] === '/') {
-      this.serverAddress = this.serverAddress.substr(0, this.serverAddress.length - 1);
+      this.serverAddress = this.serverAddress.substring(0, this.serverAddress.length - 1);
     }
   }
 
