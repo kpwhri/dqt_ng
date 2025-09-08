@@ -2,9 +2,10 @@ import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import {UserForm} from '../categories';
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css']
+    selector: 'app-home-page',
+    templateUrl: './home-page.component.html',
+    styleUrls: ['./home-page.component.css'],
+    standalone: false
 })
 export class HomePageComponent implements OnInit {
 

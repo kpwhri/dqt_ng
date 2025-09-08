@@ -2,15 +2,16 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {TabConfig, UserForm} from './categories';
 import {CategoryService} from './app.service';
 import {MainComponent} from './main/main.component';
-import {Subscription} from 'rxjs/Subscription';
+import {Subscription} from 'rxjs';
 import {NgcCookieConsentService} from 'ngx-cookieconsent';
 import {CookieService} from 'ngx-cookie';
 import {AlertService} from './alert.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    standalone: false
 })
 export class AppComponent implements OnInit {
 
@@ -95,9 +96,13 @@ export class AppComponent implements OnInit {
   goToQueryTool(status: boolean) {
     this.selectedTab = 0;
     if (status) {
-      this.selectedTab = 1;
+      this.selectedTab = this.tabs.length;
     } else {
       this.selectedTab = 0;
     }
+  }
+
+  onTabChange(val: number) {
+    this.selectedTab = val;
   }
 }

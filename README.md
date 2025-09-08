@@ -33,6 +33,24 @@ To update version:
   * https://angular.io/guide/releases#release-schedule
 * Run the steps in the order provided on the 'Angular Update Page'
 
+## Larger Upgrades
+
+In theory, upgrades should be done steadily...but, practically, updates can end up jumping across multiple major version. E.g., I'm currently going from Angular 14 to Angular 20. Ideally, follow the gradual update scheme provided at angular.dev/update-guide, but across sucha gulf, it's more convenient to jump ahead and fix anything that broke. Here are my steps:
+
+* Install most recent version of nodejs
+* Confirm install:
+  * `node -v`
+  * `npm -v`
+* Update Angular CLI
+  * Global
+    * `npm uninstall -g @angular/cli`
+    * `npm install -g @angular/cli@latest`
+  * Local
+    * `ng update @angular/cli`
+* Update Angular Core and Other Dependenciess
+  * For each minor version, run the following:
+    * `ng update @angular/cli@VERSION @angular/core@VERSION` 
+
 ### Troubleshooting
 
 * `Repository is not clean. Please commit or stash any changes before updating.`

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {MessageHistoryDialogComponent} from './message-history-dialog/message-history-dialog.component';
-import { environment } from '../environments/environment';
+import { environment } from '../ENVIRONMENTS/environment';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
 

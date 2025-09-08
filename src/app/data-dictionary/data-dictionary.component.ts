@@ -3,9 +3,10 @@ import {CategoryService} from '../app.service';
 import {Checksum, DataCategory} from '../categories';
 
 @Component({
-  selector: 'app-data-dictionary',
-  templateUrl: './data-dictionary.component.html',
-  styleUrls: ['./data-dictionary.component.css']
+    selector: 'app-data-dictionary',
+    templateUrl: './data-dictionary.component.html',
+    styleUrls: ['./data-dictionary.component.css'],
+    standalone: false
 })
 export class DataDictionaryComponent implements OnInit {
 

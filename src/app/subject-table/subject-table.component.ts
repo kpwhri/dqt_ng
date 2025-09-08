@@ -3,9 +3,10 @@ import {SubjectTableDataItem} from '../categories';
 import {CategoryService} from '../app.service';
 
 @Component({
-  selector: 'app-subject-table',
-  templateUrl: './subject-table.component.html',
-  styleUrls: ['./subject-table.component.css']
+    selector: 'app-subject-table',
+    templateUrl: './subject-table.component.html',
+    styleUrls: ['./subject-table.component.css'],
+    standalone: false
 })
 export class SubjectTableComponent implements OnInit {
 

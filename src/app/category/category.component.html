@@ -1,23 +1,36 @@
-<div *ngIf="description"
->
-  <p-accordionTab #fieldset header="{{name}}"
-                  matTooltip="{{description}}"
-                  [matTooltipPosition]="position"
-
+@if (description) {
+  <div
   >
-    <p-accordion [multiple]="true">
-      <div *ngFor="let item of items">
-        <app-item #itemComponent [item]="item" (onChange)="itemUpdated($event)"></app-item>
-      </div>
-    </p-accordion>
-  </p-accordionTab>
-</div>
-<div *ngIf="! description">
-  <p-accordionTab #fieldset header="{{name}}">
-    <p-accordion [multiple]="true">
-      <div *ngFor="let item of items">
-        <app-item #itemComponent [item]="item" (onChange)="itemUpdated($event)"></app-item>
-      </div>
-    </p-accordion>
-  </p-accordionTab>
-</div>
+    <p-accordion-panel #fieldset
+                       matTooltip="{{description}}"
+                       [matTooltipPosition]="position"
+    >
+      <p-accordion-header>{{ name }}</p-accordion-header>
+      <p-accordion-content>
+        <p-accordion [multiple]="true">
+          @for (item of items; track item) {
+            <div>
+              <app-item #itemComponent [item]="item" (onChange)="itemUpdated($event)"></app-item>
+            </div>
+          }
+        </p-accordion>
+      </p-accordion-content>
+    </p-accordion-panel>
+  </div>
+}
+@if (!description) {
+  <div>
+    <p-accordion-panel #fieldset>
+      <p-accordion-header>{{ name }}</p-accordion-header>
+      <p-accordion-content>
+        <p-accordion [multiple]="true">
+          @for (item of items; track item) {
+            <div>
+              <app-item #itemComponent [item]="item" (onChange)="itemUpdated($event)"></app-item>
+            </div>
+          }
+        </p-accordion>
+      </p-accordion-content>
+    </p-accordion-panel>
+  </div>
+}

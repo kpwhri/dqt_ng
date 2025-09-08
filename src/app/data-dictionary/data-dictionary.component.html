@@ -4,29 +4,37 @@
     <th>Download as Excel</th>
     <td><button (click)="downloadFile()">Download</button></td>
   </tr>
-  <tr *ngFor="let checksum of checksums">
-    <th>{{checksum.type}} checksum</th>
-    <td>{{checksum.value}}</td>
-  </tr>
+  @for (checksum of checksums; track checksum) {
+    <tr>
+      <th>{{checksum.type}} checksum</th>
+      <td>{{checksum.value}}</td>
+    </tr>
+  }
 </table>
 
 <h1>Variable Categories</h1>
 <div class="row">
-  <div class="col-md-2" *ngFor="let category of dataDictionary">
-    <h2><a href="#x{{category.id}}" class="category">
-      {{category.name}}
-    </a></h2>
-  </div>
+  @for (category of dataDictionary; track category) {
+    <div class="col-md-2">
+      <h2><a href="#x{{category.id}}" class="category">
+        {{category.name}}
+      </a></h2>
+    </div>
+  }
 </div>
 
 <h1>Variables</h1>
 <div class="row">
-  <div class="col-md-3" *ngFor="let category of dataDictionary">
-    <h2 id="x{{category.id}}" class="category">{{category.name}}</h2>
-    <ul *ngFor="let entry of category.data">
-      <li><a href="#{{entry.label}}">{{entry.label}}</a></li>
-    </ul>
-  </div>
+  @for (category of dataDictionary; track category) {
+    <div class="col-md-3">
+      <h2 id="x{{category.id}}" class="category">{{category.name}}</h2>
+      @for (entry of category.data; track entry) {
+        <ul>
+          <li><a href="#{{entry.label}}">{{entry.label}}</a></li>
+        </ul>
+      }
+    </div>
+  }
 </div>
 
 <table>
@@ -37,15 +45,17 @@
     <th>Description</th>
     <th>Category</th>
   </tr>
-  <ng-container *ngFor="let category of dataDictionary">
-    <tr *ngFor="let entry of category.data">
-      <td id="{{entry.label}}">
-        {{entry.label}}
-      </td>
-      <td>{{entry.category}}</td>
-      <td>{{entry.values}}</td>
-      <td>{{entry.description}}</td>
-      <td><a href="#x{{category.id}}">^{{category.name}}</a></td>
-    </tr>
-  </ng-container>
+  @for (category of dataDictionary; track category) {
+    @for (entry of category.data; track entry) {
+      <tr>
+        <td id="{{entry.label}}">
+          {{entry.label}}
+        </td>
+        <td>{{entry.category}}</td>
+        <td>{{entry.values}}</td>
+        <td>{{entry.description}}</td>
+        <td><a href="#x{{category.id}}">^{{category.name}}</a></td>
+      </tr>
+    }
+  }
 </table>

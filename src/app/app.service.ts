@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Category, Checksum, DataCategory, SearchResult, UserForm} from './categories';
-import {Observable} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import {Config} from './app.config';
 
 
@@ -112,6 +112,6 @@ export class CategoryService {
   private handleError(error: any) {
     let msg = (error.message) ? error.message : (error.status ? `${error.status} - ${error.statusText}` : 'Server error');
     console.error(msg);
-    return Observable.throw(msg);
+    return throwError(() => new Error(msg));
   }
 }

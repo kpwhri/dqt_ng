@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  domain: 'localhost',
-  serverAddress: 'http://127.0.0.1:8090'
+  domain: 'waqdcvdi000045.wa.kp.org',
+  serverAddress: 'http://waqdcvdi000045.wa.kp.org:8090'
 };

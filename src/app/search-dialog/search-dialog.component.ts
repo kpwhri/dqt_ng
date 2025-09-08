@@ -1,13 +1,14 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {CategoryService} from '../app.service';
-import {Observable} from 'rxjs/Rx';
+import {Observable} from 'rxjs';
 import {SearchResult} from '../categories';
 
 @Component({
-  selector: 'app-search-dialog',
-  templateUrl: './search-dialog.component.html',
-  styleUrls: ['./search-dialog.component.css']
+    selector: 'app-search-dialog',
+    templateUrl: './search-dialog.component.html',
+    styleUrls: ['./search-dialog.component.css'],
+    standalone: false
 })
 export class SearchDialogComponent implements OnInit {
 

@@ -1,5 +1,7 @@
-<div *ngIf="elementId">
-  <div
-    id="{{elementId}}"
-  ></div>
-</div>
+@if (elementId) {
+  <div>
+    <div
+      id="{{elementId}}"
+    ></div>
+  </div>
+}

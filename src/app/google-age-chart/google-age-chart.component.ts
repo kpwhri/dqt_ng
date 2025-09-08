@@ -11,9 +11,10 @@ export class IdIncrement {
 }
 
 @Component({
-  selector: 'app-google-age-chart',
-  templateUrl: './google-age-chart.component.html',
-  styleUrls: ['./google-age-chart.component.css'],
+    selector: 'app-google-age-chart',
+    templateUrl: './google-age-chart.component.html',
+    styleUrls: ['./google-age-chart.component.css'],
+    standalone: false
 })
 export class GoogleAgeChartComponent implements OnInit {
 

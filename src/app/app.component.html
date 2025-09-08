@@ -1,48 +1,67 @@
 <!--[if IE]>
 <p style="color: white;">
-  {{ieComment}}<button (click)="dismissIEComment()">Dismiss</button>
+  {{ ieComment }}
+  <button (click)="dismissIEComment()">Dismiss</button>
 </p>
 <![endif]-->
 <div>
-  <h1 class="title">{{title}}</h1>
+  <h1 class="title">{{ title }}</h1>
 </div>
-<div *ngIf="tabs.length > 0">
-  <p-tabView>
-    <p-tabPanel header="{{tabconfig.header}}"
-                [selected]="tabconfig.header === 'Home' && selectedTab !== 1"
-                *ngFor="let tabconfig of tabs">
-      <div *ngFor="let line of tabconfig.lines">
-        <div *ngIf="line.type == 'text'">
-          <p>{{line.text}}</p>
-        </div>
-        <div *ngIf="line.type == 'header'">
-          <h1>{{line.text}}</h1>
-        </div>
-        <div *ngIf="line.type == 'bold'">
-          <b>{{line.text}}</b>
-        </div>
-      </div>
-      <div *ngIf="tabconfig.header == 'Home'">
-        <app-home-page [authenticated]="authenticated"
-                       (onChange)="userFormSubmitted($event)"
-                       (onNavigate)="goToQueryTool(true)"
-        ></app-home-page>
-      </div>
-    </p-tabPanel>
-
-    <p-tabPanel
-      header="Query Tool"
-      [disabled]="! authenticated"
-      [selected]="selectedTab === 1"
-    >
-      <app-main #dqt></app-main>
-    </p-tabPanel>
-
-    <p-tabPanel
-      header="Data Dictionary"
-      [disabled]="! authenticated"
-    >
-      <app-data-dictionary #dd></app-data-dictionary>
-    </p-tabPanel>
-  </p-tabView>
-</div>
+@if (tabs.length > 0) {
+  <div>
+    <p-tabs [(value)]="selectedTab" (valueChange)="onTabChange($event)">
+      <p-tablist>
+        @for (tabconfig of tabs; track tabconfig; let i = $index) {
+          <p-tab [value]="i">{{ tabconfig.header }}</p-tab>
+        }
+        <p-tab [value]="tabs.length"
+               [disabled]="! authenticated">Query Tool</p-tab>
+        <p-tab [value]="tabs.length"
+               [disabled]="! authenticated">Data Dictionary</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        @for (tabconfig of tabs; track tabconfig; let i = $index) {
+          <p-tabpanel [value]="i">
+            @for (line of tabconfig.lines; track line) {
+              <div>
+                @if (line.type == 'text') {
+                  <div>
+                    <p>{{ line.text }}</p>
+                  </div>
+                }
+                @if (line.type == 'header') {
+                  <div>
+                    <h1>{{ line.text }}</h1>
+                  </div>
+                }
+                @if (line.type == 'bold') {
+                  <div>
+                    <b>{{ line.text }}</b>
+                  </div>
+                }
+              </div>
+            }
+            @if (tabconfig.header == 'Home') {
+              <div>
+                <app-home-page [authenticated]="authenticated"
+                               (onChange)="userFormSubmitted($event)"
+                               (onNavigate)="goToQueryTool(true)"
+                ></app-home-page>
+              </div>
+            }
+          </p-tabpanel>
+        }
+        <p-tabpanel
+          [value]="tabs.length"
+        >
+          <app-main #dqt></app-main>
+        </p-tabpanel>
+        <p-tabpanel
+          [value]="tabs.length+1"
+        >
+          <app-data-dictionary #dd></app-data-dictionary>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </div>
+}

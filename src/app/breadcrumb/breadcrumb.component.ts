@@ -5,9 +5,10 @@ import {AlertService} from '../alert.service';
 import {MenuItem} from 'primeng/api';
 
 @Component({
-  selector: 'app-breadcrumb',
-  templateUrl: './breadcrumb.component.html',
-  styleUrls: ['./breadcrumb.component.css']
+    selector: 'app-breadcrumb',
+    templateUrl: './breadcrumb.component.html',
+    styleUrls: ['./breadcrumb.component.css'],
+    standalone: false
 })
 export class BreadcrumbComponent implements OnInit {
 

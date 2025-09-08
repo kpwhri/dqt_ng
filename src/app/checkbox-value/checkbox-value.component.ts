@@ -4,10 +4,11 @@ import {SliderModule} from 'primeng/slider';
 import {AlertService} from '../alert.service';
 
 @Component({
-  selector: 'app-checkbox-value',
-  templateUrl: './checkbox-value.component.html',
-  styleUrls: ['./checkbox-value.component.css'],
-  providers: [SliderModule]
+    selector: 'app-checkbox-value',
+    templateUrl: './checkbox-value.component.html',
+    styleUrls: ['./checkbox-value.component.css'],
+    providers: [SliderModule],
+    standalone: false
 })
 export class CheckboxValueComponent implements OnInit {
 

@@ -1,31 +1,45 @@
 <table summary="{{summary}}" class="table">
   <caption>{{ caption }}</caption>
   <thead>
-  <tr>
-    <th colspan="2">{{ title }} Subjects</th>
-  </tr>
+    <tr>
+      <th colspan="2">{{ title }} Subjects</th>
+    </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let row of datarows">
-    <td *ngIf="row.header.toLowerCase() === 'current selection'" class="column1" id="label-{{row.id}}">
-      <b>{{ row.header }}</b></td>
-    <td *ngIf="row.header.toLowerCase() !== 'current selection'" class="column1"
-        id="label-{{row.id}}">{{ row.header }}
-    </td>
-    <td *ngIf="row.header.toLowerCase() === 'current selection'" id="value-{{row.id}}"><b>{{ row.value }}</b></td>
-    <td *ngIf="row.header.toLowerCase() !== 'current selection'" id="value-{{row.id}}">{{ row.value }}</td>
-  </tr>
-  </tbody>
-  <tfoot>
-  <tr *ngIf="maskValue > 0">
-    <td colspan="2" style="word-wrap: break-word;">
-      <ul>
-        <li>Cell sizes &le;{{ maskValue }} are not shown.</li>
-      </ul>
-      <ul *ngFor="let comment of comments">
-        <li>{{ comment }}</li>
-      </ul>
-    </td>
-  </tr>
-  </tfoot>
-</table>
+    @for (row of datarows; track row) {
+      <tr>
+        @if (row.header.toLowerCase() === 'current selection') {
+          <td class="column1" id="label-{{row.id}}">
+            <b>{{ row.header }}</b></td>
+          }
+          @if (row.header.toLowerCase() !== 'current selection') {
+            <td class="column1"
+              id="label-{{row.id}}">{{ row.header }}
+            </td>
+          }
+          @if (row.header.toLowerCase() === 'current selection') {
+            <td id="value-{{row.id}}"><b>{{ row.value }}</b></td>
+          }
+          @if (row.header.toLowerCase() !== 'current selection') {
+            <td id="value-{{row.id}}">{{ row.value }}</td>
+          }
+        </tr>
+      }
+    </tbody>
+    <tfoot>
+      @if (maskValue > 0) {
+        <tr>
+          <td colspan="2" style="word-wrap: break-word;">
+            <ul>
+              <li>Cell sizes &le;{{ maskValue }} are not shown.</li>
+            </ul>
+            @for (comment of comments; track comment) {
+              <ul>
+                <li>{{ comment }}</li>
+              </ul>
+            }
+          </td>
+        </tr>
+      }
+    </tfoot>
+  </table>

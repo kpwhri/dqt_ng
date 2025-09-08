@@ -1,4 +1,4 @@
-import { environment } from '../environments/environment';
+import { environment } from '../ENVIRONMENTS/environment';
 
 export class Config {
   serverAddress = environment.serverAddress;

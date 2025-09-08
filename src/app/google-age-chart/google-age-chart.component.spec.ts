@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GoogleAgeChartComponent } from './google-age-chart.component';
 
@@ -6,7 +6,7 @@ describe('GoogleAgeChartComponent', () => {
   let component: GoogleAgeChartComponent;
   let fixture: ComponentFixture<GoogleAgeChartComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ GoogleAgeChartComponent ]
     })

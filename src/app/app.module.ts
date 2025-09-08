@@ -1,36 +1,36 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppComponent } from './app.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AppComponent} from './app.component';
 import {CategoryService} from './app.service';
-import { CheckboxValueComponent } from './checkbox-value/checkbox-value.component';
-import { CategoryMasterComponent } from './category-master/category-master.component';
-import { CategoryComponent } from './category/category.component';
-import { ItemComponent } from './item/item.component';
-import { ValueComponent } from './value/value.component';
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import {CheckboxValueComponent} from './checkbox-value/checkbox-value.component';
+import {CategoryMasterComponent} from './category-master/category-master.component';
+import {CategoryComponent} from './category/category.component';
+import {ItemComponent} from './item/item.component';
+import {ValueComponent} from './value/value.component';
+import {BreadcrumbComponent} from './breadcrumb/breadcrumb.component';
 import {RouterModule} from '@angular/router';
 import {MenuListener} from './menuListener';
 import {PerfectScrollbarModule, PerfectScrollbarConfigInterface, PERFECT_SCROLLBAR_CONFIG} from 'ngx-perfect-scrollbar';
-import { SubjectTableComponent } from './subject-table/subject-table.component';
-import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
-import { MainComponent } from './main/main.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { FaqPageComponent } from './faq-page/faq-page.component';
-import { UserFormComponent } from './user-form/user-form.component';
+import {SubjectTableComponent} from './subject-table/subject-table.component';
+import {FilterDialogComponent} from './filter-dialog/filter-dialog.component';
+import {MainComponent} from './main/main.component';
+import {HomePageComponent} from './home-page/home-page.component';
+import {FaqPageComponent} from './faq-page/faq-page.component';
+import {UserFormComponent} from './user-form/user-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {ClipboardModule} from 'ngx-clipboard';
-import { SearchDialogComponent } from './search-dialog/search-dialog.component';
+import {SearchDialogComponent} from './search-dialog/search-dialog.component';
 import {LoaderService} from './loader.service';
-import { SpinnerComponent } from './spinner/spinner.component';
+import {SpinnerComponent} from './spinner/spinner.component';
 import {NgcCookieConsentConfig, NgcCookieConsentModule} from 'ngx-cookieconsent';
-import { environment } from '../environments/environment';
+import {environment} from '../ENVIRONMENTS/environment';
 import {CookieModule} from 'ngx-cookie';
 import {AlertService} from './alert.service';
-import { MessageHistoryDialogComponent } from './message-history-dialog/message-history-dialog.component';
+import {MessageHistoryDialogComponent} from './message-history-dialog/message-history-dialog.component';
 import {GoogleAgeChartComponent, IdIncrement} from './google-age-chart/google-age-chart.component';
-import { DataDictionaryComponent } from './data-dictionary/data-dictionary.component';
+import {DataDictionaryComponent} from './data-dictionary/data-dictionary.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -44,8 +44,8 @@ import {DialogModule} from 'primeng/dialog';
 import {TooltipModule} from 'primeng/tooltip';
 import {FieldsetModule} from 'primeng/fieldset';
 import {SharedModule} from 'primeng/api';
-import {OverlayPanelModule} from 'primeng/overlaypanel';
-import {TabViewModule} from 'primeng/tabview';
+import {TabsModule} from 'primeng/tabs';
+import {providePrimeNG} from 'primeng/config';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -82,66 +82,66 @@ const cookieConfig: NgcCookieConsentConfig = {
 };
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        CheckboxValueComponent,
-        CategoryMasterComponent,
-        CategoryComponent,
-        ItemComponent,
-        ValueComponent,
-        GoogleAgeChartComponent,
-        BreadcrumbComponent,
-        SubjectTableComponent,
-        FilterDialogComponent,
-        MainComponent,
-        HomePageComponent,
-        FaqPageComponent,
-        UserFormComponent,
-        SearchDialogComponent,
-        SpinnerComponent,
-        MessageHistoryDialogComponent,
-        GoogleAgeChartComponent,
-        DataDictionaryComponent,
-    ],
-    imports: [
-        CookieModule.forRoot(),
-        NgcCookieConsentModule.forRoot(cookieConfig),
-        MatTooltipModule,
-        MatSidenavModule,
-        MatCheckboxModule,
-        MatDialogModule,
-        MatSnackBarModule,
-        BrowserAnimationsModule,
-        BrowserModule,
-        ReactiveFormsModule,
-        FormsModule,
-        HttpClientModule,
-        SliderModule,
-        ToggleButtonModule,
-        FieldsetModule,
-        TooltipModule,
-        DialogModule,
-        MenubarModule,
-        AccordionModule,
-        ClipboardModule,
-        SharedModule,
-        TabViewModule,
-        OverlayPanelModule,
-        PerfectScrollbarModule,
-        RouterModule.forRoot([])
-    ],
-    providers: [
-        CategoryService,
-        MenuListener,
-        AlertService,
-        {
-            provide: PERFECT_SCROLLBAR_CONFIG,
-            useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-        },
-        LoaderService,
-        IdIncrement
-    ],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    CheckboxValueComponent,
+    CategoryMasterComponent,
+    CategoryComponent,
+    ItemComponent,
+    ValueComponent,
+    GoogleAgeChartComponent,
+    BreadcrumbComponent,
+    SubjectTableComponent,
+    FilterDialogComponent,
+    MainComponent,
+    HomePageComponent,
+    FaqPageComponent,
+    UserFormComponent,
+    SearchDialogComponent,
+    SpinnerComponent,
+    MessageHistoryDialogComponent,
+    GoogleAgeChartComponent,
+    DataDictionaryComponent,
+  ],
+  bootstrap: [AppComponent], imports: [CookieModule.forRoot(),
+    NgcCookieConsentModule.forRoot(cookieConfig),
+    MatTooltipModule,
+    MatSidenavModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
+    SliderModule,
+    ToggleButtonModule,
+    FieldsetModule,
+    TooltipModule,
+    DialogModule,
+    MenubarModule,
+    AccordionModule,
+    ClipboardModule,
+    SharedModule,
+    TabsModule,
+    PerfectScrollbarModule,
+    RouterModule.forRoot([])],
+  providers: [
+    providePrimeNG({
+      theme: {
+      }
+    }),
+    CategoryService,
+    MenuListener,
+    AlertService,
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    },
+    LoaderService,
+    IdIncrement,
+    provideHttpClient(withInterceptorsFromDi())
+  ]
 })
 export class AppModule {
 

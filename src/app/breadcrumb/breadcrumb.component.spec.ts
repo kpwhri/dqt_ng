@@ -1,6 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import {DebugElement, NO_ERRORS_SCHEMA} from '@angular/core';
 
 import { BreadcrumbComponent } from './breadcrumb.component';
@@ -10,7 +9,7 @@ describe('BreadcrumbComponent', () => {
   let component: BreadcrumbComponent;
   let fixture: ComponentFixture<BreadcrumbComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ BreadcrumbComponent ],
       schemas: [NO_ERRORS_SCHEMA],

@@ -1,6 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import {DebugElement, NO_ERRORS_SCHEMA} from '@angular/core';
 
 import { CategoryMasterComponent } from './category-master.component';
@@ -10,7 +9,7 @@ describe('CategoryMasterComponent', () => {
   let component: CategoryMasterComponent;
   let fixture: ComponentFixture<CategoryMasterComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CategoryMasterComponent ],
       schemas: [NO_ERRORS_SCHEMA],

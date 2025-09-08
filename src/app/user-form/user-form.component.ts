@@ -3,9 +3,10 @@ import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {UserForm} from '../categories';
 
 @Component({
-  selector: 'app-user-form',
-  templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.css']
+    selector: 'app-user-form',
+    templateUrl: './user-form.component.html',
+    styleUrls: ['./user-form.component.css'],
+    standalone: false
 })
 export class UserFormComponent implements OnInit {
 

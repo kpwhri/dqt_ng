@@ -5,16 +5,17 @@ import {
 import {Item, EventItem} from '../categories';
 import {ValueComponent} from '../value/value.component';
 import {CheckboxValueComponent} from '../checkbox-value/checkbox-value.component';
-import {AccordionTab} from 'primeng/accordion';
+import {Accordion} from 'primeng/accordion';
 
 @Component({
-  selector: 'app-item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-item',
+    templateUrl: './item.component.html',
+    styleUrls: ['./item.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItemComponent implements OnInit {
-  @ViewChild('fieldset', {static: false}) fieldset: AccordionTab;
+  @ViewChild('fieldset', {static: false}) fieldset: Accordion;
   @ViewChildren('valueItem') valueList: QueryList<ValueComponent>;
   @ViewChild('valueCheckbox', {static: false}) valueCheckbox: CheckboxValueComponent;
   @Input('item') item: Item;
