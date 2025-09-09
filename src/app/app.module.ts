@@ -101,7 +101,9 @@ const cookieConfig: NgcCookieConsentConfig = {
     GoogleAgeChartComponent,
     DataDictionaryComponent,
   ],
-  bootstrap: [AppComponent], imports: [CookieModule.forRoot(),
+  bootstrap: [AppComponent],
+  imports: [
+    CookieModule.forRoot(),
     NgcCookieConsentModule.forRoot(cookieConfig),
     MatTooltipModule,
     MatSidenavModule,
@@ -123,7 +125,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     SharedModule,
     TabsModule,
     ScrollPanelModule,
-    RouterModule.forRoot([])],
+    RouterModule.forRoot([]),
+  ],
   providers: [
     providePrimeNG({
       theme: {
@@ -136,8 +139,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     LoaderService,
     IdIncrement,
     provideHttpClient(withInterceptorsFromDi())
-  ]
+  ],
 })
 export class AppModule {
-
 }

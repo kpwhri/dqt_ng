@@ -4,7 +4,7 @@
 <p-accordion-panel value="0"
                    matTooltip="{{item.description}}"
                    [matTooltipPosition]="position">
-  <p-accordion-header>{{ item.name }}</p-accordion-header>
+  <p-accordion-header class="accordion-header">{{ item.name }}</p-accordion-header>
   <p-accordion-content>
     @if (item.range !== null && item.range !== undefined) {
       <div>

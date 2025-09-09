@@ -1,4 +1,4 @@
-import {Component, ElementRef, Injectable, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Injectable, Input, OnInit, ViewChild} from '@angular/core';
 
 @Injectable()
 export class IdIncrement {
@@ -11,21 +11,22 @@ export class IdIncrement {
 }
 
 @Component({
-    selector: 'app-google-age-chart',
-    templateUrl: './google-age-chart.component.html',
-    styleUrls: ['./google-age-chart.component.css'],
-    standalone: false
+  selector: 'app-google-age-chart',
+  templateUrl: './google-age-chart.component.html',
+  styleUrls: ['./google-age-chart.component.css'],
+  standalone: false
 })
-export class GoogleAgeChartComponent implements OnInit {
+export class GoogleAgeChartComponent implements OnInit, AfterViewInit {
 
   @Input('title') title;
-  @ViewChild('container', { static: false }) containerRef!: ElementRef<HTMLElement>;
+  @ViewChild('container', {static: false}) containerRef!: ElementRef<HTMLElement>;
   elementId: string;
   id: number;
   data: any[];
   options: any;
   chart: any;
-  loaded = false;
+  private lastGoogle: any | null = null;
+  private viewReady = false;
 
   constructor(increment: IdIncrement) {
     this.id = increment.increment();
@@ -50,10 +51,34 @@ export class GoogleAgeChartComponent implements OnInit {
     };
   }
 
+  ngAfterViewInit() {
+    this.viewReady = true;
+    if (this.lastGoogle && this.data) {
+      this.drawGraph(this.lastGoogle);
+    }
+  }
+
   drawGraph(google: any) {
-    const el = document.getElementById(this.elementId);
-    this.chart = this.createBarChart(google, el);
-    this.chart.draw(this.data, this.options);
+    // Prefer the ViewChild; fall back to id lookup if needed
+    const el = this.containerRef?.nativeElement ?? document.getElementById(this.elementId);
+    if (el) {
+      this.chart = this.createBarChart(google, el);
+      this.chart.draw(this.data, this.options);
+      this.lastGoogle = null;
+    } else {
+      // Element not in the DOM yet (e.g., collapsed accordion/lazy content).
+      // Defer once to the next tick; caller can trigger again on visibility change.
+      setTimeout(() => {
+        const retryEl = this.containerRef?.nativeElement ?? document.getElementById(this.elementId);
+        if (!retryEl) {
+          return;
+        }
+        this.chart = this.createBarChart(google, retryEl);
+        this.chart.draw(this.data, this.options);
+        this.lastGoogle = null;
+      });
+      return;
+    }
   }
 
   createBarChart(google: any, element: any): any {
@@ -65,6 +90,9 @@ export class GoogleAgeChartComponent implements OnInit {
   }
 
   updateChart(google: any, data: any[]) {
+    if (! this.viewReady) {
+      this.lastGoogle = google;
+    }
     this.data = this.createDataTable(google, data);
     this.drawGraph(google);
   };

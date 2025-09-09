@@ -5,7 +5,7 @@
                          matTooltip="{{description}}"
                          [matTooltipPosition]="position"
       >
-        <p-accordion-header>{{ name }}</p-accordion-header>
+        <p-accordion-header class="accordion-header">{{ name }}</p-accordion-header>
         <p-accordion-content>
           <p-accordion [multiple]="true">
             @for (item of items; track item) {
@@ -21,7 +21,7 @@
 @if (!description) {
   <div>
       <p-accordion-panel>
-        <p-accordion-header>{{ name }}</p-accordion-header>
+        <p-accordion-header class="accordion-header">{{ name }}</p-accordion-header>
         <p-accordion-content>
           <p-accordion [multiple]="true">
             @for (item of items; track item) {

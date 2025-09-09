@@ -1,0 +1,7 @@
+:host .accordion-header {
+  font-family: Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial, system-ui, -apple-system, sans-serif;
+  font-size: 1.5rem;       /* bump to 1.125rem or 1.25rem if you want larger text */
+  line-height: 1.4;
+  font-weight: 600;      /* or 500 if you prefer lighter */
+  letter-spacing: 1px; /* subtle tracking can improve readability */
+}
