@@ -1,5 +1,9 @@
-<p-accordion [multiple]="true">
-  @for (category of categories; track category.id) {
+<!-- accordion containing all categories/domains -->
+<p-accordion [multiple]="true"
+             [value]="isExpanded ? 0 : -1"
+             (valueChange)="onAccordionValueChange($event)"
+>
+  @for (category of categories; track category.id; let i=$index;) {
     <div>
       <app-category #categoryComponent [category]="category"
         (onChange)="categoryUpdated($event)">

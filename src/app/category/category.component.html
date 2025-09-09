@@ -4,9 +4,11 @@
     [matTooltip]="description"
     [matTooltipDisabled]="!description"
     [matTooltipPosition]="position"
+    value="={{category.id}}"
   >
     <p-accordion-header class="accordion-header">{{ name }}</p-accordion-header>
     <p-accordion-content>
+      <!-- An accordion containing all items -->
       <p-accordion [multiple]="true">
         @for (item of items; track item.id) {
           <div>

@@ -17,6 +17,7 @@ export class CategoryMasterComponent implements OnInit {
   @ViewChildren('categoryComponent') categoryComponents: QueryList<CategoryComponent>;
   categories: Category[];
   @Output() onChange: EventEmitter<any> = new EventEmitter();
+  isExpanded = false;  // track accordion open/close state
 
   constructor(private categoryService: CategoryService,
               private changeDetectorRef: ChangeDetectorRef,
@@ -35,6 +36,7 @@ export class CategoryMasterComponent implements OnInit {
   }
 
   bringCategoryToTop(itemId: number, categoryId: number) {
+    console.log('bring category to top');
     let idx: number;
     let category: Category;
     this.categories.forEach((cat, index) => {
@@ -68,6 +70,7 @@ export class CategoryMasterComponent implements OnInit {
   }
 
   collapseAll() {
+    console.log('collapse all');
     this.categoryComponents.forEach(cat => {
         cat.collapseAll();
       }
@@ -77,10 +80,23 @@ export class CategoryMasterComponent implements OnInit {
   }
 
   uncheck(event: EventItem) {
+    console.log('uncheck');
     this.categoryComponents.forEach(c => {
       if (c.category.id === +event.categoryId) {
         c.unselectItem(event);
       }
     });
   }
+
+  onAccordionValueChange(val: number | number[]) {
+    console.log(val);
+    // keep local state in sync when user toggles
+    if (Array.isArray(val)) {
+      this.isExpanded = val.includes(0);
+    } else {
+      this.isExpanded = val === 0;
+    }
+    this.changeDetectorRef.markForCheck();
+  }
+
 }
