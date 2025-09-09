@@ -1,36 +1,19 @@
-@if (description) {
-  <div>
+<div>
 
-      <p-accordion-panel
-                         matTooltip="{{description}}"
-                         [matTooltipPosition]="position"
-      >
-        <p-accordion-header class="accordion-header">{{ name }}</p-accordion-header>
-        <p-accordion-content>
-          <p-accordion [multiple]="true">
-            @for (item of items; track item.id) {
-              <div>
-                <app-item #itemComponent [item]="item" (onChange)="itemUpdated($event)"></app-item>
-              </div>
-            }
-          </p-accordion>
-        </p-accordion-content>
-      </p-accordion-panel>
-  </div>
-}
-@if (!description) {
-  <div>
-      <p-accordion-panel>
-        <p-accordion-header class="accordion-header">{{ name }}</p-accordion-header>
-        <p-accordion-content>
-          <p-accordion [multiple]="true">
-            @for (item of items; track item.id) {
-              <div>
-                <app-item #itemComponent [item]="item" (onChange)="itemUpdated($event)"></app-item>
-              </div>
-            }
-          </p-accordion>
-        </p-accordion-content>
-      </p-accordion-panel>
-  </div>
-}
+  <p-accordion-panel
+    [matTooltip]="description"
+    [matTooltipDisabled]="!description"
+    [matTooltipPosition]="position"
+  >
+    <p-accordion-header class="accordion-header">{{ name }}</p-accordion-header>
+    <p-accordion-content>
+      <p-accordion [multiple]="true">
+        @for (item of items; track item.id) {
+          <div>
+            <app-item #itemComponent [item]="item" (onChange)="itemUpdated($event)"></app-item>
+          </div>
+        }
+      </p-accordion>
+    </p-accordion-content>
+  </p-accordion-panel>
+</div>
