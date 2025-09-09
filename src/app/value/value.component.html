@@ -1,5 +1,9 @@
-<p-toggleButton [(ngModel)]="selected" onLabel="{{value.name}}" offLabel="{{value.name}}"
+<p-toggleButton [(ngModel)]="selected"
+                onLabel="{{value.name}}"
+                offLabel="{{value.name}}"
                 onIcon="far fa-check-square"
-                offIcon="far fa-square" [style]="{'width':'150px'}"
+                offIcon="far fa-square"
+                [style]="{'width':'150px', 'font-size': '1.125rem'}"
+                [ngClass]="['p-button-lg']"
                 (onChange)="valueChanged($event)"
 ></p-toggleButton>

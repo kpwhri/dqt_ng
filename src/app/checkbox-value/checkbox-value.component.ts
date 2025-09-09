@@ -72,7 +72,7 @@ export class CheckboxValueComponent implements OnInit {
     } else {
       this.buttonVals = [newMin, newMax];
     }
-    this.labelString = `${this.buttonVals[0]}-${this.buttonVals[1]}`;
+    this.labelString = `${this.buttonVals[0]} - ${this.buttonVals[1]}`;
   }
 
   valuesChanged(e) {
