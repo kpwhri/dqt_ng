@@ -1,4 +1,4 @@
-import {Component, Injectable, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Injectable, Input, OnInit, ViewChild} from '@angular/core';
 
 @Injectable()
 export class IdIncrement {
@@ -19,6 +19,7 @@ export class IdIncrement {
 export class GoogleAgeChartComponent implements OnInit {
 
   @Input('title') title;
+  @ViewChild('container', { static: false }) containerRef!: ElementRef<HTMLElement>;
   elementId: string;
   id: number;
   data: any[];
@@ -50,7 +51,8 @@ export class GoogleAgeChartComponent implements OnInit {
   }
 
   drawGraph(google: any) {
-    this.chart = this.createBarChart(google, document.getElementById(this.elementId));
+    const el = document.getElementById(this.elementId);
+    this.chart = this.createBarChart(google, el);
     this.chart.draw(this.data, this.options);
   }
 

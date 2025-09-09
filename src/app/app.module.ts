@@ -127,7 +127,7 @@ const cookieConfig: NgcCookieConsentConfig = {
   providers: [
     providePrimeNG({
       theme: {
-        preset: Aura
+        preset: Nora
       }
     }),
     CategoryService,
