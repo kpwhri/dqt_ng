@@ -8,7 +8,7 @@
         <p-accordion-header class="accordion-header">{{ name }}</p-accordion-header>
         <p-accordion-content>
           <p-accordion [multiple]="true">
-            @for (item of items; track item) {
+            @for (item of items; track item.id) {
               <div>
                 <app-item #itemComponent [item]="item" (onChange)="itemUpdated($event)"></app-item>
               </div>
@@ -24,7 +24,7 @@
         <p-accordion-header class="accordion-header">{{ name }}</p-accordion-header>
         <p-accordion-content>
           <p-accordion [multiple]="true">
-            @for (item of items; track item) {
+            @for (item of items; track item.id) {
               <div>
                 <app-item #itemComponent [item]="item" (onChange)="itemUpdated($event)"></app-item>
               </div>

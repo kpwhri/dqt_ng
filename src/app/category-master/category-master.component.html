@@ -1,5 +1,5 @@
 <p-accordion [multiple]="true">
-  @for (category of categories; track category) {
+  @for (category of categories; track category.id) {
     <div>
       <app-category #categoryComponent [category]="category"
         (onChange)="categoryUpdated($event)">

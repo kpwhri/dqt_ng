@@ -15,6 +15,7 @@ export class CheckboxValueComponent implements OnInit {
   @Input('max') max: string;
   @Input('min') min: string;
   @Input('step') step: string;
+  labelString = '';
   isDecimal = false;
   minAsInt: number;
   maxAsInt: number;
@@ -71,6 +72,7 @@ export class CheckboxValueComponent implements OnInit {
     } else {
       this.buttonVals = [newMin, newMax];
     }
+    this.labelString = `${this.buttonVals[0]}-${this.buttonVals[1]}`;
   }
 
   valuesChanged(e) {

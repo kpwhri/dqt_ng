@@ -14,7 +14,7 @@
 
 <h1>Variable Categories</h1>
 <div class="row">
-  @for (category of dataDictionary; track category) {
+  @for (category of dataDictionary; track category.id) {
     <div class="col-md-2">
       <h2><a href="#x{{category.id}}" class="category">
         {{category.name}}
@@ -25,7 +25,7 @@
 
 <h1>Variables</h1>
 <div class="row">
-  @for (category of dataDictionary; track category) {
+  @for (category of dataDictionary; track category.id) {
     <div class="col-md-3">
       <h2 id="x{{category.id}}" class="category">{{category.name}}</h2>
       @for (entry of category.data; track entry) {
@@ -45,7 +45,7 @@
     <th>Description</th>
     <th>Category</th>
   </tr>
-  @for (category of dataDictionary; track category) {
+  @for (category of dataDictionary; track category.id) {
     @for (entry of category.data; track entry) {
       <tr>
         <td id="{{entry.label}}">
