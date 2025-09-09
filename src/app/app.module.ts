@@ -46,6 +46,8 @@ import {FieldsetModule} from 'primeng/fieldset';
 import {SharedModule} from 'primeng/api';
 import {TabsModule} from 'primeng/tabs';
 import {providePrimeNG} from 'primeng/config';
+import Nora from '@primeuix/themes/nora';
+import Aura from '@primeuix/themes/aura';
 
 const cookieConfig: NgcCookieConsentConfig = {
   'cookie': {
@@ -125,6 +127,7 @@ const cookieConfig: NgcCookieConsentConfig = {
   providers: [
     providePrimeNG({
       theme: {
+        preset: Aura
       }
     }),
     CategoryService,

@@ -87,7 +87,6 @@ export class AppComponent implements OnInit {
   getTabs() {
     this.categoryService.getTabs()
       .subscribe(result => {
-        console.log(result);
         this.tabs = result.tabs as TabConfig[];
       });
   }
