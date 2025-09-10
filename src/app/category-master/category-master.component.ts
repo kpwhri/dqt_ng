@@ -78,7 +78,6 @@ export class CategoryMasterComponent implements OnInit {
   }
 
   collapseAll() {
-    console.log('collapse all');
     this.categoryComponents.forEach(cat => {
         cat.collapseAll();
       }
@@ -88,7 +87,6 @@ export class CategoryMasterComponent implements OnInit {
   }
 
   uncheck(event: EventItem) {
-    console.log('uncheck');
     this.categoryComponents.forEach(c => {
       if (c.category.id === +event.categoryId) {
         c.unselectItem(event);
@@ -97,7 +95,6 @@ export class CategoryMasterComponent implements OnInit {
   }
 
   onAccordionValueChange(val: number | number[]) {
-    console.log(val);
     this.activeCategory = Array.isArray(val) ? val as number[] : [val as number];
     if (Array.isArray(val)) {
       this.isExpanded = val.includes(0);

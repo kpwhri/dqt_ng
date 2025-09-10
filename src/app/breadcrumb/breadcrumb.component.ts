@@ -75,6 +75,7 @@ export class BreadcrumbComponent implements OnInit {
     this.items.some((mi, i) => {
       if (mi instanceof PrimaryMenuItem && mi.label === item.item) {
         mi.removeValue(val);
+        this.items = [...this.items];
         if (mi.isEmpty()) {
           idx = i;
         }
@@ -83,6 +84,7 @@ export class BreadcrumbComponent implements OnInit {
     });
     if (idx > -1) {
       this.items.splice(idx, 1);
+      this.items = [...this.items];
     }
   }
 
