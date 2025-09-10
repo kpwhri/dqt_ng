@@ -15,7 +15,6 @@ import {Accordion} from 'primeng/accordion';
   standalone: false
 })
 export class ItemComponent implements OnInit {
-  @ViewChild('fieldset', {static: false}) fieldset: Accordion;
   @ViewChildren('valueItem') valueList: QueryList<ValueComponent>;
   @ViewChild('valueCheckbox', {static: false}) valueCheckbox: CheckboxValueComponent;
   @Input('item') item: Item;
@@ -40,8 +39,13 @@ export class ItemComponent implements OnInit {
 
   expand() {
     this.zone.run(() => {
+      console.log(`${this.isExpanded}`);
       this.isExpanded = true;
-      this.changeDetectorRef.markForCheck();
+      setTimeout(() => {
+        this.changeDetectorRef.detectChanges();
+        this.changeDetectorRef.markForCheck();
+      });
+      this.applicationRef.tick();
     });
   }
 

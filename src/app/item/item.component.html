@@ -1,8 +1,9 @@
 <p-accordion [multiple]="false"
-             [value]="isExpanded ? 0 : -1"
+             [value]="isExpanded ? 0 : null"
              (valueChange)="onAccordionValueChange($event)">
-<p-accordion-panel value="0"
-                   matTooltip="{{item.description}}"
+<p-accordion-panel [value]="0"
+                   [matTooltip]="item.description"
+                   [matTooltipDisabled]="!item.description"
                    [matTooltipPosition]="position">
   <p-accordion-header class="accordion-header">{{ item.name }}</p-accordion-header>
   <p-accordion-content>

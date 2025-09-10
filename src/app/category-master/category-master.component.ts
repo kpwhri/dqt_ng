@@ -7,15 +7,16 @@ import {CategoryService} from '../app.service';
 import {CategoryComponent} from '../category/category.component';
 
 @Component({
-    selector: 'app-category-master',
-    templateUrl: './category-master.component.html',
-    styleUrls: ['./category-master.component.css'],
-    standalone: false
+  selector: 'app-category-master',
+  templateUrl: './category-master.component.html',
+  styleUrls: ['./category-master.component.css'],
+  standalone: false
 })
 export class CategoryMasterComponent implements OnInit {
 
   @ViewChildren('categoryComponent') categoryComponents: QueryList<CategoryComponent>;
   categories: Category[];
+  activeCategory: number[] = [];
   @Output() onChange: EventEmitter<any> = new EventEmitter();
   isExpanded = false;  // track accordion open/close state
 
@@ -51,7 +52,13 @@ export class CategoryMasterComponent implements OnInit {
     if (idx !== undefined && category) {
       this.categories.splice(idx, 1);
       this.categories.splice(0, 0, category);
-      this.categoryComponents.forEach(cat => {
+
+      this.zone.run(() => {
+        this.activeCategory = [category.id];
+      });
+
+      setTimeout(() => {
+        this.categoryComponents.forEach(cat => {
           if (cat.category.id === category.id) {
             if (itemId) {
               cat.expandItem(itemId);
@@ -61,10 +68,11 @@ export class CategoryMasterComponent implements OnInit {
           } else {
             cat.collapseAll();
           }
-        }
-      );
+        });
+        this.changeDetectorRef.detectChanges();
+      }, 0);
     }
-    this.applicationRef.tick();
+    this.zone.run(() => this.applicationRef.tick());
     this.changeDetectorRef.detectChanges();
     this.zone.run(() => this.applicationRef.tick());
   }
@@ -90,7 +98,7 @@ export class CategoryMasterComponent implements OnInit {
 
   onAccordionValueChange(val: number | number[]) {
     console.log(val);
-    // keep local state in sync when user toggles
+    this.activeCategory = Array.isArray(val) ? val as number[] : [val as number];
     if (Array.isArray(val)) {
       this.isExpanded = val.includes(0);
     } else {

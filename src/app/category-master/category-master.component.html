@@ -1,6 +1,6 @@
 <!-- accordion containing all categories/domains -->
 <p-accordion [multiple]="true"
-             [value]="isExpanded ? 0 : -1"
+             [value]="activeCategory"
              (valueChange)="onAccordionValueChange($event)"
 >
   @for (category of categories; track category.id; let i=$index;) {
