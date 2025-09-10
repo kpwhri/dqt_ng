@@ -5,3 +5,9 @@
   font-weight: 500;      /* or 500 if you prefer lighter */
   letter-spacing: 0.75px; /* subtle tracking can improve readability */
 }
+
+:host .accordion-header.active {
+  color: #0d6efd;           /* text color when open */
+  background-color: #e7f1ff;/* background when open */
+  transition: background-color 120ms ease, color 120ms ease;
+}
