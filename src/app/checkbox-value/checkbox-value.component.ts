@@ -43,10 +43,10 @@ export class CheckboxValueComponent implements OnInit {
       this.stepAsInt = +this.step;
     }
     this.vals = [+this.minAsInt, +this.maxAsInt];
-    this.onValueUpdate(null);
+    this.onValueUpdate(null, true);
   }
 
-  onValueUpdate(e) {
+  onValueUpdate(e, isInit=false) {
     /**
      * Update, but first check and ensure min != max, if it does send a toast
      */
@@ -66,9 +66,12 @@ export class CheckboxValueComponent implements OnInit {
       } else {
         this.vals = [this.buttonVals[0], this.buttonVals[1]]
       }
-      this.alertService.showMessages(
-        {'error': ['Invalid range: minimum and maximum values cannot be equal.']}
-      );
+      if (!isInit) {
+        // don't show this for each loading
+        this.alertService.showMessages(
+          {'error': [`Invalid range: minimum and maximum values cannot be equal.`]}
+        );
+      }
     } else {
       this.buttonVals = [newMin, newMax];
     }
