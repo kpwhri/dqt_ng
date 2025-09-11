@@ -1,0 +1,26 @@
+.search-table th,
+.search-table td {
+  font-size: 1.05rem;
+}
+
+.search-table .badge {
+  font-size: 1.05rem;
+}
+
+.search-table td .btn .pi {
+  font-size: 1.05rem;
+}
+
+.search-input {
+  font-size: 1.15rem;
+  padding: 0.5rem 0.75rem;
+  letter-spacing: 2px;
+}
+
+.search-results-title {
+  text-align: center;
+  font-size: 1.25rem; /* adjust as needed */
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
