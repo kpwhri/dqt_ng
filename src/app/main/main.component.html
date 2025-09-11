@@ -3,7 +3,7 @@
   <app-breadcrumb #breadcrumb></app-breadcrumb>
   <mat-sidenav-container class="example-container">
     <mat-sidenav class="sidenav" #sidenav [(mode)]="mode" [(opened)]="opened">
-      <input #target [(ngModel)]="searchTerm" placeholder="search"
+      <input #target [(ngModel)]="searchTerm" placeholder="search (e.g., casi)"
              (click)="openDialog()"
       />
       <button class="btn-info" (click)="collapseAll()">Collapse All</button>

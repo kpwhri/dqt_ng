@@ -1,35 +1,60 @@
 <input #target [(ngModel)]="searchTerm" placeholder="search"
-  (keyup)="search($event, searchTerm, target)"
-  />
-  <h2>Search Results</h2>
-  @if (! display) {
-    <div>
-      <p>Type at least 3 characters to see results...</p>
+       (keyup)="search($event, searchTerm, target)"
+/>
+<h2 class="mt-3">Search Results</h2>
+@if (!display) {
+  <div class="mb-3">
+    <div class="alert alert-info py-2 mb-0 d-flex align-items-center">
+      <i class="bi bi-info-circle-fill me-2"></i>
+      <small class="mb-0">Type at least 3 characters to see results...</small>
     </div>
-  }
-  @if (display) {
-    <div>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>View</th>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
-          </tr>
+  </div>
+}
+@if (display) {
+  <div>
+    <div class="search-results-container table-responsive shadow-sm rounded"
+         style="max-height: 720px; overflow: auto;">
+    <table class="table table-striped table-hover align-middle mb-0">
+        <thead class="table-light">
+        <tr>
+          <th class="text-center" style="width:72px;">View</th>
+          <th>Name</th>
+          <th style="width:100px;">Type</th>
+          <th>Description</th>
+        </tr>
         </thead>
         <tbody>
-          @for (res of results; track res) {
+          @for (res of results; track res.itemId) {
             <tr>
-              <td>
-                <button (click)="promoteCategory(res.itemId, res.categoryId)"><i class="pi pi-search"></i></button>
+              <td class="text-center">
+                <button class="btn btn-sm btn-outline-primary" (click)="promoteCategory(res.itemId, res.categoryId)"
+                        title="Open">
+                  <i class="pi pi-search"></i>
+                </button>
               </td>
-              <td>{{res.name}}</td>
-              <td>{{res.type}}</td>
-              <td>{{res.description}}</td>
+              <td class="fw-semibold">{{ res.name }}</td>
+              <td>
+                <span
+                  class="badge"
+                  [ngClass]="{
+                          'bg-success': res.type === 'item',
+                          'bg-primary': res.type === 'category'
+                        }">
+                  {{ res.type }}
+                </span>
+              </td>
+              <td>
+                {{ res.description }}
+              </td>
             </tr>
           }
         </tbody>
       </table>
     </div>
-  }
+
+    @if (results?.length === 0) {
+      <div class="text-center text-muted py-3">No results found.</div>
+    }
+
+  </div>
+}
