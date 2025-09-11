@@ -1,8 +1,20 @@
-<p-dialog header="{{header}}" [(visible)]="display"
+<p-dialog [header]="header"
+          [(visible)]="display"
           dismissableMask="true">
   {{text}}
-  <p-footer>
-    <button type="button" pButton ngxClipboard [cbContent]="text" (click)="display=true" label="Copy">Copy</button>
-    <button type="button" pButton (click)="display=false" label="Close">Close</button>
-  </p-footer>
+  <ng-template pTemplate="footer">
+    <button type="button"
+            pButton
+            ngxClipboard
+            [cbContent]="text"
+            (click)="display=true"
+            aria-label="Copy"
+    >Copy</button>
+    <button type="button"
+            pButton
+            (click)="display=false"
+            aria-label="Close"
+            class="p-button-plain"
+    >Close</button>
+  </ng-template>
 </p-dialog>
