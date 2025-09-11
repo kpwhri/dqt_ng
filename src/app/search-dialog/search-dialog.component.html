@@ -28,7 +28,7 @@
         </tr>
         </thead>
         <tbody>
-          @for (res of results; track res.itemId) {
+          @for (res of (results$ | async); track res.itemId) {
             <tr>
               <td class="text-center">
                 <button class="btn btn-sm btn-outline-primary" (click)="promoteCategory(res.itemId, res.categoryId)"
@@ -56,7 +56,7 @@
       </table>
     </div>
 
-    @if (results?.length === 0) {
+    @if ((results$ | async)?.length === 0) {
       <div class="text-center text-muted py-3">No results found.</div>
     }
 

@@ -1,7 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {CategoryService} from '../app.service';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
+import {map, catchError} from 'rxjs/operators';
 import {SearchResult} from '../categories';
 
 @Component({
@@ -13,7 +14,7 @@ import {SearchResult} from '../categories';
 export class SearchDialogComponent implements OnInit {
 
   searchTerm = '';
-  results: Observable<SearchResult[]>;
+  results$: Observable<SearchResult[]> = of([]);
   display = false;
 
   constructor(
@@ -27,19 +28,18 @@ export class SearchDialogComponent implements OnInit {
 
   search(e, term: string, target) {
     if (term && term.length >= 3) {
-      this.categoryService.search(term)
-        .subscribe(
-          data => {
-            this.results = data['search'];
-          },
-          err => {
+      this.results$ = this.categoryService.search(term)
+        .pipe(
+          map((data: any) => (data?.['search'] ?? []) as SearchResult[]),
+          catchError(err => {
             console.warn('Error:', term, err);
-            this.results = null;
-          }
-        );
+            return of([]);
+          })
+        )
+      ;
       this.display = true;
     } else {
-      this.results = null;
+      this.results$ = of([]);
       this.display = false;
     }
   }
