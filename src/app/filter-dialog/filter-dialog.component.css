@@ -1,0 +1,98 @@
+:host ::ng-deep .p-dialog .dialog-body {
+  /* body padding and readable line-height */
+  padding: 1rem 1rem 0.5rem 1rem;
+  color: var(--dialog-text, #222);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* footer layout */
+:host ::ng-deep .dialog-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 0.5rem 0.25rem 0.5rem;
+}
+
+/* copy feedback area (left) */
+:host ::ng-deep .copy-feedback {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--success-600, #198754);
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+/* when shown, the ngIf inserts element; use visible states if using classes */
+:host ::ng-deep .copy-feedback .copy-icon {
+  font-size: 1rem;
+}
+
+/* button group (right) */
+:host ::ng-deep .button-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* smaller icon spacing in the button label */
+:host ::ng-deep .p-button .btn-label {
+  margin-left: 0.5rem;
+}
+
+/* spinner icon styling */
+:host ::ng-deep .spinner-icon {
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* focus ring for accessibility */
+:host ::ng-deep .p-button:focus {
+  box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.18);
+  outline: none;
+}
+
+/* make outlined close button more subtle */
+:host ::ng-deep .p-button-outlined {
+  border-color: rgba(0,0,0,0.08);
+  color: rgba(0,0,0,0.7);
+}
+
+/* small rounded buttons */
+:host ::ng-deep .p-button-rounded {
+  border-radius: 999px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  height: 34px; /* compact size */
+}
+
+/* copy feedback appear animation when copySuccess toggled:
+   to enable the fade-in apply styles via ngIf — element inserted, so use transition from initial state */
+:host ::ng-deep .copy-feedback {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* responsive: stack on narrow screens */
+@media (max-width: 480px) {
+  :host ::ng-deep .dialog-footer {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+  :host ::ng-deep .button-group {
+    justify-content: stretch;
+  }
+  :host ::ng-deep .p-button {
+    width: 100%;
+  }
+  :host ::ng-deep .copy-feedback {
+    justify-content: flex-start;
+    padding: 0.25rem 0;
+  }
+}

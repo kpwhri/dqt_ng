@@ -20,7 +20,7 @@ import {FaqPageComponent} from './faq-page/faq-page.component';
 import {UserFormComponent} from './user-form/user-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
-import {ClipboardModule} from 'ngx-clipboard';
+import {ClipboardModule} from '@angular/cdk/clipboard';
 import {SearchDialogComponent} from './search-dialog/search-dialog.component';
 import {LoaderService} from './loader.service';
 import {SpinnerComponent} from './spinner/spinner.component';
@@ -126,6 +126,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     TabsModule,
     ScrollPanelModule,
     RouterModule.forRoot([]),
+
   ],
   providers: [
     providePrimeNG({

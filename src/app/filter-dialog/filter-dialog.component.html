@@ -1,20 +1,33 @@
 <p-dialog [header]="header"
           [(visible)]="display"
           dismissableMask="true">
-  {{text}}
+  <div class="dialog-body">
+    {{ text }}
+  </div>
   <ng-template pTemplate="footer">
-    <button type="button"
-            pButton
-            ngxClipboard
-            [cbContent]="text"
-            (click)="display=true"
-            aria-label="Copy"
-    >Copy</button>
-    <button type="button"
-            pButton
-            (click)="display=false"
-            aria-label="Close"
-            class="p-button-plain"
-    >Close</button>
+    <div class="dialog-footer">
+      <div class="button-group">
+        <button type="button"
+                pButton
+                class="p-button p-button-success p-button-rounded p-button-sm"
+                [cdkCopyToClipboard]="text"
+                (cdkCopyToClipboardCopied)="copySuccess = true"
+                (click)="copyText()"
+                aria-label="Copy"
+        >
+          <i class="pi pi-copy" aria-hidden="true"></i>
+          <span class="btn-label">Copy</span>
+        </button>
+        <button type="button"
+                pButton
+                class="p-button p-button-outlined p-button-rounded p-button-sm"
+                (click)="display=false"
+                aria-label="Close"
+        >
+          <i class="pi pi-times" aria-hidden="true"></i>
+          <span class="btn-label">Close</span>
+        </button>
+      </div>
+    </div>
   </ng-template>
 </p-dialog>
