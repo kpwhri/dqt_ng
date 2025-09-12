@@ -7,12 +7,13 @@
                 [ngClass]="['p-button-lg']"
                 (onChange)="toggleChanged($event)"
 ></p-toggleButton>
-<div>
+<div style="margin-top: 5px">
   <p-slider [(ngModel)]="vals"
             [min]="minAsInt" [max]="maxAsInt" [range]="true"
             [step]="stepAsInt"
             (onSlideEnd)="valuesChanged($event)"
             (onChange)="onValueUpdate($event)"
+            class="custom-slider"
   >
   </p-slider>
 

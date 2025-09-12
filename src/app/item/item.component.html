@@ -23,7 +23,7 @@
     @if (item.values !== null) {
       <div>
         @for (value of item.values; track value.id) {
-          <div>
+          <div style="width: 90%">
             <app-value #valueItem [value]="value" (onChange)="itemChanged($event)"></app-value>
           </div>
         }

@@ -1,0 +1,27 @@
+::ng-deep .my-togglebutton {
+  display: flex !important;       /* switch from inline-flex to flex to respect width */
+  width: 90% !important;
+  box-sizing: border-box;
+  padding-left: 0.5rem;
+}
+
+/* Align icon and label left inside the button */
+::ng-deep .my-togglebutton .p-togglebutton-content {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+}
+
+/* Space between icon and label */
+::ng-deep .my-togglebutton .p-togglebutton-icon {
+  margin-right: 0.5rem;
+}
+
+/* Label styling */
+::ng-deep .my-togglebutton .p-togglebutton-label {
+  font-size: 1.3rem; /* increase font size slightly */
+  text-align: left;
+  flex-grow: 1;  /* make label take remaining space */
+}
