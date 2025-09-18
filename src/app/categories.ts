@@ -26,6 +26,7 @@ export class DataEntry {
 }
 
 export class DataCategory {
+  id: number;
   name: string;
   items: DataEntry[];
 }
