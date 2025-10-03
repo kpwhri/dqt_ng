@@ -39,7 +39,6 @@ export class ItemComponent implements OnInit {
 
   expand() {
     this.zone.run(() => {
-      console.log(`${this.isExpanded}`);
       this.isExpanded = true;
       setTimeout(() => {
         this.changeDetectorRef.detectChanges();

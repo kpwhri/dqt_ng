@@ -37,7 +37,6 @@ export class CategoryMasterComponent implements OnInit {
   }
 
   bringCategoryToTop(itemId: number, categoryId: number) {
-    console.log('bring category to top');
     let idx: number;
     let category: Category;
     this.categories.forEach((cat, index) => {
