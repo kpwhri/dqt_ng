@@ -45,24 +45,24 @@ li {
 }
 
 a {
-  color: #005ea8;
+  color: #94caf1;
   font-weight: 600;
   text-decoration: underline;
 }
 
 a:hover,
 a:focus {
-  color: #003f73;
+  color: #fafafa;
   text-decoration-thickness: 2px;
 }
 
 .category {
-  color: #7a3104;
+  color: #a5704c;
 }
 
 .category:hover,
 .category:focus {
-  color: #4f1f02;
+  color: #893f12;
 }
 
 h1 {
