@@ -27,6 +27,7 @@ export class GoogleAgeChartComponent implements OnInit, AfterViewInit {
   chart: any;
   private lastGoogle: any | null = null;
   private viewReady = false;
+  private chartObserver?: IntersectionObserver;
 
   constructor(increment: IdIncrement) {
     this.id = increment.increment();
@@ -65,27 +66,48 @@ export class GoogleAgeChartComponent implements OnInit, AfterViewInit {
   }
 
   drawGraph(google: any, isAllZero: boolean) {
-    // Prefer the ViewChild; fall back to id lookup if needed
-    const el = this.containerRef?.nativeElement ?? document.getElementById(this.elementId);
-    if (el) {
-      this.chart = this.createBarChart(google, el);
-      this.chart.draw(this.data, this.getCurrentOptions(isAllZero));
-      this.lastGoogle = null;
-    } else {
-      // Element not in the DOM yet (e.g., collapsed accordion/lazy content).
-      // Defer once to the next tick; caller can trigger again on visibility change.
-      setTimeout(() => {
-        const retryEl = this.containerRef?.nativeElement ?? document.getElementById(this.elementId);
-        if (!retryEl) {
+    const getElement = () =>
+      this.containerRef?.nativeElement ??
+      document.getElementById(this.elementId);
+
+    const drawWhenVisible = (el: HTMLElement) => {
+      this.chartObserver?.disconnect();
+
+      this.chartObserver = new IntersectionObserver(([entry], observer) => {
+        if (!entry.isIntersecting) {
           return;
         }
-        this.chart = this.createBarChart(google, retryEl);
-        this.chart.draw(this.data, this.getCurrentOptions(isAllZero));
-        this.lastGoogle = null;
+
+        observer.disconnect();
+
+        requestAnimationFrame(() => {
+          if (!el.isConnected) {
+            return;
+          }
+
+          this.chart = this.createBarChart(google, el);
+          this.chart.draw(this.data, this.getCurrentOptions(isAllZero));
+          this.lastGoogle = null;
+        });
       });
-      return;
+
+      this.chartObserver.observe(el);
+    };
+
+    const el = getElement();
+
+    if (el) {
+      drawWhenVisible(el);
+    } else {
+      setTimeout(() => {
+        const retryEl = getElement();
+        if (retryEl) {
+          drawWhenVisible(retryEl);
+        }
+      });
     }
   }
+
 
   createBarChart(google: any, element: any): any {
     return new google.visualization.ColumnChart(element);
@@ -96,7 +118,7 @@ export class GoogleAgeChartComponent implements OnInit, AfterViewInit {
   }
 
   updateChart(google: any, data: any[]) {
-    if (! this.viewReady) {
+    if (!this.viewReady) {
       this.lastGoogle = google;
     }
     let isAllZero = this.allZero(data);
@@ -113,7 +135,7 @@ export class GoogleAgeChartComponent implements OnInit, AfterViewInit {
     return this.options;
   }
 
-  private allZero (data: any[]): boolean {
+  private allZero(data: any[]): boolean {
     return data
       .slice(1)
       .every(row => row.slice(1).every(value => value === 0));
