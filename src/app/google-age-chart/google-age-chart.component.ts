@@ -38,6 +38,12 @@ export class GoogleAgeChartComponent implements OnInit, AfterViewInit {
       chartArea: {
         right: 100
       },
+      vAxis: {
+        viewWindow: {
+          min: 0,
+        },
+        format: '0',
+      },
       chart: {},
       title: this.title,
       legend: {
@@ -54,16 +60,16 @@ export class GoogleAgeChartComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.viewReady = true;
     if (this.lastGoogle && this.data) {
-      this.drawGraph(this.lastGoogle);
+      this.drawGraph(this.lastGoogle, false);
     }
   }
 
-  drawGraph(google: any) {
+  drawGraph(google: any, isAllZero: boolean) {
     // Prefer the ViewChild; fall back to id lookup if needed
     const el = this.containerRef?.nativeElement ?? document.getElementById(this.elementId);
     if (el) {
       this.chart = this.createBarChart(google, el);
-      this.chart.draw(this.data, this.options);
+      this.chart.draw(this.data, this.getCurrentOptions(isAllZero));
       this.lastGoogle = null;
     } else {
       // Element not in the DOM yet (e.g., collapsed accordion/lazy content).
@@ -74,7 +80,7 @@ export class GoogleAgeChartComponent implements OnInit, AfterViewInit {
           return;
         }
         this.chart = this.createBarChart(google, retryEl);
-        this.chart.draw(this.data, this.options);
+        this.chart.draw(this.data, this.getCurrentOptions(isAllZero));
         this.lastGoogle = null;
       });
       return;
@@ -93,8 +99,23 @@ export class GoogleAgeChartComponent implements OnInit, AfterViewInit {
     if (! this.viewReady) {
       this.lastGoogle = google;
     }
+    let isAllZero = this.allZero(data);
     this.data = this.createDataTable(google, data);
-    this.drawGraph(google);
+    this.drawGraph(google, isAllZero);
   };
 
+  getCurrentOptions(isAllZero: boolean) {
+    if (isAllZero) {
+      let options = structuredClone(this.options);
+      options.vAxis.viewWindow.max = 1;
+      return options;
+    }
+    return this.options;
+  }
+
+  private allZero (data: any[]): boolean {
+    return data
+      .slice(1)
+      .every(row => row.slice(1).every(value => value === 0));
+  }
 }
