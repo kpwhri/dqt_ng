@@ -21,7 +21,7 @@
 
 /* Label styling */
 ::ng-deep .my-togglebutton .p-togglebutton-label {
-  font-size: 1.3rem; /* increase font size slightly */
+  font-size: 0.9rem; /* increase font size slightly */
   text-align: left;
   flex-grow: 1;  /* make label take remaining space */
 }

@@ -33,7 +33,9 @@
             ],
             "scripts": [
               "node_modules/cookieconsent/build/cookieconsent.min.js",
-              "node_modules/quill/dist/quill.js"
+              "node_modules/quill/dist/quill.js",
+              "src/assets/js/json3.min.js",
+              "src/assets/js/loader.js"
             ],
             "aot": false,
             "extractLicenses": false,

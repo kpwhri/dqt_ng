@@ -1,7 +1,25 @@
+:host ::ng-deep .p-dialog {
+  background: #20272a;
+  color: #ffffff;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-header,
+:host ::ng-deep .p-dialog .p-dialog-content,
+:host ::ng-deep .p-dialog .p-dialog-footer {
+  background: #20272a;
+  color: #ffffff;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-title,
+:host ::ng-deep .p-dialog .p-dialog-header-icon,
+:host ::ng-deep .p-dialog .dialog-body {
+  color: #ffffff;
+}
+
 :host ::ng-deep .p-dialog .dialog-body {
   /* body padding and readable line-height */
   padding: 1rem 1rem 0.5rem 1rem;
-  color: var(--dialog-text, #222);
+  color: #ffffff;
   font-size: 0.95rem;
   line-height: 1.5;
 }
@@ -58,10 +76,17 @@
   outline: none;
 }
 
-/* make outlined close button more subtle */
-:host ::ng-deep .p-button-outlined {
-  border-color: rgba(0,0,0,0.08);
-  color: rgba(0,0,0,0.7);
+/* keep the cancel/close button outlined and visible before hover */
+:host ::ng-deep .button-group .p-button-outlined {
+  background: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+
+:host ::ng-deep .button-group .p-button-outlined:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #20272a;
 }
 
 /* small rounded buttons */

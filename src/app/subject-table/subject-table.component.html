@@ -32,12 +32,10 @@
           <td colspan="2" style="word-wrap: break-word;">
             <ul>
               <li>Cell sizes &le;{{ maskValue }} are not shown.</li>
-            </ul>
             @for (comment of comments; track comment) {
-              <ul>
                 <li>{{ comment }}</li>
-              </ul>
             }
+            </ul>
           </td>
         </tr>
       }
