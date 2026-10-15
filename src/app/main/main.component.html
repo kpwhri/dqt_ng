@@ -1,47 +1,89 @@
 <app-breadcrumb #breadcrumb></app-breadcrumb>
+
 <div id="FULLWIDTH">
-
   <mat-sidenav-container class="example-container">
-    <mat-sidenav class="sidenav" #sidenav [(mode)]="mode" [(opened)]="opened">
-      <input #target [(ngModel)]="searchTerm" placeholder="search (e.g., casi)"
-             (click)="openDialog()"
-      />
-      <button class="btn-info" (click)="collapseAll()">Collapse All</button>
 
-      <app-category-master #master (onChange)="categoryUpdated($event)"></app-category-master>
+    <!-- Sidebar -->
+    <mat-sidenav
+      class="sidenav"
+      #sidenav
+      [(mode)]="mode"
+      [(opened)]="opened">
+
+      <input
+        #target
+        [(ngModel)]="searchTerm"
+        placeholder="search (e.g., casi)"
+        (click)="openDialog()"
+      />
+
+      <button class="btn-info" (click)="collapseAll()">
+        Collapse All
+      </button>
+
+      <app-category-master
+        #master
+        (onChange)="categoryUpdated($event)">
+      </app-category-master>
+
     </mat-sidenav>
 
+    <!-- Main content -->
     <mat-sidenav-content>
-      <div class="button-div">
-        <button class="button" mat-button (click)="toggleSidenav()">
-          <span>{{buttonText}}</span>
-        </button>
-      </div>
-      <div style="padding-left: 40px;">
-        <div class="row justify-content-center" style="margin-left: 20px;">
-          <div class="col-md-6" style="margin-right: 50px;">
+      <div class="main-content">
 
-            <div style="margin-left: 45%">
-              <app-spinner
-                name="startSpinner"
-                loadingImage="assets/Spin-1s-200px.svg"
-                [show]="true"
-                size="large"
-              ></app-spinner>
+        <!-- Vertical sidebar toggle button -->
+        <div class="button-div">
+          <button
+            class="button"
+            mat-button
+            (click)="toggleSidenav()">
+            <span>{{ buttonText }}</span>
+          </button>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="dashboard-container">
+          <div class="dashboard-layout">
+
+            <!-- Charts -->
+            <div class="charts-section">
+
+              <div class="spinner-container">
+                <app-spinner
+                  name="startSpinner"
+                  loadingImage="assets/Spin-1s-200px.svg"
+                  [show]="true"
+                  size="large">
+                </app-spinner>
+              </div>
+
+              <app-google-age-chart
+                #gAgeBlChart
+                [title]="ageBlTitle">
+              </app-google-age-chart>
+
+              <app-google-age-chart
+                #gAgeFuChart
+                [title]="ageFuTitle">
+              </app-google-age-chart>
+
             </div>
-            <app-google-age-chart #gAgeBlChart [title]="ageBlTitle"></app-google-age-chart>
-            <app-google-age-chart #gAgeFuChart [title]="ageFuTitle"></app-google-age-chart>
-          </div>
-          <div class="col-md-4">
-            <app-subject-table #subjectTable style="margin-left: 50px;"></app-subject-table>
+
+            <!-- Subjects table -->
+            <div class="subjects-section">
+              <app-subject-table
+                #subjectTable>
+              </app-subject-table>
+            </div>
+
           </div>
         </div>
+
       </div>
     </mat-sidenav-content>
+
   </mat-sidenav-container>
-
-
 </div>
-
 
 <app-filter-dialog #filterDialog></app-filter-dialog>

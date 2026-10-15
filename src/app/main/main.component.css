@@ -1,9 +1,18 @@
+/* ============================================================
+   Sidebar input
+   ============================================================ */
+
 input {
   width: 95%;
   margin: 1% 2% 0.25% 2%;
   font-size: 20px;
   font-family: monospace;
 }
+
+
+/* ============================================================
+   Main page container
+   ============================================================ */
 
 #FULLWIDTH {
   overflow: hidden;
@@ -16,36 +25,55 @@ input {
   right: 0;
 }
 
+
+/* ============================================================
+   Angular Material sidenav
+   ============================================================ */
+
 .example-container {
   height: 100%;
   position: relative;
   flex: 1;
 }
 
-.content {
-  padding-left: 20px;
-  float: left;
-}
-
-.innercontent {
-  float: top;
-}
-
 .sidenav {
   height: 100%;
+  max-width: 35vw;
 }
 
+mat-sidenav-content {
+  min-width: 0;
+}
+
+
+/* ============================================================
+   Main content area
+   ============================================================ */
+
+.main-content {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  min-height: 100%;
+  align-items: stretch;
+}
+
+
+/* ============================================================
+   Vertical sidebar toggle button
+   ============================================================ */
+
 .button-div {
-  height: 100%;
-  float: left;
-  width: 20px;
-  /*display: inline-block;*/
-  margin-right: 20px;
+  flex: 0 0 30px;
+  width: 30px;
+  margin-right: 12px;
 }
 
 .button {
   height: 100%;
   width: 30px;
+  min-width: 30px;
+  padding: 0;
   background-color: #044d7a;
 }
 
@@ -58,4 +86,81 @@ input {
   font-family: Candara, serif;
   letter-spacing: 2px;
   font-weight: bold;
+}
+
+
+/* ============================================================
+   Dashboard container
+   ============================================================ */
+
+.dashboard-container {
+  container-type: inline-size;
+
+  flex: 1 1 0;
+  min-width: 0;
+
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   Charts and subjects table layout
+   ============================================================ */
+
+.dashboard-layout {
+  display: grid;
+
+  /* Charts take 60%, subjects table takes 40% */
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+
+  gap: 24px;
+  align-items: start;
+}
+
+.charts-section,
+.subjects-section {
+  min-width: 0;
+}
+
+
+/* ============================================================
+   Spinner
+   ============================================================ */
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+}
+
+
+/* ============================================================
+   Responsive layout based on available content width
+   ============================================================ */
+
+@container (max-width: 750px) {
+
+  .dashboard-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Subjects table moves above charts */
+  .subjects-section {
+    grid-row: 1;
+  }
+
+  /* Charts move below subjects table */
+  .charts-section {
+    grid-row: 2;
+  }
+
+}
+
+.content {
+  padding-left: 20px;
+  float: left;
+}
+
+.innercontent {
+  float: top;
 }
