@@ -5,7 +5,7 @@
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host waqdcvdi000045.wa.kp.org --port 8091",
+    "start": "ng serve --host 0.0.0.0 --port 8091",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
